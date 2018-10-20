@@ -1,0 +1,26 @@
+[package]
+
+name = "arithmancy"
+description = "an *advanced* mathematical compilation"
+version = "0.0.1"
+authors = ["Andrew Pennebaker <andrew.pennebaker@gmail.com>"]
+license = "BSD-2-Clause"
+
+[dependencies]
+getopts = "0.2.18"
+cargo-tinyrick = { version = "0.0.1", path = "..", optional = true }
+
+[features]
+letmeout = ["cargo-tinyrick"]
+
+[lib]
+path = "src/lib/arithmancy.rs"
+
+[[bin]]
+name = "add_two"
+path = "src/bin/add_two.rs"
+
+[[bin]]
+name = "tinyrick"
+path = "src/bin/tinyrick.rs"
+required-features = ["letmeout"]
