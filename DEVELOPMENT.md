@@ -1,6 +1,6 @@
 # OVERVIEW
 
-cargo-tinyrick's own compilation process is compatible with standard `cargo`. We wrap some common workflows with `make` tasks for convenience.
+tinyrick's own compilation process is compatible with standard `cargo`. We wrap some common workflows with `make` tasks for convenience.
 
 # BUILDTIME REQUIREMENTS
 
