@@ -80,6 +80,14 @@ fn banner() {
     .expect("Error running 'add_two -v'");
 }
 
+/// Publish to crate repository
+fn publish() {
+  Command::new("cargo")
+    .arg("publish")
+    .status()
+    .expect("Error publishing package");
+}
+
 pub fn main() {
   let args : Vec<String> = env::args().collect();
 
@@ -103,6 +111,7 @@ pub fn main() {
         "integration_test" => integration_test(),
         "test" => test(),
         "banner" => banner(),
+        "publish" => publish(),
         _ => panic!("Unknown task {}", task_name)
       }
     }
