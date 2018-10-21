@@ -42,10 +42,7 @@ fn unit_test() {
 /// Run integration tests
 fn integration_test() {
   tinyrick::deps(build);
-
-  let bin : &str = "add_two";
-
-  assert!(tinyrick::shell_stdout_utf8!(bin, "-n", "2") == "4\n");
+  assert!(tinyrick::shell_stdout_utf8!("add_two", "-n", "2") == "4\n");
 }
 
 /// Run all tests
