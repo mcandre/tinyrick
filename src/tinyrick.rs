@@ -1,4 +1,4 @@
-//! Cargo subcommand
+//! CLI tinyrick tool
 
 extern crate tinyrick;
 
