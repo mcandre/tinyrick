@@ -39,7 +39,7 @@ test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 Finished dev [unoptimized + debuginfo] target(s) in 0.05s
 ```
 
-See the `example/` project for more configuration details.
+See the [example/](example) project for more configuration details.
 
 # CREDITS
 
