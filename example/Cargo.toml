@@ -22,5 +22,5 @@ path = "src/bin/add_two.rs"
 
 [[bin]]
 name = "tinyrick"
-path = "src/bin/tinyrick.rs"
+path = "tinyrick.rs"
 required-features = ["letmeout"]
