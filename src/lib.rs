@@ -119,3 +119,32 @@ macro_rules! shell {
     }
   };
 }
+
+/// Register tasks with CLI entrypoint
+#[macro_export]
+macro_rules! wubba_lubba_dub_dub {
+  ($t : expr, $($u : expr),*) => {
+    fn main() {
+      let args : Vec<String> = env::args()
+        .collect();
+
+      let task_names : Vec<&str> = args
+        .iter()
+        .skip(1)
+        .map(String::as_str)
+        .collect();
+
+      if task_names.len() == 0 {
+        test();
+      } else {
+        for task_name in task_names {
+          match task_name {
+            "$t" => $t(),
+            $("$u" => $u(),)*
+            _ => panic!("Unknown task {}", task_name)
+          }
+        }
+      }
+    }
+  };
+}

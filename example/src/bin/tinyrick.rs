@@ -1,5 +1,6 @@
 //! Build configuration
 
+#[macro_use]
 extern crate tinyrick;
 
 use std::env;
@@ -61,34 +62,16 @@ fn publish() {
   tinyrick::shell!("cargo", "publish");
 }
 
-pub fn main() {
-  let args : Vec<String> = env::args()
-    .collect();
-
-  let task_names : Vec<&str> = args
-    .iter()
-    .skip(1)
-    .map(String::as_str)
-    .collect();
-
-  if task_names.len() == 0 {
-    test();
-  } else {
-    for task_name in task_names {
-      match task_name {
-        "clippy" => clippy(),
-        "lint" => lint(),
-        "build" => build(),
-        "doc" => doc(),
-        "install" => install(),
-        "uninstall" => uninstall(),
-        "unit_test" => unit_test(),
-        "integration_test" => integration_test(),
-        "test" => test(),
-        "banner" => banner(),
-        "publish" => publish(),
-        _ => panic!("Unknown task {}", task_name)
-      }
-    }
-  }
-}
+wubba_lubba_dub_dub!(
+  clippy,
+  lint,
+  build,
+  doc,
+  install,
+  uninstall,
+  unit_test,
+  integration_test,
+  test,
+  banner,
+  publish
+);
