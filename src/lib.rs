@@ -120,10 +120,12 @@ macro_rules! shell {
   };
 }
 
-/// Register tasks with CLI entrypoint
+/// Register tasks with CLI entrypoint.
+/// The first entry is the default task,
+/// When no tasks are named in CLI arguments.
 #[macro_export]
 macro_rules! wubba_lubba_dub_dub {
-  ($t : expr, $($u : expr),*) => {
+  ($d : expr ; $t : expr, $($u : expr),*) => {
     fn main() {
       let args : Vec<String> = env::args()
         .collect();
@@ -135,7 +137,7 @@ macro_rules! wubba_lubba_dub_dub {
         .collect();
 
       if task_names.len() == 0 {
-        test();
+        $d();
       } else {
         for task_name in task_names {
           match task_name {

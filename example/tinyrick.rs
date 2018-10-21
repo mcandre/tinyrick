@@ -63,6 +63,7 @@ fn publish() {
 }
 
 wubba_lubba_dub_dub!(
+  test;
   clippy,
   lint,
   build,
