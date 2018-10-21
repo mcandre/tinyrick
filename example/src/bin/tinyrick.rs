@@ -58,7 +58,10 @@ fn test() {
 
 /// Show banner
 fn banner() {
-  println!("arithmancy {}", env!("CARGO_PKG_VERSION"));
+  Command::new("add_two")
+    .arg("-v")
+    .status()
+    .expect("Error running 'add_two -v'");
 }
 
 pub fn main() {
