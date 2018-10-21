@@ -14,36 +14,18 @@ tinyrick provides a Rust-source task dependency configuration system.
 ```console
 $ cd example
 $ cargo tinyrick
-Finished dev [unoptimized + debuginfo] target(s) in 0.05s
- Running `target/debug/tinyrick`
-Finished dev [unoptimized + debuginfo] target(s) in 0.05s
- Running target/debug/deps/arithmancy-55e3b9e6f9c67629
-
+...
 running 1 test
 test smoketest ... ok
-
-test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
-
- Running target/debug/deps/add_two-eb73f737580379e1
-
-running 0 tests
-
-test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
-
-Doc-tests arithmancy
-
-running 0 tests
-
-test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
-
-Finished dev [unoptimized + debuginfo] target(s) in 0.05s
 ```
-
-See the [example/](example) project for more configuration details.
 
 # RUNTIME REQUIREMENTS
 
 * [cargo](https://www.rust-lang.org/en-US/)
+
+# SETUP
+
+Write your own special snowflake `tinyrick.rs` scripts to rule Rust projects, ya supergenius! Mere geniuses can browse the fully wired up [example/](example) project as a working reference.
 
 # CONTRIBUTING
 
