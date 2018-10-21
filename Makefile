@@ -1,7 +1,9 @@
 PACKAGE=tinyrick
 VERSION=0.0.1
 
-.PHONY: $(PACKAGE)-$(VERSION).zip
+ARCHIVE=$(PACKAGE)-$(VERSION).zip
+
+.PHONY: $(ARCHIVE)
 
 BIN=target/debug/$(PACKAGE)
 
@@ -27,10 +29,10 @@ target/x86_64-unknown-linux-musl/release/tinyrick:
 
 crosscompile: target/x86_64-unknown-linux-gnu/release/tinyrick target/x86_64-unknown-linux-musl/release/tinyrick
 
-$(PACKAGE)-$(VERSION).zip: crosscompile
-	zip $(PACKAGE)-$(VERSION).zip target/x86_64-unknown-linux-gnu/release/tinyrick target/x86_64-unknown-linux-musl/release/tinyrick
+$(ARCHIVE): crosscompile
+	zip $(ARCHIVE) target/x86_64-unknown-linux-gnu/release/tinyrick target/x86_64-unknown-linux-musl/release/tinyrick
 
-port: $(PACKAGE)-$(VERSION).zip
+port: $(ARCHIVE)
 
 clippy:
 	cargo clippy

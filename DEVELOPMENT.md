@@ -44,7 +44,7 @@ $ make publish
 # PORT
 
 ```console
-$ make cargo-tinyrick-0.0.1.zip
+$ make port
 ```
 
 # CLEAN
