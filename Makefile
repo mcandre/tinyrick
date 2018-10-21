@@ -7,11 +7,14 @@ BIN=target/debug/$(PACKAGE)
 
 all: test
 
-test: $(BIN)
+test: install
 	sh -c 'cd example && cargo tinyrick'
 
-$(BIN): src/lib.rs src/cargo-tinyrick.rs
+install: src/lib.rs src/cargo-tinyrick.rs
 	cargo install --force --path .
+
+uninstall:
+	cargo uninstall cargo-tinyrick
 
 target/x86_64-unknown-linux-gnu/release/cargo-tinyrick:
 	sh crosscompile-linux.sh x86_64 gnu
@@ -26,6 +29,15 @@ $(PACKAGE)-$(VERSION).zip: crosscompile
 
 port: $(PACKAGE)-$(VERSION).zip
 
+clippy:
+	cargo clippy
+
+lint: clippy
+
+clean-example:
+	-rm -rf example/target
+	-rm -rf example/Cargo.lock
+
 clean-cargo:
 	-cargo clean
 
@@ -35,4 +47,4 @@ clean-cargo-lock:
 clean-ports:
 	-rm *.zip
 
-clean: clean-cargo clean-cargo-lock clean-ports
+clean: clean-example clean-cargo clean-cargo-lock clean-ports

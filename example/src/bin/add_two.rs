@@ -21,7 +21,7 @@ fn main() {
   let brief = format!("Usage: {} [options]", program);
 
   let mut opts : getopts::Options = getopts::Options::new();
-  opts.reqopt("n", "integer", "increment an integer by two (required)", "VAL");
+  opts.optopt("n", "integer", "increment an integer by two (required)", "VAL");
   opts.optflag("h", "help", "print usage info");
   opts.optflag("v", "version", "print version info");
 
@@ -34,7 +34,10 @@ fn main() {
       if optmatches.opt_present("h") {
         usage(&brief, &opts);
         process::exit(0);
-      } else {
+      } else if optmatches.opt_present("v") {
+        println!("arithmancy {}", env!("CARGO_PKG_VERSION"));
+        process::exit(0);
+      } else if optmatches.opt_present("n") {
         let n : i64 = optmatches
           .opt_str("n")
           .unwrap()
@@ -42,6 +45,9 @@ fn main() {
           .expect("Error parsing integer");
 
         println!("{}", arithmancy::add_two(n));
+      } else {
+        usage(&brief, &opts);
+        process::abort();
       }
     }
   }

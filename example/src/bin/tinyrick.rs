@@ -5,6 +5,19 @@ extern crate tinyrick;
 use std::env;
 use std::process::Command;
 
+/// Run clippy
+fn clippy() {
+  Command::new("cargo")
+    .arg("clippy")
+    .status()
+    .expect("Error running clippy");
+}
+
+/// Run linters
+fn lint() {
+  tinyrick::deps(clippy);
+}
+
 /// Compile project
 fn build() {
   Command::new("cargo")
@@ -62,6 +75,8 @@ pub fn main() {
   } else {
     for task_name in task_names {
       match task_name {
+        "clippy" => clippy(),
+        "lint" => lint(),
         "build" => build(),
         "unit_test" => unit_test(),
         "integration_test" => integration_test(),

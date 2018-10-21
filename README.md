@@ -41,6 +41,14 @@ Finished dev [unoptimized + debuginfo] target(s) in 0.05s
 
 See the [example/](example) project for more configuration details.
 
+# RUNTIME REQUIREMENTS
+
+* [cargo](https://www.rust-lang.org/en-US/)
+
+# CONTRIBUTING
+
+For more details on developing cargo-tinyrick itself, see [DEVELOPMENT.md](DEVELOPMENT.md).
+
 # CREDITS
 
 * Inspired by the excellent [mage](https://magefile.org/) build system for Go projects
