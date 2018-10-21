@@ -13,8 +13,8 @@ tinyrick provides a Rust-source task dependency configuration system.
 
 ```console
 $ cd example
+
 $ cargo tinyrick
-...
 running 1 test
 test smoketest ... ok
 ```
