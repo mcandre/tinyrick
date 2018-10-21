@@ -5,8 +5,8 @@ description = "a freeform Rust build system"
 version = "0.0.1"
 authors = ["Andrew Pennebaker <andrew.pennebaker@gmail.com>"]
 license = "BSD-2-Clause"
-homepage = "https://github.com/mcandre/tinyrick"
-documentation = "https://docs.rs/releases/search?query=tinyrick"
+homepage = "https://github.com/mcandre/cargo-tinyrick"
+documentation = "https://docs.rs/cargo-tinyrick/"
 
 [lib]
 name = "tinyrick"

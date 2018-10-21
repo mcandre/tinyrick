@@ -19,6 +19,14 @@ running 1 test
 test smoketest ... ok
 ```
 
+# CRATE
+
+https://crates.io/crates/cargo-tinyrick
+
+# API DOCUMENTATION
+
+https://docs.rs/cargo-tinyrick/
+
 # RUNTIME REQUIREMENTS
 
 * [cargo](https://www.rust-lang.org/en-US/)
