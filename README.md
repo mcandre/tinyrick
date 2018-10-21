@@ -14,18 +14,18 @@ tinyrick provides a Rust-source task dependency configuration system.
 ```console
 $ cd example
 
-$ cargo tinyrick
+$ tinyrick
 running 1 test
 test smoketest ... ok
 ```
 
 # CRATE
 
-https://crates.io/crates/cargo-tinyrick
+https://crates.io/crates/tinyrick
 
 # API DOCUMENTATION
 
-https://docs.rs/cargo-tinyrick/
+https://docs.rs/tinyrick/
 
 # RUNTIME REQUIREMENTS
 
@@ -33,7 +33,7 @@ https://docs.rs/cargo-tinyrick/
 
 # SETUP
 
-Write your own special snowflake `tinyrick.rs` scripts to rule Rust projects, ya supergenius! Mere geniuses can browse the fully wired up [example/](example) project as a working reference.
+Write your own special snowflake `rick.rs` scripts to rule Rust projects, ya supergenius! Mere geniuses can browse the fully wired up [example/](example) project as a working reference.
 
 # WHY TINY RICK?
 
@@ -41,7 +41,7 @@ make is old as farts and encourages vendor locking by expressing tasks primarily
 
 # CONTRIBUTING
 
-For more details on developing cargo-tinyrick itself, see [DEVELOPMENT.md](DEVELOPMENT.md).
+For more details on developing tinyrick itself, see [DEVELOPMENT.md](DEVELOPMENT.md).
 
 # CREDITS
 

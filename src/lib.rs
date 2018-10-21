@@ -1,7 +1,7 @@
 //! Common build patterns
 
 /// Per-project binary name
-pub static BINARY : &str = "tinyrick";
+pub static BINARY : &str = "rick";
 
 /// Cargo toggle
 pub static FEATURE : &str = "letmeout";

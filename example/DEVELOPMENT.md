@@ -1,6 +1,6 @@
 # OVERVIEW
 
-arithmancy's own compilation process is compatible with standard `cargo`. We wrap some common workflows with `cargo tinyrick` tasks for convenience.
+arithmancy's own compilation process is compatible with standard `cargo`. We wrap some common workflows with `tinyrick` tasks for convenience.
 
 # BUILDTIME REQUIREMENTS
 
@@ -10,37 +10,37 @@ arithmancy's own compilation process is compatible with standard `cargo`. We wra
 # INSTALL FROM LOCAL SOURCE
 
 ```console
-$ cargo tinyrick install
+$ tinyrick install
 ```
 
 # UNINSTALL
 
 ```console
-$ cargo tinyrick uninstall
+$ tinyrick uninstall
 ```
 
 # LINT
 
 ```console
-$ cargo tinyrick lint
+$ tinyrick lint
 ```
 
 # UNIT + INTEGRATION TEST
 
 ```console
-$ cargo tinyrick test
+$ tinyrick test
 ```
 
 # UNIT TEST
 
 ```console
-$ cargo test
+$ tinyrick unit_test
 ```
 
 # INTEGRATION TEST
 
 ```console
-$ cargo tinyrick integration_test
+$ tinyrick integration_test
 ```
 
 # CLEAN

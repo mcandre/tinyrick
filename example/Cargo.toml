@@ -8,10 +8,10 @@ license = "BSD-2-Clause"
 
 [dependencies]
 getopts = "0.2.18"
-cargo-tinyrick = { version = "0.0.1", path = "..", optional = true }
+tinyrick = { version = "0.0.1", path = "..", optional = true }
 
 [features]
-letmeout = ["cargo-tinyrick"]
+letmeout = ["tinyrick"]
 
 [lib]
 path = "src/lib/arithmancy.rs"
@@ -21,6 +21,6 @@ name = "add_two"
 path = "src/bin/add_two.rs"
 
 [[bin]]
-name = "tinyrick"
-path = "tinyrick.rs"
+name = "rick"
+path = "rick.rs"
 required-features = ["letmeout"]

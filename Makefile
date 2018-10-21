@@ -1,4 +1,4 @@
-PACKAGE=cargo-tinyrick
+PACKAGE=tinyrick
 VERSION=0.0.1
 
 .PHONY: $(PACKAGE)-$(VERSION).zip
@@ -8,27 +8,27 @@ BIN=target/debug/$(PACKAGE)
 all: test
 
 test: install
-	sh -c 'cd example && VERBOSE=1 cargo tinyrick'
+	sh -c 'cd example && VERBOSE=1 tinyrick'
 
-install: src/lib.rs src/cargo-tinyrick.rs
+install: src/lib.rs src/tinyrick.rs
 	cargo install --force --path .
 
 uninstall:
-	cargo uninstall cargo-tinyrick
+	cargo uninstall tinyrick
 
 publish:
 	cargo publish
 
-target/x86_64-unknown-linux-gnu/release/cargo-tinyrick:
+target/x86_64-unknown-linux-gnu/release/tinyrick:
 	sh crosscompile-linux.sh x86_64 gnu
 
-target/x86_64-unknown-linux-musl/release/cargo-tinyrick:
+target/x86_64-unknown-linux-musl/release/tinyrick:
 	sh crosscompile-linux.sh x86_64 musl
 
-crosscompile: target/x86_64-unknown-linux-gnu/release/cargo-tinyrick target/x86_64-unknown-linux-musl/release/cargo-tinyrick
+crosscompile: target/x86_64-unknown-linux-gnu/release/tinyrick target/x86_64-unknown-linux-musl/release/tinyrick
 
 $(PACKAGE)-$(VERSION).zip: crosscompile
-	zip $(PACKAGE)-$(VERSION).zip target/x86_64-unknown-linux-gnu/release/cargo-tinyrick target/x86_64-unknown-linux-musl/release/cargo-tinyrick
+	zip $(PACKAGE)-$(VERSION).zip target/x86_64-unknown-linux-gnu/release/tinyrick target/x86_64-unknown-linux-musl/release/tinyrick
 
 port: $(PACKAGE)-$(VERSION).zip
 
