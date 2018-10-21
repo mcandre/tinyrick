@@ -11,33 +11,6 @@ arithmancy 0.0.1
 
 (None)
 
-# BUILDTIME REQUIREMENTS
+# CONTRIBUTING
 
-* [Rust](https://www.rust-lang.org/en-US/)
-* [clippy](https://github.com/rust-lang-nursery/rust-clippy)
-
-# DEVELOPMENT
-
-## Run unit + integration tests
-
-```
-$ cargo tinyrick test
-```
-
-## Run unit tests
-
-```
-$ cargo test
-```
-
-## Run integration tests
-
-```
-$ cargo tinyrick integration_test
-```
-
-## Clean
-
-```
-$ cargo clean
-```
+For more details on developing arithmancy itself, see [DEVELOPMENT.md](DEVELOPMENT.md).

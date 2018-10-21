@@ -26,6 +26,22 @@ fn build() {
     .expect("Error building project");
 }
 
+/// Install project
+fn install() {
+  Command::new("cargo")
+    .args(&["install", "--force", "--path", "."])
+    .status()
+    .expect("Error installing project");
+}
+
+/// Uninstall project
+fn uninstall() {
+  Command::new("cargo")
+    .args(&["uninstall", "arithmancy"])
+    .status()
+    .expect("Error installing project");
+}
+
 /// Run unit tests
 fn unit_test() {
   Command::new("cargo")
@@ -81,6 +97,8 @@ pub fn main() {
         "clippy" => clippy(),
         "lint" => lint(),
         "build" => build(),
+        "install" => install(),
+        "uninstall" => uninstall(),
         "unit_test" => unit_test(),
         "integration_test" => integration_test(),
         "test" => test(),
