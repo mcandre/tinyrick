@@ -8,7 +8,7 @@ BIN=target/debug/$(PACKAGE)
 all: test
 
 test: install
-	sh -c 'cd example && cargo tinyrick'
+	sh -c 'cd example && VERBOSE=1 cargo tinyrick'
 
 install: src/lib.rs src/cargo-tinyrick.rs
 	cargo install --force --path .

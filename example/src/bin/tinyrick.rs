@@ -3,14 +3,10 @@
 extern crate tinyrick;
 
 use std::env;
-use std::process::Command;
 
 /// Run clippy
 fn clippy() {
-  Command::new("cargo")
-    .arg("clippy")
-    .status()
-    .expect("Error running clippy");
+  tinyrick::shell!("cargo", "clippy");
 }
 
 /// Run linters
@@ -20,58 +16,36 @@ fn lint() {
 
 /// Compile project
 fn build() {
-  Command::new("cargo")
-    .arg("build")
-    .status()
-    .expect("Error building project");
+  tinyrick::shell!("cargo", "build");
 }
 
 /// Generate documentation
 fn doc() {
-  Command::new("cargo")
-    .arg("doc")
-    .status()
-    .expect("Error generating documentation");
+  tinyrick::shell!("cargo", "doc");
 }
 
 /// Install project
 fn install() {
-  Command::new("cargo")
-    .args(&["install", "--force", "--path", "."])
-    .status()
-    .expect("Error installing project");
+  tinyrick::shell!("cargo", "install", "--force", "--path", ".");
 }
 
 /// Uninstall project
 fn uninstall() {
-  Command::new("cargo")
-    .args(&["uninstall", "arithmancy"])
-    .status()
-    .expect("Error installing project");
+  tinyrick::shell!("cargo", "uninstall", env!("CARGO_PKG_NAME"));
 }
 
 /// Run unit tests
 fn unit_test() {
-  Command::new("cargo")
-    .arg("test")
-    .status()
-    .expect("Error during tests");
+  tinyrick::shell!("cargo", "test");
 }
 
 /// Run integration tests
 fn integration_test() {
   tinyrick::deps(build);
 
-  let bin = "add_two";
+  let bin : &str = "add_two";
 
-  let output = Command::new(bin)
-    .args(&["-n", "2"])
-    .output()
-    .expect(&format!("Error running binary {}", bin));
-
-  String::from_utf8(output.stdout)
-    .map(|stdout| { assert!(stdout == "4\n") })
-    .expect(&format!("Error parsing stdout as UTF-8 on binary {}", bin));
+  assert!(tinyrick::shell_stdout_utf8!(bin, "-n", "2") == "4\n");
 }
 
 /// Run all tests
@@ -82,22 +56,17 @@ fn test() {
 
 /// Show banner
 fn banner() {
-  Command::new("add_two")
-    .arg("-v")
-    .status()
-    .expect("Error running 'add_two -v'");
+  tinyrick::shell!("add_two", "-v");
 }
 
 /// Publish to crate repository
 fn publish() {
-  Command::new("cargo")
-    .arg("publish")
-    .status()
-    .expect("Error publishing package");
+  tinyrick::shell!("cargo", "publish");
 }
 
 pub fn main() {
-  let args : Vec<String> = env::args().collect();
+  let args : Vec<String> = env::args()
+    .collect();
 
   let task_names : Vec<&str> = args
     .iter()

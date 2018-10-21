@@ -6,7 +6,116 @@ pub static BINARY : &str = "tinyrick";
 /// Cargo toggle
 pub static FEATURE : &str = "letmeout";
 
+/// Environment name controlling verbosity
+pub static VERBOSE_ENVIRONMENT_NAME : &str = "VERBOSE";
+
 /// Declare a dependency on a task that may panic
 pub fn deps(task: fn()) {
   task();
+}
+
+/// Hey stupid, avoid shell commands whenever possible!
+/// Executes the given program with the given arguments.
+/// Returns the command object.
+#[macro_export]
+macro_rules! shell_mut {
+  ($p : expr, $($a : expr),*) => {
+    {
+      use std::env::var;
+      use std::process::Command;
+
+      if var(tinyrick::VERBOSE_ENVIRONMENT_NAME).is_ok() {
+        println!("{} {}", $p, &[$( $a, )*].join(" "));
+      }
+
+      Command::new($p)
+        $(.arg($a))*
+    }
+  };
+}
+
+/// Hey stupid, avoid shell commands whenever possible!
+/// Executes the given program with the given arguments.
+/// Returns the output object.
+/// Panics if the command exits with a failure status.
+#[macro_export]
+macro_rules! shell_output {
+  ($p : expr, $($a : expr),*) => {
+    {
+      tinyrick::shell_mut!($p $(,$a)*)
+        .output()
+        .unwrap()
+    }
+  };
+}
+
+/// Hey stupid, avoid shell commands whenever possible!
+/// Executes the given program with the given arguments.
+/// Returns the stdout stream.
+/// Panics if the command exits with a failure status.
+#[macro_export]
+macro_rules! shell_stdout {
+  ($p : expr, $($a : expr),*) => {
+    {
+      tinyrick::shell_output!($p $(,$a)*)
+        .stdout
+    }
+  };
+}
+
+/// Hey stupid, avoid shell commands whenever possible!
+/// Executes the given program with the given arguments.
+/// Returns the complete stdout string.
+/// Panics if the command exits with a failure status.
+#[macro_export]
+macro_rules! shell_stdout_utf8 {
+  ($p : expr, $($a : expr),*) => {
+    {
+      String::from_utf8(tinyrick::shell_stdout!($p $(,$a)*))
+        .unwrap()
+    }
+  };
+}
+
+/// Hey stupid, avoid shell commands whenever possible!
+/// Executes the given program with the given arguments.
+/// Returns the stderr stream.
+/// Panics if the command exits with a failure status.
+#[macro_export]
+macro_rules! shell_stderr {
+  ($p : expr, $($a : expr),*) => {
+    {
+      tinyrick::shell_output!($p $(,$a)*)
+        .stderr
+    }
+  };
+}
+
+/// Hey stupid, avoid shell commands whenever possible!
+/// Executes the given program with the given arguments.
+/// Returns the complete stderr string.
+/// Panics if the command exits with a failure status.
+#[macro_export]
+macro_rules! shell_stderr_utf8 {
+  ($p : expr, $($a : expr),*) => {
+    {
+      String::from_utf8(tinyrick::shell_stderr!($p $(,$a)*))
+      .unwrap()
+    }
+  };
+}
+
+/// Hey stupid, avoid shell commands whenever possible!
+/// Executes the given program with the given arguments.
+/// Returns the status object.
+/// Panics if the command exits with a failure status.
+#[macro_export]
+macro_rules! shell {
+  ($p : expr, $($a : expr),*) => {
+    {
+      tinyrick::shell_mut!($p $(,$a)*)
+        .status()
+        .unwrap()
+    }
+  };
 }

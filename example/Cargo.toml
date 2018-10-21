@@ -8,7 +8,7 @@ license = "BSD-2-Clause"
 
 [dependencies]
 getopts = "0.2.18"
-cargo-tinyrick = { version = "0.0.1", optional = true }
+cargo-tinyrick = { version = "0.0.1", path = "..", optional = true }
 
 [features]
 letmeout = ["cargo-tinyrick"]
