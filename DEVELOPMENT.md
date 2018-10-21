@@ -13,36 +13,42 @@ cargo-tinyrick's own compilation process is compatible with standard `cargo`. We
 
 # INSTALL FROM LOCAL SOURCE
 
-```
+```console
 $ make install
 ```
 
 # UNINSTALL
 
-```
+```console
 $ make uninstall
 ```
 
 # LINT
 
-```
+```console
 $ make lint
 ```
 
 # TEST
 
-```
+```console
 $ make
+```
+
+# PUBLISH
+
+```console
+$ make publish
 ```
 
 # PORT
 
-```
+```console
 $ make cargo-tinyrick-0.0.1.zip
 ```
 
 # CLEAN
 
-```
+```console
 $ make clean
 ```

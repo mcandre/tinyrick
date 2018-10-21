@@ -9,42 +9,42 @@ arithmancy's own compilation process is compatible with standard `cargo`. We wra
 
 # INSTALL FROM LOCAL SOURCE
 
-```
+```console
 $ cargo tinyrick install
 ```
 
 # UNINSTALL
 
-```
+```console
 $ cargo tinyrick uninstall
 ```
 
 # LINT
 
-```
+```console
 $ cargo tinyrick lint
 ```
 
 # UNIT + INTEGRATION TEST
 
-```
+```console
 $ cargo tinyrick test
 ```
 
 # UNIT TEST
 
-```
+```console
 $ cargo test
 ```
 
 # INTEGRATION TEST
 
-```
+```console
 $ cargo tinyrick integration_test
 ```
 
 # CLEAN
 
-```
+```console
 $ cargo clean
 ```

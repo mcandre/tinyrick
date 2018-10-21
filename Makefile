@@ -16,6 +16,9 @@ install: src/lib.rs src/cargo-tinyrick.rs
 uninstall:
 	cargo uninstall cargo-tinyrick
 
+publish:
+	cargo publish
+
 target/x86_64-unknown-linux-gnu/release/cargo-tinyrick:
 	sh crosscompile-linux.sh x86_64 gnu
 
