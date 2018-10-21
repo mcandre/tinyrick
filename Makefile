@@ -1,5 +1,5 @@
-PACKAGE=tinyrick
-VERSION=0.0.1
+PACKAGE=$(shell cargo -Z unstable-options build --build-plan | jq -r ".invocations[0].package_name")
+VERSION=$(shell cargo -Z unstable-options build --build-plan | jq -r ".invocations[0].package_version")
 
 ARCHIVE=$(PACKAGE)-$(VERSION).zip
 
@@ -10,7 +10,7 @@ BIN=target/debug/$(PACKAGE)
 all: test
 
 test: install
-	sh -c 'cd example && VERBOSE=1 tinyrick'
+	sh -c "cd example && VERBOSE=1 tinyrick"
 
 install: src/lib.rs src/tinyrick.rs
 	cargo install --force --path .
