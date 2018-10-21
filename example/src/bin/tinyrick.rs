@@ -26,6 +26,14 @@ fn build() {
     .expect("Error building project");
 }
 
+/// Generate documentation
+fn doc() {
+  Command::new("cargo")
+    .arg("doc")
+    .status()
+    .expect("Error generating documentation");
+}
+
 /// Install project
 fn install() {
   Command::new("cargo")
@@ -105,6 +113,7 @@ pub fn main() {
         "clippy" => clippy(),
         "lint" => lint(),
         "build" => build(),
+        "doc" => doc(),
         "install" => install(),
         "uninstall" => uninstall(),
         "unit_test" => unit_test(),
