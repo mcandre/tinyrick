@@ -1,5 +1,5 @@
 pub fn add_two(n: i64) -> i64 {
-  return n + 2;
+  n + 2
 }
 
 #[test]

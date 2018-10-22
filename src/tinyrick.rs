@@ -1,9 +1,10 @@
 //! CLI tinyrick tool
 
+// #[macro_use]
 extern crate tinyrick;
 
 use std::env;
-use std::process::Command;
+use std::path;
 
 /// CLI entrypoint
 fn main() {
@@ -11,17 +12,33 @@ fn main() {
 
   let tasks : Vec<&str> = args
     .iter()
-    .skip(2)
+    .skip(1)
     .map(String::as_str)
     .collect();
 
-  let cargo_args : Vec<&str> = [
-    vec!("run", "--bin", tinyrick::BINARY, "--features", tinyrick::FEATURE),
-    tasks
-  ].concat();
+    tinyrick::shell!(
+      "cargo",
+      &[
+        "build",
+        "--bin", tinyrick::BINARY,
+        "--features", tinyrick::FEATURE
+      ]
+    );
 
-  Command::new("cargo")
-    .args(cargo_args)
-    .status()
-    .expect("Error with your tiny rick");
+  let rick_binary : &str = match cfg!(windows) {
+    true => "rick.exe",
+    _ => "rick"
+  };
+
+  let target_path : &path::Path = path::Path::new("target");
+
+  let rick_pathbuf : path::PathBuf = target_path
+    .join("debug")
+    .join(rick_binary);
+
+  let rick_path : &str = rick_pathbuf
+    .to_str()
+    .unwrap();
+
+  tinyrick::shell!(rick_path, tasks);
 }

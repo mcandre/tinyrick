@@ -10,13 +10,17 @@ BIN=target/debug/$(PACKAGE)
 all: test
 
 test: install
-	sh -c "cd example && VERBOSE=1 tinyrick"
+	sh -c "cd example && tinyrick"
+	sh -c "cd example && VERBOSE=1 tinyrick test clippy lint build doc install uninstall unit_test integration_test banner clean_cargo clean"
 
 install: src/lib.rs src/tinyrick.rs
 	cargo install --force --path .
 
 uninstall:
 	cargo uninstall tinyrick
+
+doc:
+	cargo doc
 
 publish:
 	cargo publish
@@ -46,10 +50,7 @@ clean-example:
 clean-cargo:
 	-cargo clean
 
-clean-cargo-lock:
-	-rm Cargo.lock
-
 clean-ports:
 	-rm *.zip
 
-clean: clean-example clean-cargo clean-cargo-lock clean-ports
+clean: clean-example clean-cargo clean-ports

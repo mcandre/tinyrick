@@ -18,18 +18,35 @@ pub fn deps(task: fn()) {
 /// Executes the given program with the given arguments.
 /// Returns the command object.
 #[macro_export]
-macro_rules! shell_mut {
-  ($p : expr, $($a : expr),*) => {
+macro_rules! shell_mut_with_arguments {
+  ($p : expr, $a : expr) => {
     {
       use std::env::var;
       use std::process::Command;
 
       if var(tinyrick::VERBOSE_ENVIRONMENT_NAME).is_ok() {
-        println!("{} {}", $p, &[$( $a, )*].join(" "));
+        println!("{} {}", $p, $a.join(" "));
       }
 
       Command::new($p)
-        $(.arg($a))*
+        .args($a)
+    }
+  };
+}
+
+/// Hey stupid, avoid shell commands whenever possible!
+/// Executes the given program. Can also accept CLI arguments collection.
+/// Returns the command object.
+#[macro_export]
+macro_rules! shell_mut {
+  ($p : expr) => {
+    {
+      tinyrick::shell_mut_with_arguments!($p, &[])
+    }
+  };
+  ($p : expr, $a : expr) => {
+    {
+      tinyrick::shell_mut_with_arguments!($p, $a)
     }
   };
 }
@@ -40,9 +57,16 @@ macro_rules! shell_mut {
 /// Panics if the command exits with a failure status.
 #[macro_export]
 macro_rules! shell_output {
-  ($p : expr, $($a : expr),*) => {
+  ($p : expr) => {
     {
-      tinyrick::shell_mut!($p $(,$a)*)
+      tinyrick::shell_mut!($p)
+        .output()
+        .unwrap()
+    }
+  };
+  ($p : expr, $a : expr) => {
+    {
+      tinyrick::shell_mut!($p, $a)
         .output()
         .unwrap()
     }
@@ -55,10 +79,36 @@ macro_rules! shell_output {
 /// Panics if the command exits with a failure status.
 #[macro_export]
 macro_rules! shell_stdout {
-  ($p : expr, $($a : expr),*) => {
+  ($p : expr) => {
     {
-      tinyrick::shell_output!($p $(,$a)*)
+      tinyrick::shell_output!($p)
         .stdout
+    }
+  };
+  ($p : expr, $a : expr) => {
+    {
+      tinyrick::shell_output!($p, $a)
+        .stdout
+    }
+  };
+}
+
+/// Hey stupid, avoid shell commands whenever possible!
+/// Executes the given program with the given arguments.
+/// Returns the stdout stream.
+/// Panics if the command exits with a failure status.
+#[macro_export]
+macro_rules! shell_stderr {
+  ($p : expr) => {
+    {
+      tinyrick::shell_output!($p)
+        .stderr
+    }
+  };
+  ($p : expr, $a : expr) => {
+    {
+      tinyrick::shell_output!($p, $a)
+        .stderr
     }
   };
 }
@@ -69,24 +119,16 @@ macro_rules! shell_stdout {
 /// Panics if the command exits with a failure status.
 #[macro_export]
 macro_rules! shell_stdout_utf8 {
-  ($p : expr, $($a : expr),*) => {
+  ($p : expr) => {
     {
-      String::from_utf8(tinyrick::shell_stdout!($p $(,$a)*))
+      String::from_utf8(tinyrick::shell_stdout!($p))
         .unwrap()
     }
   };
-}
-
-/// Hey stupid, avoid shell commands whenever possible!
-/// Executes the given program with the given arguments.
-/// Returns the stderr stream.
-/// Panics if the command exits with a failure status.
-#[macro_export]
-macro_rules! shell_stderr {
-  ($p : expr, $($a : expr),*) => {
+  ($p : expr, $a : expr) => {
     {
-      tinyrick::shell_output!($p $(,$a)*)
-        .stderr
+      String::from_utf8(tinyrick::shell_stdout!($p, $a))
+        .unwrap()
     }
   };
 }
@@ -97,10 +139,16 @@ macro_rules! shell_stderr {
 /// Panics if the command exits with a failure status.
 #[macro_export]
 macro_rules! shell_stderr_utf8 {
-  ($p : expr, $($a : expr),*) => {
+  ($p : expr) => {
     {
-      String::from_utf8(tinyrick::shell_stderr!($p $(,$a)*))
-      .unwrap()
+      String::from_utf8(tinyrick::shell_stderr!($p))
+        .unwrap()
+    }
+  };
+  ($p : expr, $a : expr) => {
+    {
+      String::from_utf8(tinyrick::shell_stderr!($p, $a))
+        .unwrap()
     }
   };
 }
@@ -111,9 +159,16 @@ macro_rules! shell_stderr_utf8 {
 /// Panics if the command exits with a failure status.
 #[macro_export]
 macro_rules! shell {
-  ($p : expr, $($a : expr),*) => {
+  ($p : expr) => {
     {
-      tinyrick::shell_mut!($p $(,$a)*)
+      tinyrick::shell_mut!($p)
+        .status()
+        .unwrap()
+    }
+  };
+  ($p : expr, $a : expr) => {
+    {
+      tinyrick::shell_mut!($p, $a)
         .status()
         .unwrap()
     }
@@ -125,8 +180,10 @@ macro_rules! shell {
 /// When no tasks are named in CLI arguments.
 #[macro_export]
 macro_rules! wubba_lubba_dub_dub {
-  ($d : expr ; $t : expr, $($u : expr),*) => {
+  ($d : expr ; $($t : expr),*) => {
     fn main() {
+      use std::env;
+
       let args : Vec<String> = env::args()
         .collect();
 
@@ -141,8 +198,8 @@ macro_rules! wubba_lubba_dub_dub {
       } else {
         for task_name in task_names {
           match task_name {
-            "$t" => $t(),
-            $("$u" => $u(),)*
+            stringify!($d) => $d(),
+            $(stringify!($t) => $t(),)*
             _ => panic!("Unknown task {}", task_name)
           }
         }

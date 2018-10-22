@@ -46,5 +46,5 @@ $ tinyrick integration_test
 # CLEAN
 
 ```console
-$ cargo clean
+$ tinyrick clean
 ```

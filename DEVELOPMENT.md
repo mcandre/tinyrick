@@ -35,6 +35,12 @@ $ make lint
 $ make
 ```
 
+# GENERATE DOCUMENTATION
+
+```console
+$ make doc
+```
+
 # PUBLISH
 
 ```console
