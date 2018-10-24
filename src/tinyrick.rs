@@ -1,6 +1,6 @@
 //! CLI tinyrick tool
 
-// #[macro_use]
+#[macro_use]
 extern crate tinyrick;
 
 use std::env;
@@ -16,7 +16,7 @@ fn main() {
     .map(String::as_str)
     .collect();
 
-    tinyrick::shell!(
+    shell!(
       "cargo",
       &[
         "build",
@@ -40,5 +40,5 @@ fn main() {
     .to_str()
     .unwrap();
 
-  tinyrick::shell!(rick_path, tasks);
+  shell!(rick_path, tasks);
 }

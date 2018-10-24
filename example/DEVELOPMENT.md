@@ -4,8 +4,9 @@ arithmancy's own compilation process is compatible with standard `cargo`. We wra
 
 # BUILDTIME REQUIREMENTS
 
-* [cargo](https://www.rust-lang.org/en-US/)
+* [Rust](https://www.rust-lang.org/en-US/) 1.29.2+
 * [clippy](https://github.com/rust-lang-nursery/rust-clippy)
+* [tinyrick](https://github.com/mcandre/tinyrick)
 
 # INSTALL FROM LOCAL SOURCE
 

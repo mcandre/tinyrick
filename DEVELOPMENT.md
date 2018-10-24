@@ -4,7 +4,7 @@ tinyrick's own compilation process is compatible with standard `cargo`. We wrap 
 
 # BUILDTIME REQUIREMENTS
 
-* [cargo](https://www.rust-lang.org/en-US/)
+* [Rust](https://www.rust-lang.org/en-US/) 1.29.2+
 * [clippy](https://github.com/rust-lang-nursery/rust-clippy)
 * [coreutils](https://www.gnu.org/software/coreutils/coreutils.html)
 * [zip](https://linux.die.net/man/1/zip)

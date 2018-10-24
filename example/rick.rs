@@ -5,7 +5,7 @@ extern crate tinyrick;
 
 /// Run clippy
 fn clippy() {
-  tinyrick::shell!("cargo", &["clippy"]);
+  shell!("cargo", &["clippy"]);
 }
 
 /// Run linters
@@ -15,34 +15,34 @@ fn lint() {
 
 /// Compile project
 fn build() {
-  tinyrick::shell!("cargo", &["build"]);
+  shell!("cargo", &["build"]);
 }
 
 /// Generate documentation
 fn doc() {
-  tinyrick::shell!("cargo", &["doc"]);
+  shell!("cargo", &["doc"]);
 }
 
 /// Install project
 fn install() {
-  tinyrick::shell!("cargo", &["install", "--force", "--path", "."]);
+  shell!("cargo", &["install", "--force", "--path", "."]);
 }
 
 /// Uninstall project
 fn uninstall() {
-  tinyrick::shell!("cargo", &["uninstall"]);
+  shell!("cargo", &["uninstall"]);
 }
 
 /// Run unit tests
 fn unit_test() {
-  tinyrick::shell!("cargo", &["test"]);
+  shell!("cargo", &["test"]);
 }
 
 /// Run integration tests
 fn integration_test() {
   tinyrick::deps(install);
 
-  assert!(tinyrick::shell_stdout_utf8!("add_two", &["-n", "2"]) == "4\n");
+  assert!(shell_stdout_utf8!("add_two", &["-n", "2"]) == "4\n");
 }
 
 /// Run all tests
@@ -53,17 +53,17 @@ fn test() {
 
 /// Show banner
 fn banner() {
-  tinyrick::shell!("add_two", &["-v"]);
+  shell!("add_two", &["-v"]);
 }
 
 /// Publish to crate repository
 fn publish() {
-  tinyrick::shell!("cargo", &["publish"]);
+  shell!("cargo", &["publish"]);
 }
 
 /// Run cargo clean
 fn clean_cargo() {
-  tinyrick::shell!("cargo", &["clean"]);
+  shell!("cargo", &["clean"]);
 }
 
 /// Clean workspaces

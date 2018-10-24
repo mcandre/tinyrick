@@ -1,5 +1,5 @@
-PACKAGE=$(shell cargo -Z unstable-options build --build-plan | jq -r ".invocations[0].package_name")
-VERSION=$(shell cargo -Z unstable-options build --build-plan | jq -r ".invocations[0].package_version")
+PACKAGE=tinyrick
+VERSION=0.0.2
 
 ARCHIVE=$(PACKAGE)-$(VERSION).zip
 
