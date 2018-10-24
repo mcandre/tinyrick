@@ -33,7 +33,9 @@ https://docs.rs/tinyrick/
 
 # SETUP
 
-Write your own special snowflake `rick.rs` scripts to rule Rust projects, ya supergenius! Mere geniuses can browse the fully wired up [example/](example) project as a working reference. You will want to omit the `path = ".."` part from your own `Cargo.toml`, of course. Unless you *want* your build to break, duh!
+Write your own special snowflake `rick.rs` scripts to rule Rust projects, ya supergenius! Mere geniuses can browse the fully wired up [example/](example) project as a working reference.
+
+You will change the `tinyrick` dependency from `tinyrick = { version = "*", path = "..", optional = true }` to like `tinyrick = { version = "<some-pinned-version>", optional = true }` in your `Cargo.toml`, of course. Unless you *want* your build to break, duh!
 
 # WHY TINY RICK?
 
