@@ -1,3 +1,5 @@
+ULIMIT_S=$(shell ulimit -s 65532) # Work around https://github.com/rust-lang/rust/issues/52801
+
 PACKAGE=tinyrick
 VERSION=0.0.2
 
