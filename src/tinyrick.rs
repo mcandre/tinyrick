@@ -25,9 +25,10 @@ fn main() {
       ]
     );
 
-  let rick_binary : &str = match cfg!(windows) {
-    true => "rick.exe",
-    _ => "rick"
+  let rick_binary : &str = if cfg!(windows) {
+    "rick.exe"
+  } else {
+    "rick"
   };
 
   let target_path : &path::Path = path::Path::new("target");

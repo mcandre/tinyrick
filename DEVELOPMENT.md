@@ -1,6 +1,6 @@
 # OVERVIEW
 
-tinyrick's own compilation process is compatible with standard `cargo`. We wrap some common workflows with `make` tasks for convenience.
+tinyrick's own compilation process is compatible with standard `cargo`. We wrap some common workflows with `build.sh` tasks for convenience.
 
 # BUILDTIME REQUIREMENTS
 
@@ -8,53 +8,52 @@ tinyrick's own compilation process is compatible with standard `cargo`. We wrap 
 * [clippy](https://github.com/rust-lang-nursery/rust-clippy)
 * [coreutils](https://www.gnu.org/software/coreutils/coreutils.html)
 * [zip](https://linux.die.net/man/1/zip)
-* [make](https://www.gnu.org/software/make/)
 * [Docker](https://www.docker.com/)
 
 # INSTALL FROM LOCAL SOURCE
 
 ```console
-$ make install
+$ sh build.sh install
 ```
 
 # UNINSTALL
 
 ```console
-$ make uninstall
+$ sh build.sh uninstall
 ```
 
 # LINT
 
 ```console
-$ make lint
+$ sh build.sh lint
 ```
 
 # TEST
 
 ```console
-$ make
+$ sh build.sh
 ```
 
 # GENERATE DOCUMENTATION
 
 ```console
-$ make doc
+$ sh build.sh doc
 ```
 
 # PUBLISH
 
 ```console
-$ make publish
+$ sh build.sh publish
 ```
 
 # PORT
 
 ```console
-$ make port
+$ sh build.sh port
 ```
 
 # CLEAN
 
 ```console
-$ make clean
+$ sh build.sh clean
 ```
