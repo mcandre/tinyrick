@@ -48,3 +48,7 @@ For more details on developing tinyrick itself, see [DEVELOPMENT.md](DEVELOPMENT
 # CREDITS
 
 * Inspired by the excellent [mage](https://magefile.org/) build system for Go projects
+
+# SEE ALSO
+
+[tinyrick_extras](https://github.com/mcandre/tinyrick_extras) defines some common workflow tasks.
