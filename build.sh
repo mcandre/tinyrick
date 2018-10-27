@@ -3,7 +3,7 @@
 # Avoid make in order to work around https://github.com/rust-lang/rust/issues/52801
 
 PACKAGE='tinyrick'
-VERSION='0.0.4'
+VERSION='0.0.5'
 ARCHIVE="${PACKAGE}-${VERSION}.zip"
 BIN="target/debug/$PACKAGE"
 
