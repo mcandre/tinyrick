@@ -44,6 +44,18 @@ $ tinyrick unit_test
 $ tinyrick integration_test
 ```
 
+# GENERATE DOCUMENTATION
+
+```console
+$ tinyrick doc
+```
+
+# PUBLISH
+
+```console
+$ tinyrick publish
+```
+
 # CLEAN
 
 ```console
