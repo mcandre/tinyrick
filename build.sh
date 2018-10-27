@@ -62,12 +62,12 @@ clean_ports() {
 }
 
 clean() {
-		clean_example
-		clean_cargo
-		clean_ports
+		clean_example;
+				clean_cargo
+				clean_ports
 }
 
-if [ -z "$@" ]; then
+if [ -z "$1" ]; then
 		test
 fi
 
