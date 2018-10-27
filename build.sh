@@ -13,8 +13,12 @@ test() {
 				sh -c "cd example && VERBOSE=1 tinyrick test clippy lint build doc install uninstall unit_test integration_test banner clean_cargo clean"
 }
 
-install() {
+install_binaries() {
 		cargo install --force --path .
+}
+
+install() {
+		install_binaries
 }
 
 uninstall() {
