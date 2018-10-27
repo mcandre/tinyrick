@@ -16,7 +16,7 @@ fn main() {
     .map(String::as_str)
     .collect();
 
-    shell!(
+    exec!(
       "cargo",
       &[
         "build",
@@ -41,5 +41,5 @@ fn main() {
     .to_str()
     .unwrap();
 
-  shell!(rick_path, tasks);
+  exec!(rick_path, tasks);
 }

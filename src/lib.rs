@@ -14,11 +14,12 @@ pub fn deps(task: fn()) {
   task();
 }
 
-/// Hey stupid, avoid shell commands whenever possible!
+/// Hey genius, avoid executing commands whenever possible! Look for Rust libraries instead.
+///
 /// Executes the given program with the given arguments.
 /// Returns the command object.
 #[macro_export]
-macro_rules! shell_mut_with_arguments {
+macro_rules! exec_mut_with_arguments {
   ($p : expr, $a : expr) => {
     {
       use std::env::var;
@@ -34,141 +35,148 @@ macro_rules! shell_mut_with_arguments {
   };
 }
 
-/// Hey stupid, avoid shell commands whenever possible!
+/// Hey genius, avoid executing commands whenever possible! Look for Rust libraries instead.
+///
 /// Executes the given program. Can also accept CLI arguments collection.
 /// Returns the command object.
 #[macro_export]
-macro_rules! shell_mut {
+macro_rules! exec_mut {
   ($p : expr) => {
     {
-      shell_mut_with_arguments!($p, &[])
+      exec_mut_with_arguments!($p, &[])
     }
   };
   ($p : expr, $a : expr) => {
     {
-      shell_mut_with_arguments!($p, $a)
+      exec_mut_with_arguments!($p, $a)
     }
   };
 }
 
-/// Hey stupid, avoid shell commands whenever possible!
+/// Hey genius, avoid executing commands whenever possible! Look for Rust libraries instead.
+///
 /// Executes the given program with the given arguments.
 /// Returns the output object.
 /// Panics if the command exits with a failure status.
 #[macro_export]
-macro_rules! shell_output {
+macro_rules! exec_output {
   ($p : expr) => {
     {
-      shell_mut!($p)
+      exec_mut!($p)
         .output()
         .unwrap()
     }
   };
   ($p : expr, $a : expr) => {
     {
-      shell_mut!($p, $a)
+      exec_mut!($p, $a)
         .output()
         .unwrap()
     }
   };
 }
 
-/// Hey stupid, avoid shell commands whenever possible!
+/// Hey genius, avoid executing commands whenever possible! Look for Rust libraries instead.
+///
 /// Executes the given program with the given arguments.
 /// Returns the stdout stream.
 /// Panics if the command exits with a failure status.
 #[macro_export]
-macro_rules! shell_stdout {
+macro_rules! exec_stdout {
   ($p : expr) => {
     {
-      shell_output!($p)
+      exec_output!($p)
         .stdout
     }
   };
   ($p : expr, $a : expr) => {
     {
-      shell_output!($p, $a)
+      exec_output!($p, $a)
         .stdout
     }
   };
 }
 
-/// Hey stupid, avoid shell commands whenever possible!
+/// Hey genius, avoid executing commands whenever possible! Look for Rust libraries instead.
+///
 /// Executes the given program with the given arguments.
 /// Returns the stdout stream.
 /// Panics if the command exits with a failure status.
 #[macro_export]
-macro_rules! shell_stderr {
+macro_rules! exec_stderr {
   ($p : expr) => {
     {
-      shell_output!($p)
+      exec_output!($p)
         .stderr
     }
   };
   ($p : expr, $a : expr) => {
     {
-      shell_output!($p, $a)
+      exec_output!($p, $a)
         .stderr
     }
   };
 }
 
-/// Hey stupid, avoid shell commands whenever possible!
+/// Hey genius, avoid executing commands whenever possible! Look for Rust libraries instead.
+///
 /// Executes the given program with the given arguments.
 /// Returns the complete stdout string.
 /// Panics if the command exits with a failure status.
 #[macro_export]
-macro_rules! shell_stdout_utf8 {
+macro_rules! exec_stdout_utf8 {
   ($p : expr) => {
     {
-      String::from_utf8(shell_stdout!($p))
+      String::from_utf8(exec_stdout!($p))
         .unwrap()
     }
   };
   ($p : expr, $a : expr) => {
     {
-      String::from_utf8(shell_stdout!($p, $a))
+      String::from_utf8(exec_stdout!($p, $a))
         .unwrap()
     }
   };
 }
 
-/// Hey stupid, avoid shell commands whenever possible!
+/// Hey genius, avoid executing commands whenever possible! Look for Rust libraries instead.
+///
 /// Executes the given program with the given arguments.
 /// Returns the complete stderr string.
 /// Panics if the command exits with a failure status.
 #[macro_export]
-macro_rules! shell_stderr_utf8 {
+macro_rules! exec_stderr_utf8 {
   ($p : expr) => {
     {
-      String::from_utf8(shell_stderr!($p))
+      String::from_utf8(exec_stderr!($p))
         .unwrap()
     }
   };
   ($p : expr, $a : expr) => {
     {
-      String::from_utf8(shell_stderr!($p, $a))
+      String::from_utf8(exec_stderr!($p, $a))
         .unwrap()
     }
   };
 }
 
-/// Hey stupid, avoid shell commands whenever possible!
+/// Hey genius, avoid executing commands whenever possible! Look for Rust libraries instead.
+///
 /// Executes the given program with the given arguments.
 /// Returns the status object.
 /// Panics if the command exits with a failure status.
 #[macro_export]
-macro_rules! shell {
+macro_rules! exec {
   ($p : expr) => {
     {
-      shell_mut!($p)
+      exec_mut!($p)
         .status()
         .unwrap()
     }
   };
   ($p : expr, $a : expr) => {
     {
-      shell_mut!($p, $a)
+      exec_mut!($p, $a)
         .status()
         .unwrap()
     }
