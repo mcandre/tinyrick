@@ -27,6 +27,8 @@ Look at my pants! tinyrick! You think my pants are one size fits all? No, of cou
 
 Don't shell out, lib out. Your build is more portable that way. Holy Maven, put that foot on some ice! Who knows, maybe fair market feet prices will go up next year! tinyricktinyricktinyrick. If you look closely, that last period is actually a *micro* rick rendered in ASCII; even tinier tinyrick!
 
+The included [example](example) project demonstrates how to build projects with tinyrick. For more examples, see [ios7crypt-rs](https://github.com/mcandre/ios7crypt-rs).
+
 # CRATE
 
 https://crates.io/crates/tinyrick
