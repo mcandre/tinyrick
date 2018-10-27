@@ -37,7 +37,7 @@ https://docs.rs/tinyrick/
 
 # RUNTIME REQUIREMENTS
 
-* [cargo](https://www.rust-lang.org/en-US/)
+* [Rust](https://www.rust-lang.org/en-US/) 1.30+
 
 # SETUP
 

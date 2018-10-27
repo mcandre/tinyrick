@@ -1,11 +1,10 @@
 //! Build configuration
 
-#[macro_use]
 extern crate tinyrick;
 
 /// Run clippy
 fn clippy() {
-  exec!("cargo", &["clippy"]);
+  tinyrick::exec!("cargo", &["clippy"]);
 }
 
 /// Run linters
@@ -15,34 +14,34 @@ fn lint() {
 
 /// Compile project
 fn build() {
-  exec!("cargo", &["build"]);
+  tinyrick::exec!("cargo", &["build"]);
 }
 
 /// Generate documentation
 fn doc() {
-  exec!("cargo", &["doc"]);
+  tinyrick::exec!("cargo", &["doc"]);
 }
 
 /// Install project
 fn install() {
-  exec!("cargo", &["install", "--force", "--path", "."]);
+  tinyrick::exec!("cargo", &["install", "--force", "--path", "."]);
 }
 
 /// Uninstall project
 fn uninstall() {
-  exec!("cargo", &["uninstall"]);
+  tinyrick::exec!("cargo", &["uninstall"]);
 }
 
 /// Run unit tests
 fn unit_test() {
-  exec!("cargo", &["test"]);
+  tinyrick::exec!("cargo", &["test"]);
 }
 
 /// Run integration tests
 fn integration_test() {
   tinyrick::deps(install);
 
-  assert!(exec_stdout_utf8!("add_two", &["-n", "2"]) == "4\n");
+  assert!(tinyrick::exec_stdout_utf8!("add_two", &["-n", "2"]) == "4\n");
 }
 
 /// Run all tests
@@ -53,17 +52,17 @@ fn test() {
 
 /// Show banner
 fn banner() {
-  exec!("add_two", &["-v"]);
+  tinyrick::exec!("add_two", &["-v"]);
 }
 
 /// Publish to crate repository
 fn publish() {
-  exec!("cargo", &["publish"]);
+  tinyrick::exec!("cargo", &["publish"]);
 }
 
 /// Run cargo clean
 fn clean_cargo() {
-  exec!("cargo", &["clean"]);
+  tinyrick::exec!("cargo", &["clean"]);
 }
 
 /// Clean workspaces
@@ -71,7 +70,7 @@ fn clean() {
   tinyrick::deps(clean_cargo);
 }
 
-wubba_lubba_dub_dub!(
+tinyrick::wubba_lubba_dub_dub!(
   test;
   clippy,
   lint,

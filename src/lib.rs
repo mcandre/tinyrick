@@ -43,12 +43,12 @@ macro_rules! exec_mut_with_arguments {
 macro_rules! exec_mut {
   ($p : expr) => {
     {
-      exec_mut_with_arguments!($p, &[])
+      tinyrick::exec_mut_with_arguments!($p, &[])
     }
   };
   ($p : expr, $a : expr) => {
     {
-      exec_mut_with_arguments!($p, $a)
+      tinyrick::exec_mut_with_arguments!($p, $a)
     }
   };
 }
@@ -62,14 +62,14 @@ macro_rules! exec_mut {
 macro_rules! exec_output {
   ($p : expr) => {
     {
-      exec_mut!($p)
+      tinyrick::exec_mut!($p)
         .output()
         .unwrap()
     }
   };
   ($p : expr, $a : expr) => {
     {
-      exec_mut!($p, $a)
+      tinyrick::exec_mut!($p, $a)
         .output()
         .unwrap()
     }
@@ -85,13 +85,13 @@ macro_rules! exec_output {
 macro_rules! exec_stdout {
   ($p : expr) => {
     {
-      exec_output!($p)
+      tinyrick::exec_output!($p)
         .stdout
     }
   };
   ($p : expr, $a : expr) => {
     {
-      exec_output!($p, $a)
+      tinyrick::exec_output!($p, $a)
         .stdout
     }
   };
@@ -106,13 +106,13 @@ macro_rules! exec_stdout {
 macro_rules! exec_stderr {
   ($p : expr) => {
     {
-      exec_output!($p)
+      tinyrick::exec_output!($p)
         .stderr
     }
   };
   ($p : expr, $a : expr) => {
     {
-      exec_output!($p, $a)
+      tinyrick::exec_output!($p, $a)
         .stderr
     }
   };
@@ -127,13 +127,13 @@ macro_rules! exec_stderr {
 macro_rules! exec_stdout_utf8 {
   ($p : expr) => {
     {
-      String::from_utf8(exec_stdout!($p))
+      String::from_utf8(tinyrick::exec_stdout!($p))
         .unwrap()
     }
   };
   ($p : expr, $a : expr) => {
     {
-      String::from_utf8(exec_stdout!($p, $a))
+      String::from_utf8(tinyrick::exec_stdout!($p, $a))
         .unwrap()
     }
   };
@@ -148,13 +148,13 @@ macro_rules! exec_stdout_utf8 {
 macro_rules! exec_stderr_utf8 {
   ($p : expr) => {
     {
-      String::from_utf8(exec_stderr!($p))
+      String::from_utf8(tinyrick::exec_stderr!($p))
         .unwrap()
     }
   };
   ($p : expr, $a : expr) => {
     {
-      String::from_utf8(exec_stderr!($p, $a))
+      String::from_utf8(tinyrick::exec_stderr!($p, $a))
         .unwrap()
     }
   };
@@ -169,14 +169,14 @@ macro_rules! exec_stderr_utf8 {
 macro_rules! exec {
   ($p : expr) => {
     {
-      exec_mut!($p)
+      tinyrick::exec_mut!($p)
         .status()
         .unwrap()
     }
   };
   ($p : expr, $a : expr) => {
     {
-      exec_mut!($p, $a)
+      tinyrick::exec_mut!($p, $a)
         .status()
         .unwrap()
     }
