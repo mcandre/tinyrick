@@ -7,13 +7,13 @@ arithmancy's own compilation process is compatible with standard `cargo`. We wra
 * [Rust](https://www.rust-lang.org/en-US/) 1.30+
 * [clippy](https://github.com/rust-lang-nursery/rust-clippy)
 
-# INSTALL FROM LOCAL SOURCE
+# INSTALL ARTIFACTS FROM LOCAL SOURCE
 
 ```console
 $ tinyrick install
 ```
 
-# UNINSTALL
+# UNINSTALL ARTIFACTS
 
 ```console
 $ tinyrick uninstall
