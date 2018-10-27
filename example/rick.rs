@@ -42,6 +42,7 @@ fn integration_test() {
   tinyrick::deps(install);
 
   assert!(tinyrick::exec_stdout_utf8!("add_two", &["-n", "2"]) == "4\n");
+  assert!(!tinyrick::exec!("add_two").success());
 }
 
 /// Run all tests

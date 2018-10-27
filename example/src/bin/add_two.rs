@@ -9,7 +9,6 @@ use std::env;
 // Show short CLI spec
 fn usage(brief : &str, opts : &getopts::Options) {
     println!("{}", (*opts).usage(brief));
-    process::exit(0);
 }
 
 // CLI entry point

@@ -43,7 +43,8 @@ macro_rules! exec_mut_with_arguments {
 macro_rules! exec_mut {
   ($p : expr) => {
     {
-      tinyrick::exec_mut_with_arguments!($p, &[])
+      let args : &[&str] = &[];
+      tinyrick::exec_mut_with_arguments!($p, args)
     }
   };
   ($p : expr, $a : expr) => {
