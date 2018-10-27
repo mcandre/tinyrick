@@ -164,10 +164,10 @@ macro_rules! exec_stderr_utf8 {
 /// Hey genius, avoid executing commands whenever possible! Look for Rust libraries instead.
 ///
 /// Executes the given program with the given arguments.
-/// Returns the status object.
-/// Panics if the command exits with a failure status.
+/// Returns the status.
+/// Panics if the command could not run to completion.
 #[macro_export]
-macro_rules! exec {
+macro_rules! exec_status {
   ($p : expr) => {
     {
       tinyrick::exec_mut!($p)
@@ -180,6 +180,30 @@ macro_rules! exec {
       tinyrick::exec_mut!($p, $a)
         .status()
         .unwrap()
+    }
+  };
+}
+
+/// Hey genius, avoid executing commands whenever possible! Look for Rust libraries instead.
+///
+/// Executes the given program with the given arguments.
+/// Panics if the command exits with a failure status.
+#[macro_export]
+macro_rules! exec {
+  ($p : expr) => {
+    {
+      assert!(
+        tinyrick::exec_status!($p)
+          .success()
+      );
+    }
+  };
+  ($p : expr, $a : expr) => {
+    {
+      assert!(
+        tinyrick::exec_status!($p, $a)
+          .success()
+      )
     }
   };
 }
