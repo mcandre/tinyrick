@@ -93,7 +93,14 @@ path = "rick.rs"
 required-features = ["letmeout"]
 ```
 
-Launch a terminal session in your project directory, and run `tinyrick`. Watch how he behaves... I hope tinyrick is practicing good manners :P
+Launch a terminal session in your project directory. Install and run the tinyrick tool:
+
+```console
+$ cargo install tinyrick
+$ tinyrick
+```
+
+Watch how he behaves... I hope tinyrick is practicing good manners :P
 
 What happens when you run:
 
