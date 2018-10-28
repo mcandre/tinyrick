@@ -2,7 +2,7 @@
 
 name = "tinyrick"
 description = "a freeform Rust build system"
-version = "0.0.7-develop"
+version = "0.0.6"
 authors = ["Andrew Pennebaker <andrew.pennebaker@gmail.com>"]
 license = "BSD-2-Clause"
 homepage = "https://github.com/mcandre/tinyrick"
