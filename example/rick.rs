@@ -12,9 +12,20 @@ fn lint() {
   tinyrick::deps(clippy);
 }
 
-/// Compile project
-fn build() {
+/// Build debug binaries
+fn build_debug() {
   tinyrick::exec!("cargo", &["build"]);
+}
+
+/// Build release binaries
+fn build_release() {
+  tinyrick::exec!("cargo", &["build", "--release"]);
+}
+
+/// Build all binaries
+fn build() {
+  tinyrick::deps(build_debug);
+  tinyrick::deps(build_release);
 }
 
 /// Generate documentation
@@ -80,6 +91,8 @@ tinyrick::wubba_lubba_dub_dub!(
   test;
   clippy,
   lint,
+  build_debug,
+  build_release,
   build,
   doc,
   install_binaries,
