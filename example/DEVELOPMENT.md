@@ -25,7 +25,7 @@ $ tinyrick uninstall
 $ tinyrick lint
 ```
 
-# UNIT + INTEGRATION TEST
+# RUN ALL TESTS
 
 ```console
 $ tinyrick test

@@ -31,7 +31,7 @@ $ sh build.sh lint
 # TEST
 
 ```console
-$ sh build.sh
+$ sh build.sh test
 ```
 
 # GENERATE DOCUMENTATION
