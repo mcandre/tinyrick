@@ -7,7 +7,7 @@ license = "BSD-2-Clause"
 
 [dependencies]
 getopts = "0.2.18"
-tinyrick = { version = "*", path = "..", optional = true }
+tinyrick = { version = "0.0.7", optional = true }
 
 [features]
 letmeout = ["tinyrick"]
