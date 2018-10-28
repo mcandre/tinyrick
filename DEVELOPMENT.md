@@ -10,34 +10,22 @@ tinyrick's own compilation process is compatible with standard `cargo`. We wrap 
 * [zip](https://linux.die.net/man/1/zip)
 * [Docker](https://www.docker.com/)
 
-# INSTALL FROM LOCAL SOURCE
+# INSTALL BINARY ARTIFACTS FROM LOCAL SOURCE
 
 ```console
 $ sh build.sh install
 ```
 
-# UNINSTALL
+# UNINSTALL BINARY ARTIFACTS
 
 ```console
 $ sh build.sh uninstall
 ```
 
-# LINT
+# BUILD: LINT, DOC, COMPILE, and TEST
 
 ```console
-$ sh build.sh lint
-```
-
-# TEST
-
-```console
-$ sh build.sh test
-```
-
-# GENERATE DOCUMENTATION
-
-```console
-$ sh build.sh doc
+$ sh build.sh [build]
 ```
 
 # PUBLISH

@@ -25,8 +25,23 @@ uninstall() {
 		cargo uninstall tinyrick
 }
 
+clippy() {
+		cargo clippy
+}
+
 doc() {
 		cargo doc
+}
+
+lint() {
+		doc &&
+				clippy
+}
+
+build() {
+		lint &&
+				test &&
+				cargo build --release
 }
 
 publish() {
@@ -44,14 +59,6 @@ port() {
 						target/x86_64-unknown-linux-gnu/release/tinyrick target/x86_64-unknown-linux-musl/release/tinyrick
 }
 
-clippy() {
-		cargo clippy
-}
-
-lint() {
-		clippy
-}
-
 clean_example() {
 		rm -rf example/target;
 				rm -rf example/Cargo.lock
@@ -67,12 +74,12 @@ clean_ports() {
 
 clean() {
 		clean_example;
-				clean_cargo
+				clean_cargo;
 				clean_ports
 }
 
 if [ -z "$1" ]; then
-		test
+		build
 fi
 
 for task in "$@"; do

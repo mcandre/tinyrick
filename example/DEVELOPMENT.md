@@ -7,46 +7,22 @@ arithmancy's own compilation process is compatible with standard `cargo`. We wra
 * [Rust](https://www.rust-lang.org/en-US/) 1.30+
 * [clippy](https://github.com/rust-lang-nursery/rust-clippy)
 
-# INSTALL ARTIFACTS FROM LOCAL SOURCE
+# INSTALL BINARY ARTIFACTS FROM LOCAL SOURCE
 
 ```console
 $ tinyrick install
 ```
 
-# UNINSTALL ARTIFACTS
+# UNINSTALL BINARY ARTIFACTS
 
 ```console
 $ tinyrick uninstall
 ```
 
-# LINT
+# BUILD: LINT, DOC, COMPILE, and TEST
 
 ```console
-$ tinyrick lint
-```
-
-# RUN ALL TESTS
-
-```console
-$ tinyrick test
-```
-
-# UNIT TEST
-
-```console
-$ tinyrick unit_test
-```
-
-# INTEGRATION TEST
-
-```console
-$ tinyrick integration_test
-```
-
-# GENERATE DOCUMENTATION
-
-```console
-$ tinyrick doc
+$ tinyrick [build]
 ```
 
 # PUBLISH

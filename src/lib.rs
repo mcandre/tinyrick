@@ -1,5 +1,10 @@
 //! Common build patterns
 
+extern crate lazy_static;
+
+use std::collections::HashMap;
+use std::sync;
+
 /// Per-project binary name
 pub static BINARY : &str = "rick";
 
@@ -9,9 +14,57 @@ pub static FEATURE : &str = "letmeout";
 /// Environment name controlling verbosity
 pub static VERBOSE_ENVIRONMENT_NAME : &str = "VERBOSE";
 
+lazy_static::lazy_static! {
+  static ref DEPENDENCY_CACHE_MUTEX : sync::Mutex<HashMap<fn(), bool>> = sync::Mutex::new(HashMap::new());
+}
+
+lazy_static::lazy_static! {
+  pub static ref PHONY_TASK_MUTEX : sync::Mutex<Vec<fn()>> = sync::Mutex::new(Vec::new());
+}
+
 /// Declare a dependency on a task that may panic
 pub fn deps(task: fn()) {
-  task();
+  let phony : bool = PHONY_TASK_MUTEX
+    .lock()
+    .unwrap()
+    .contains(&task);
+
+  let has_run : bool = DEPENDENCY_CACHE_MUTEX
+    .lock()
+    .unwrap()
+    .contains_key(&task);
+
+  if phony || !has_run {
+    task();
+
+    DEPENDENCY_CACHE_MUTEX
+      .lock()
+      .unwrap()
+      .insert(task, true);
+  }
+}
+
+/// Declare tasks with no obviously cacheable artifacts.
+#[macro_export]
+macro_rules! phony {
+  ($t : expr) => {
+    {
+      tinyrick::PHONY_TASK_MUTEX
+        .lock()
+        .unwrap()
+        .push($t);
+    }
+  };
+  ($t : expr, $($u : expr),*) => {
+    {
+      let ref mut phony_tasks = tinyrick::PHONY_TASK_MUTEX
+        .lock()
+        .unwrap();
+
+      phony_tasks.push($t);
+      $( phony_tasks.push($u); )*
+    }
+  };
 }
 
 /// Hey genius, avoid executing commands whenever possible! Look for Rust libraries instead.
@@ -214,27 +267,25 @@ macro_rules! exec {
 #[macro_export]
 macro_rules! wubba_lubba_dub_dub {
   ($d : expr ; $($t : expr),*) => {
-    fn main() {
-      use std::env;
+    use std::env;
 
-      let args : Vec<String> = env::args()
-        .collect();
+    let args : Vec<String> = env::args()
+      .collect();
 
-      let task_names : Vec<&str> = args
-        .iter()
-        .skip(1)
-        .map(String::as_str)
-        .collect();
+    let task_names : Vec<&str> = args
+      .iter()
+      .skip(1)
+      .map(String::as_str)
+      .collect();
 
-      if task_names.len() == 0 {
-        $d();
-      } else {
-        for task_name in task_names {
-          match task_name {
-            stringify!($d) => $d(),
-            $(stringify!($t) => $t(),)*
-            _ => panic!("Unknown task {}", task_name)
-          }
+    if task_names.len() == 0 {
+      $d();
+    } else {
+      for task_name in task_names {
+        match task_name {
+          stringify!($d) => $d(),
+          $(stringify!($t) => $t(),)*
+          _ => panic!("Unknown task {}", task_name)
         }
       }
     }
