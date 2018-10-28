@@ -113,7 +113,7 @@ Where are my pants? Let's break down the code so far:
 
 ### DoN't UsE sHelL cOmMaNdS!1
 
-Just because the tinyrick library offers you several *supremely convenient* macros for executing shell commands doesn't mean that you should always shell out. No way! Whenever possible, use regular Rust code. There's like a ba-jillion [crates](https://crates.io) of prewritten code, so you might as well use 'em.
+Just because the tinyrick library offers several *supremely convenient* macros for executing shell commands doesn't mean that you should always shell out. No way! Whenever possible, use regular Rust code. There's like a ba-jillion [crates](https://crates.io) of prewritten code, so you might as well use 'em.
 
 # CONTRIBUTING
 
