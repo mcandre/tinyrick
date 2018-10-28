@@ -1,5 +1,4 @@
 [package]
-
 name = "arithmancy"
 description = "an *advanced* mathematical compilation"
 version = "0.0.1"

@@ -1,5 +1,4 @@
 [package]
-
 name = "tinyrick"
 description = "a freeform Rust build system"
 version = "0.0.6"

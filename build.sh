@@ -10,7 +10,7 @@ BIN="target/debug/$PACKAGE"
 test() {
 		install &&
 				sh -c "cd example && tinyrick" &&
-				sh -c "cd example && VERBOSE=1 tinyrick test clippy lint build_debug build_release build doc install uninstall unit_test integration_test test banner clean_cargo clean"
+				sh -c "cd example && VERBOSE=1 tinyrick test clippy lint build_debug build_release build doc install unit_test integration_test test banner uninstall clean_cargo clean"
 }
 
 install_binaries() {

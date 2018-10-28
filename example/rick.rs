@@ -91,12 +91,7 @@ fn clean() {
 /// CLI entrypoint
 fn main() {
   tinyrick::phony!(
-    doc,
-    install,
     uninstall,
-    build_debug,
-    build_release,
-    build,
     clean_cargo,
     clean
   );
