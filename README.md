@@ -44,12 +44,16 @@ https://docs.rs/tinyrick/
 Write some tasks in a `rick.rs` build configuration script at the top-level directory of your Rust project:
 
 ```rust
+fn banner() {
+  println!("{} {}", env!("CARGO_PKG_NAME"), env!("CARGO_PKG_VERSION"));
+}
+
 fn test() {
   tinyrick::exec!("cargo", &["test"]);
 }
 
 fn build() {
-  tinyrick::deps(build);
+  tinyrick::deps(test);
   tinyrick::exec!("cargo", &["build", "--release"]);
 }
 
@@ -63,13 +67,13 @@ fn clean() {
 
 fn main() {
   tinyrick::phony!(clean);
-  tinyrick::wubba_lubba_dub_dub!(build; test, publish, clean);
+  tinyrick::wubba_lubba_dub_dub!(build; banner, test, publish, clean);
 }
 ```
 
 ## Cargo.toml
 
-Now, wire up your project's `tinyrick` command line interface by configuring your top-level `Cargo.toml`:
+Now, wire up the tinyrick command line interface by configuring your top-level `Cargo.toml`:
 
 ```toml
 [package]
@@ -89,31 +93,36 @@ path = "rick.rs"
 required-features = ["letmeout"]
 ```
 
-Give `tinyrick` a whirl and watch how he behaves? I hope he's practicing good manners :P
+Launch a terminal session in your project directory, and run `tinyrick`. Watch how he behaves... I hope tinyrick is practicing good manners :P
 
 What happens when you run:
 
+* `tinyrick banner`?
 * `tinyrick test`?
 * `tinyrick publish`?
 * `tinyrick clean`?
 * `tinyrick build`?
+* `VERBOSE=1 tinyrick build`?
 
-I bet the freakin' moon explodes if you run `tinyrick build build build`! (Hold onto your pants~)
+I bet the freakin' moon explodes if you run `VERBOSE=1 tinyrick build build build`! (Hold onto your pants~)
 
-### Debriefing
+# DEBRIEFING
 
 Where are my pants? Let's break down the code so far:
 
 * `fn name() { ... }` declares a task named `name`.
 * `deps(requirement)` caches a dependency on task `requirement`.
-* `exec!(...)` runs raw shell commands.
+* `exec!(...)` spawns raw shell command processes.
+* `VERBOSE=1` enables command string emission during processing.
 * `phony!(...)` disables dependency caching for some tasks.
 * `wubba_lubba_dub_dub!(default; ...)` exposes a `default` task and some other tasks to the `tinyrick` command line.
 * `letmeout` is a feature gate, so that neither the `tinyrick` package, nor the mini `rick` binary escape with your Rust package when you `tinyrick publish`.
 
-### DoN't UsE sHelL cOmMaNdS!1
+# DoN't UsE sHelL cOmMaNdS!1
 
-Just because the tinyrick library offers several *supremely convenient* macros for executing shell commands doesn't mean that you should always shell out. No way! Whenever possible, use regular Rust code. There's like a ba-jillion [crates](https://crates.io) of prewritten code, so you might as well use 'em.
+Just because the tinyrick library offers several *supremely convenient* macros for executing shell commands doesn't mean that you should always shell out. No way, man!
+
+Whenever possible, use regular Rust code, as in the `banner()` example. There's like a ba-jillion [crates](https://crates.io) of prewritten Rust code, so you might as well use it!
 
 # CONTRIBUTING
 

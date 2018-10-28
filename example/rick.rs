@@ -69,8 +69,7 @@ fn build() {
 
 /// Show banner
 fn banner() {
-  tinyrick::deps(install);
-  tinyrick::exec!("add_two", &["-v"]);
+  println!("{} {}", env!("CARGO_PKG_NAME"), env!("CARGO_PKG_VERSION"));
 }
 
 /// Publish to crate repository
