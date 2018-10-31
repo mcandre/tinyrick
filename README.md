@@ -15,6 +15,14 @@ $ cd example
 $ tinyrick
 running 1 test
 test smoketest ... ok
+
+$ tinyrick -h
+Usage: tinyrick [options]
+
+Options:
+    -l, --list          list available tasks
+    -h, --help          print usage info
+    -v, --version       print version info
 ```
 
 # ABOUT
@@ -106,9 +114,10 @@ What happens when you run:
 
 * `tinyrick banner`?
 * `tinyrick test`?
-* `tinyrick publish`?
 * `tinyrick clean`?
 * `tinyrick build`?
+* `tinyrick -h`?
+* `tinyrick --list`?
 * `VERBOSE=1 tinyrick build`?
 
 I bet the freakin' moon explodes if you run `VERBOSE=1 tinyrick build build build`! (Hold onto your pants~)
@@ -122,8 +131,8 @@ Where are my pants? Let's break down the code so far:
 * `exec!(...)` spawns raw shell command processes.
 * `VERBOSE=1` enables command string emission during processing.
 * `phony!(...)` disables dependency caching for some tasks.
-* `wubba_lubba_dub_dub!(default; ...)` exposes a `default` task and some other tasks to the `tinyrick` command line.
-* `letmeout` is a feature gate, so that neither the `tinyrick` package, nor the mini `rick` binary escape with your Rust package when you `tinyrick publish`.
+* `wubba_lubba_dub_dub!(default; ...)` exposes a `default` task and some other tasks to the tinyrick command line.
+* `letmeout` is a feature gate, so that neither the tinyrick package, nor your tinyrick binary escape with your Rust package when you `tinyrick publish`.
 
 # DoN't UsE sHelL cOmMaNdS!1
 

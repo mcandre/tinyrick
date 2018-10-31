@@ -5,9 +5,6 @@ extern crate lazy_static;
 use std::collections::HashMap;
 use std::sync::Mutex;
 
-/// Per-project binary name
-pub static BINARY : &str = "tinyrick";
-
 /// Cargo toggle
 pub static FEATURE : &str = "letmeout";
 
@@ -29,7 +26,7 @@ pub fn deps(task: fn()) {
     .unwrap()
     .contains(&task);
 
-  let has_run : bool = DEPENDENCY_CACHE_MUTEX
+  let has_run = DEPENDENCY_CACHE_MUTEX
     .lock()
     .unwrap()
     .contains_key(&task);
@@ -261,18 +258,48 @@ macro_rules! exec {
   };
 }
 
+
+/// Show registered tasks
+#[macro_export]
+macro_rules! list_tasks {
+  ($t : expr) => {
+    {
+      use std::process::exit;
+
+      println!("Registered tasks:\n");
+
+      println!("* {}", stringify!($t));
+
+      exit(0);
+    }
+  };
+  ($t : expr, $($u : expr),*) => {
+    {
+      use std::process::exit;
+
+      println!("Registered tasks:\n");
+
+      println!("* {}", stringify!($t));
+      $(println!("* {}", stringify!($u));)*
+
+      exit(0);
+    }
+  };
+}
+
 /// Register tasks with CLI entrypoint.
 /// The first entry is the default task,
 /// When no tasks are named in CLI arguments.
 #[macro_export]
 macro_rules! wubba_lubba_dub_dub {
   ($d : expr ; $($t : expr),*) => {
-    use std::env;
+    use std::env::args;
+    use std::process::exit;
 
-    let args : Vec<String> = env::args()
+    let arguments : Vec<String> = args()
       .collect();
 
-    let task_names : Vec<&str> = args
+    let task_names : Vec<&str> = arguments
       .iter()
       .skip(1)
       .map(String::as_str)
@@ -283,6 +310,8 @@ macro_rules! wubba_lubba_dub_dub {
     } else {
       for task_name in task_names {
         match task_name {
+          "-l" => tinyrick::list_tasks!($d $(, $t)*),
+          "--list" => tinyrick::list_tasks!($d $(, $t)*),
           stringify!($d) => $d(),
           $(stringify!($t) => $t(),)*
           _ => panic!("Unknown task {}", task_name)

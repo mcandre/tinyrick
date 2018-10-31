@@ -13,9 +13,11 @@ fn usage(brief : &str, opts : &getopts::Options) {
 
 // CLI entry point
 fn main() {
-  let arguments : Vec<String> = args().collect();
+  let arguments : Vec<String> = args()
+    .collect();
 
-  let program : &str = arguments[0].as_ref();
+  let program : &str = arguments[0]
+    .as_ref();
 
   let brief = format!("Usage: {} [options]", program);
 
