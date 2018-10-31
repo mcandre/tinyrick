@@ -4,7 +4,7 @@ extern crate arithmancy;
 extern crate getopts;
 
 use std::process;
-use std::env;
+use std::env::args;
 
 // Show short CLI spec
 fn usage(brief : &str, opts : &getopts::Options) {
@@ -13,9 +13,9 @@ fn usage(brief : &str, opts : &getopts::Options) {
 
 // CLI entry point
 fn main() {
-  let args : Vec<String> = env::args().collect();
+  let arguments : Vec<String> = args().collect();
 
-  let program : &str = args[0].as_ref();
+  let program : &str = arguments[0].as_ref();
 
   let brief = format!("Usage: {} [options]", program);
 
@@ -23,7 +23,7 @@ fn main() {
   opts.optopt("n", "integer", "increment an integer by two (required)", "VAL");
   opts.optflag("h", "help", "print usage info");
 
-  match opts.parse(&args[1..]) {
+  match opts.parse(&arguments[1..]) {
     Err(_) => {
       usage(&brief, &opts);
       process::abort();

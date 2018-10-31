@@ -2,14 +2,14 @@
 
 extern crate tinyrick;
 
-use std::env;
+use std::env::args;
 use std::path;
 
 /// CLI entrypoint
 fn main() {
-  let args : Vec<String> = env::args().collect();
+  let arguments : Vec<String> = args().collect();
 
-  let tasks : Vec<&str> = args
+  let tasks : Vec<&str> = arguments
     .iter()
     .skip(1)
     .map(String::as_str)
@@ -24,11 +24,13 @@ fn main() {
       ]
     );
 
-  let rick_binary : &str = if cfg!(windows) {
-    "rick.exe"
+  let suffix : &str = if cfg!(windows) {
+    ".exe"
   } else {
-    "rick"
+    ""
   };
+
+  let rick_binary : String = tinyrick::BINARY.to_string() + suffix;
 
   let target_path : &path::Path = path::Path::new("target");
 

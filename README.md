@@ -21,7 +21,7 @@ test smoketest ... ok
 
 I'm tinyrick (TINYRICK!) and I build Rust projects. With tinyrick, you configure your build in the same normal Rust code as the rest of your project. Or keep picking your nose with make, it's up to you.
 
-Look at my pants! tinyrick! You think my pants are one size fits all? No, of course not! So get the pants that fit you. Get a tiny `rick.rs` that fits your workflow. Task dependency trees, get em while they're hot! Segfaults, get em while they're not. Smarter, butter, faster, stranger.
+Look at my pants! tinyrick! You think my pants are one size fits all? No, of course not! So get the pants that fit you. Get a `tinyrick.rs` that fits your workflow. Task dependency trees, get em while they're hot! Segfaults, get em while they're not. Smarter, butter, faster, stranger.
 
 Don't shell out, lib out. Your build is more portable that way. Holy Maven, put that foot on some ice! Who knows, maybe fair market feet prices will go up next year! tinyricktinyricktinyrick. If you look closely, that last period is actually a *micro* rick rendered in ASCII; even tinier tinyrick!
 
@@ -39,9 +39,9 @@ https://docs.rs/tinyrick/
 
 # SETUP
 
-## rick.rs
+## tinyrick.rs
 
-Write some tasks in a `rick.rs` build configuration script at the top-level directory of your Rust project:
+Write some tasks in a `tinyrick.rs` build configuration script at the top-level directory of your Rust project:
 
 ```rust
 fn banner() {
@@ -88,8 +88,8 @@ tinyrick = { version = "0.0.7", optional = true }
 letmeout = ["tinyrick"]
 
 [[bin]]
-name = "rick"
-path = "rick.rs"
+name = "tinyrick"
+path = "tinyrick.rs"
 required-features = ["letmeout"]
 ```
 

@@ -3,10 +3,10 @@
 extern crate lazy_static;
 
 use std::collections::HashMap;
-use std::sync;
+use std::sync::Mutex;
 
 /// Per-project binary name
-pub static BINARY : &str = "rick";
+pub static BINARY : &str = "tinyrick";
 
 /// Cargo toggle
 pub static FEATURE : &str = "letmeout";
@@ -15,11 +15,11 @@ pub static FEATURE : &str = "letmeout";
 pub static VERBOSE_ENVIRONMENT_NAME : &str = "VERBOSE";
 
 lazy_static::lazy_static! {
-  static ref DEPENDENCY_CACHE_MUTEX : sync::Mutex<HashMap<fn(), bool>> = sync::Mutex::new(HashMap::new());
+  static ref DEPENDENCY_CACHE_MUTEX : Mutex<HashMap<fn(), bool>> = Mutex::new(HashMap::new());
 }
 
 lazy_static::lazy_static! {
-  pub static ref PHONY_TASK_MUTEX : sync::Mutex<Vec<fn()>> = sync::Mutex::new(Vec::new());
+  pub static ref PHONY_TASK_MUTEX : Mutex<Vec<fn()>> = Mutex::new(Vec::new());
 }
 
 /// Declare a dependency on a task that may panic

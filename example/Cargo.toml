@@ -20,6 +20,6 @@ name = "add_two"
 path = "src/bin/add_two.rs"
 
 [[bin]]
-name = "rick"
-path = "rick.rs"
+name = "tinyrick"
+path = "tinyrick.rs"
 required-features = ["letmeout"]
