@@ -55,17 +55,11 @@ fn main() {
             ]
           );
 
-        let suffix : &str = if cfg!(windows) {
-          ".exe"
-        } else {
-          ""
-        };
-
         let target_path : &path::Path = path::Path::new("target");
 
         let rick_pathbuf : path::PathBuf = target_path
           .join("debug")
-          .join(&format!("{}{}", env!("CARGO_PKG_NAME"), suffix));
+          .join(&format!("{}{}", env!("CARGO_PKG_NAME"), tinyrick::binary_suffix()));
 
         let rick_path : &str = rick_pathbuf
           .to_str()

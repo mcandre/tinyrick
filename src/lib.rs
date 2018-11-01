@@ -19,6 +19,15 @@ lazy_static::lazy_static! {
   pub static ref PHONY_TASK_MUTEX : Mutex<Vec<fn()>> = Mutex::new(Vec::new());
 }
 
+/// Query common host binary suffix
+pub fn binary_suffix() -> String {
+  if cfg!(windows) {
+    ".exe".to_string()
+  } else {
+    "".to_string()
+  }
+}
+
 /// Declare a dependency on a task that may panic
 pub fn deps(task: fn()) {
   let phony : bool = PHONY_TASK_MUTEX
