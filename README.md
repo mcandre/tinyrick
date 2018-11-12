@@ -53,29 +53,29 @@ Write some tasks in a `tinyrick.rs` build configuration script at the top-level 
 
 ```rust
 fn banner() {
-  println!("{} {}", env!("CARGO_PKG_NAME"), env!("CARGO_PKG_VERSION"));
+    println!("{} {}", env!("CARGO_PKG_NAME"), env!("CARGO_PKG_VERSION"));
 }
 
 fn test() {
-  tinyrick::exec!("cargo", &["test"]);
+    tinyrick::exec!("cargo", &["test"]);
 }
 
 fn build() {
-  tinyrick::deps(test);
-  tinyrick::exec!("cargo", &["build", "--release"]);
+    tinyrick::deps(test);
+    tinyrick::exec!("cargo", &["build", "--release"]);
 }
 
 fn publish() {
-  tinyrick::exec!("cargo", &["publish"]);
+    tinyrick::exec!("cargo", &["publish"]);
 }
 
 fn clean() {
-  tinyrick::exec!("cargo", &["clean"]);
+    tinyrick::exec!("cargo", &["clean"]);
 }
 
 fn main() {
-  tinyrick::phony!(clean);
-  tinyrick::wubba_lubba_dub_dub!(build; banner, test, publish, clean);
+    tinyrick::phony!(clean);
+    tinyrick::wubba_lubba_dub_dub!(build; banner, test, publish, clean);
 }
 ```
 
