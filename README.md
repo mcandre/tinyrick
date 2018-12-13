@@ -144,9 +144,10 @@ Whenever possible, use regular Rust code, as in the `banner()` example. There's 
 
 For more details on developing tinyrick itself, see [DEVELOPMENT.md](DEVELOPMENT.md).
 
-# CREDITS
+# SEE ALSO
 
 * Inspired by the excellent [mage](https://magefile.org/) build system for Go projects
+* [dale](https://github.com/mcandre/dale) offers similar task runner features for D projects
 
 # EVEN MORE EXAMPLES
 
