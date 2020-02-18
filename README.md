@@ -150,6 +150,7 @@ For more details on developing tinyrick itself, see [DEVELOPMENT.md](DEVELOPMENT
 * [GNU make](https://www.gnu.org/software/make/), a classic task runner
 * [cmake](https://cmake.org/) for C/C++ projects
 * [dale](https://github.com/mcandre/dale) offers similar task runner features for D projects
+* [vast](https://github.com/mcandre/vast) for UNIX shell script projects
 
 # EVEN MORE EXAMPLES
 
