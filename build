@@ -1,6 +1,9 @@
 #!/bin/sh
 #
 # Avoid make in order to work around https://github.com/rust-lang/rust/issues/52801
+set -eu
+IFS="$(printf '%b_' '\n\t ')"
+IFS="${IFS%_}"
 
 PACKAGE='tinyrick'
 VERSION='0.0.10'
@@ -52,8 +55,8 @@ publish() {
 }
 
 crosscompile() {
-    sh crosscompile-linux.sh x86_64 gnu &&
-    sh crosscompile-linux.sh x86_64 musl
+    ./crosscompile-linux x86_64 gnu &&
+    ./crosscompile-linux x86_64 musl
 }
 
 port() {

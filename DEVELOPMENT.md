@@ -1,6 +1,6 @@
 # OVERVIEW
 
-tinyrick's own compilation process is compatible with standard `cargo`. We wrap some common workflows with `build.sh` tasks for convenience.
+tinyrick's own compilation process is compatible with standard `cargo`. We wrap some common workflows with `build` tasks for convenience.
 
 # BUILDTIME REQUIREMENTS
 
@@ -13,35 +13,35 @@ tinyrick's own compilation process is compatible with standard `cargo`. We wrap 
 # INSTALL BINARY ARTIFACTS FROM LOCAL SOURCE
 
 ```console
-$ sh build.sh install
+$ sh build install
 ```
 
 # UNINSTALL BINARY ARTIFACTS
 
 ```console
-$ sh build.sh uninstall
+$ sh build uninstall
 ```
 
 # BUILD: LINT, DOC, COMPILE, and TEST
 
 ```console
-$ sh build.sh [build]
+$ sh build [build]
 ```
 
 # PUBLISH
 
 ```console
-$ sh build.sh publish
+$ sh build publish
 ```
 
 # PORT
 
 ```console
-$ sh build.sh port
+$ sh build port
 ```
 
 # CLEAN
 
 ```console
-$ sh build.sh clean
+$ sh build clean
 ```
