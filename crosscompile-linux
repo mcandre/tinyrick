@@ -1,6 +1,6 @@
 #!/bin/bash
+unset IFS
 set -euo pipefail
-IFS=$'\n\t '
 
 usage() {
     echo -e "Usage: $0 <arch> <libc>\n"
