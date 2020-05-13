@@ -2,7 +2,7 @@
 #
 # Avoid make in order to work around https://github.com/rust-lang/rust/issues/52801
 unset IFS
-set -eu
+set -euf
 
 PACKAGE='tinyrick'
 VERSION='0.0.10'
