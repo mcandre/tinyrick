@@ -1,0 +1,32 @@
+[package]
+name = "arithmancy_workspace"
+description = "an *advanced* mathematical compilation"
+version = "0.0.1"
+authors = ["Andrew Pennebaker <andrew.pennebaker@gmail.com>"]
+license = "BSD-2-Clause"
+edition = "2018"
+autobins = false
+
+[dependencies]
+getopts = "0.2.18"
+tinyrick = { version = "*", path = "..", optional = true }
+
+[features]
+letmeout = ["tinyrick"]
+
+[lib]
+path = "src/lib/arithmancy_workspace.rs"
+
+[[bin]]
+name = "add_two_workspace"
+path = "src/bin/add_two_workspace.rs"
+
+[[bin]]
+name = "tinyrick"
+path = "tinyrick.rs"
+required-features = ["letmeout"]
+
+[workspace]
+members = [
+				"workspace_member"
+				]
