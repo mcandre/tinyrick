@@ -8,7 +8,7 @@ use std::path;
 use std::process;
 
 // Show short CLI spec
-fn usage(brief : &str, opts : &getopts::Options) {
+fn usage(brief: &str, opts: &getopts::Options) {
     println!("{}", (*opts).usage(brief));
 }
 
@@ -19,23 +19,28 @@ pub fn banner() {
 
 /// CLI entrypoint
 fn main() {
-    let arguments : Vec<String> = env::args()
-    .collect();
+    let arguments: Vec<String> = env::args().collect();
 
     let brief = format!("Usage: {} [options]", env!("CARGO_PKG_NAME"));
 
-    let mut opts : getopts::Options = getopts::Options::new();
+    let mut opts: getopts::Options = getopts::Options::new();
     opts.optflag("l", "list", "list available tasks");
     opts.optflag("h", "help", "print usage info");
     opts.optflag("v", "version", "print version info");
+    opts.optflag(
+        "w",
+        "workspace",
+        "execute in a package belonging to a workspace",
+    );
 
     match opts.parse(&arguments[1..]) {
         Err(_) => {
             usage(&brief, &opts);
             process::abort();
-        },
+        }
         Ok(optmatches) => {
             let list_tasks = optmatches.opt_present("l");
+            let workspace = optmatches.opt_present("w");
 
             if optmatches.opt_present("h") {
                 usage(&brief, &opts);
@@ -49,21 +54,27 @@ fn main() {
                 tinyrick::exec!(
                     "cargo",
                     &[
-                    "build",
-                    "--bin", env!("CARGO_PKG_NAME"),
-                    "--features", tinyrick::FEATURE
+                        "build",
+                        "--bin",
+                        env!("CARGO_PKG_NAME"),
+                        "--features",
+                        tinyrick::FEATURE
                     ]
                 );
+                let root_target = path::Path::new("target");
+                let target_path = if workspace && !root_target.exists() {
+                    path::Path::new("../target")
+                } else {
+                    root_target 
+                };
 
-                let target_path : &path::Path = path::Path::new("target");
+                let rick_pathbuf: path::PathBuf = target_path.join("debug").join(&format!(
+                    "{}{}",
+                    env!("CARGO_PKG_NAME"),
+                    tinyrick::binary_suffix()
+                ));
 
-                let rick_pathbuf : path::PathBuf = target_path
-                .join("debug")
-                .join(&format!("{}{}", env!("CARGO_PKG_NAME"), tinyrick::binary_suffix()));
-
-                let rick_path : &str = rick_pathbuf
-                .to_str()
-                .unwrap();
+                let rick_path: &str = rick_pathbuf.to_str().unwrap();
 
                 if list_tasks {
                     tinyrick::exec!(rick_path, &["-l"]);
