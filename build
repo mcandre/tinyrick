@@ -37,6 +37,10 @@ doc() {
     cargo doc
 }
 
+audit() {
+    cargo audit
+}
+
 lint() {
     doc &&
     clippy
@@ -77,9 +81,9 @@ clean_ports() {
 }
 
 clean() {
-clean_example;
-    clean_cargo;
-    clean_ports
+    clean_example;
+        clean_cargo;
+        clean_ports
 }
 
 if [ "$#" -lt 1 ]; then
@@ -88,5 +92,5 @@ if [ "$#" -lt 1 ]; then
 fi
 
 for task in "$@"; do
-    "$($task)"
+    "$task"
 done

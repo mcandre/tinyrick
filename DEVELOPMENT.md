@@ -23,6 +23,12 @@ $ sh build install
 $ sh build uninstall
 ```
 
+# SECURITY AUDIT
+
+```console
+$ sh build audit
+```
+
 # BUILD: LINT, DOC, COMPILE, and TEST
 
 ```console
