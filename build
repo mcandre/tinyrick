@@ -7,9 +7,8 @@ set -euf
 PACKAGE='tinyrick'
 VERSION='0.0.10'
 ARCHIVE="${PACKAGE}-${VERSION}.zip"
-BIN="target/debug/$PACKAGE"
 
-test() {
+unit_test() {
     install &&
     sh -c "cd example && tinyrick -l" &&
     sh -c "cd example && tinyrick -v" &&
@@ -45,7 +44,7 @@ lint() {
 
 build() {
     lint &&
-    test &&
+    unit_test &&
     cargo build --release
 }
 
@@ -74,19 +73,20 @@ clean_cargo() {
 }
 
 clean_ports() {
-    rm *.zip
+    rm ./*.zip
 }
 
 clean() {
-    clean_example;
+clean_example;
     clean_cargo;
     clean_ports
 }
 
-if [ -z "$1" ]; then
+if [ "$#" -lt 1 ]; then
     build
+    return "$?"
 fi
 
 for task in "$@"; do
-    "$task"
+    "$($task)"
 done

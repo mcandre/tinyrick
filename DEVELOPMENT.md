@@ -4,7 +4,8 @@ tinyrick's own compilation process is compatible with standard `cargo`. We wrap 
 
 # BUILDTIME REQUIREMENTS
 
-* [Rust](https://www.rust-lang.org/en-US/) 1.30+
+* [Rust](https://www.rust-lang.org/en-US/) 1.59+
+* [cargo-audit](https://crates.io/crates/cargo-audit) 0.16
 * [clippy](https://github.com/rust-lang-nursery/rust-clippy)
 * [coreutils](https://www.gnu.org/software/coreutils/coreutils.html)
 * [zip](https://linux.die.net/man/1/zip)
@@ -25,7 +26,7 @@ $ sh build uninstall
 # BUILD: LINT, DOC, COMPILE, and TEST
 
 ```console
-$ sh build [build]
+$ sh build
 ```
 
 # PUBLISH
