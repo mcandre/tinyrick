@@ -13,7 +13,7 @@ tinyrick's own compilation process is compatible with standard `cargo`. We wrap 
 
 ## Recommended
 
-* [ASDF](https://asdf-vm.com/) 0.10
+* [ASDF](https://asdf-vm.com/) 0.10 (run `asdf reshim` after each Rust application binary installation)
 
 # INSTALL BINARY ARTIFACTS FROM LOCAL SOURCE
 
