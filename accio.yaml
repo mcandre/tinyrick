@@ -1,0 +1,4 @@
+---
+packages:
+- name: "github.com/mrtazz/checkmake/..."
+  version: "0.2.1"

@@ -7,52 +7,54 @@ tinyrick's own compilation process is compatible with standard `cargo`. We wrap 
 * [Rust](https://www.rust-lang.org/en-US/) 1.63+
 * [cargo-audit](https://crates.io/crates/cargo-audit) 0.16
 * [clippy](https://github.com/rust-lang-nursery/rust-clippy)
+* [Go](https://go.dev/) 1.19+ with `go install github.com/mcandre/accio/cmd/accio@v0.0.3` and `accio -install`
 * [coreutils](https://www.gnu.org/software/coreutils/coreutils.html)
 * [zip](https://linux.die.net/man/1/zip)
-* [Docker](https://www.docker.com/)
+* [Docker](https://www.docker.com/) 20.10.21+
 
 ## Recommended
 
 * [ASDF](https://asdf-vm.com/) 0.10 (run `asdf reshim` after each Rust application binary installation)
+* [direnv](https://direnv.net/) 2
 
 # INSTALL BINARY ARTIFACTS FROM LOCAL SOURCE
 
 ```console
-$ sh build install
+$ make install
 ```
 
 # UNINSTALL BINARY ARTIFACTS
 
 ```console
-$ sh build uninstall
+$ make uninstall
 ```
 
-# SECURITY AUDIT
+# AUDIT
 
 ```console
-$ sh build audit
+$ make audit
 ```
 
 # BUILD: LINT, DOC, COMPILE, and TEST
 
 ```console
-$ sh build
+$ make build
 ```
 
 # PUBLISH
 
 ```console
-$ sh build publish
+$ make publish
 ```
 
 # PORT
 
 ```console
-$ sh build port
+$ make port
 ```
 
 # CLEAN
 
 ```console
-$ sh build clean
+$ make clean
 ```
