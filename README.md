@@ -43,7 +43,7 @@ https://docs.rs/tinyrick/
 
 # RUNTIME REQUIREMENTS
 
-* [Rust](https://www.rust-lang.org/en-US/) 1.59+
+* [Rust](https://www.rust-lang.org/en-US/) 1.63+
 
 # SETUP
 
