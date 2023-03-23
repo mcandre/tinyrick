@@ -7,7 +7,7 @@ tinyrick's own compilation process is compatible with standard `cargo`. We wrap 
 * [Rust](https://www.rust-lang.org/en-US/) 1.63+
 * [cargo-audit](https://crates.io/crates/cargo-audit) 0.16
 * [clippy](https://github.com/rust-lang-nursery/rust-clippy)
-* [Go](https://go.dev/) 1.19+ with `go install github.com/mcandre/accio/cmd/accio@v0.0.3` and `accio -install`
+* [Go](https://go.dev/) 1.20.2+ with `go install github.com/mcandre/accio/cmd/accio@v0.0.4` and `accio -install`
 * [coreutils](https://www.gnu.org/software/coreutils/coreutils.html)
 * [zip](https://linux.die.net/man/1/zip)
 * [Docker](https://www.docker.com/) 20.10.21+
