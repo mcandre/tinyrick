@@ -1,9 +1,6 @@
 .PHONY: all lint build install test clean
 
-PACKAGE=tinyrick
-VERSION=0.0.10
-TARGETS=$(shell rustup target list | cut -d' ' -f1)
-ARCHIVE=$(PACKAGE)-$(VERSION).zip
+BANNER=tinyrick-0.0.10
 
 all: build
 
@@ -57,13 +54,11 @@ build: lint test
 publish:
 	@cargo publish
 
-cross:
-	@echo $(TARGETS)
+crit:
+	@crit -b $(BANNER)
 
-port: crosscompile
-	@zip $(ARCHIVE) \
-		target/x86_64-unknown-linux-gnu/release/tinyrick \
-		target/x86_64-unknown-linux-musl/release/tinyrick
+port: crit
+	@sh -c "cd .crit/bin/$(BANNER) && zip -r $(BANNER).zip $(BANNER)"
 
 clean_example:
 	-rm -rf example/target
@@ -72,7 +67,7 @@ clean_example:
 clean_cargo:
 	-cargo clean
 
-clean_ports:
-	-rm *.zip
+clean_crit:
+	-crit -c
 
-clean: clean_example clean_cargo clean_ports
+clean: clean_example clean_cargo clean_crit
