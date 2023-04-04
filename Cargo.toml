@@ -8,8 +8,9 @@ homepage = "https://github.com/mcandre/tinyrick"
 documentation = "https://docs.rs/tinyrick/"
 
 [dependencies]
-getopts = "0.2.18"
-lazy_static = "1.1.0"
+die = "0.2.0"
+getopts = "0.2.21"
+lazy_static = "1.4.0"
 
 [lib]
 name = "tinyrick"

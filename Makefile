@@ -2,6 +2,7 @@
 
 PACKAGE=tinyrick
 VERSION=0.0.10
+TARGETS=$(shell rustup target list | cut -d' ' -f1)
 ARCHIVE=$(PACKAGE)-$(VERSION).zip
 
 all: build
@@ -11,7 +12,7 @@ test: install
 	@sh -c "cd example && tinyrick -v"
 	@sh -c "cd example && tinyrick -h"
 	@sh -c "cd example && tinyrick"
-	@sh -c "cd example && VERBOSE=1 tinyrick test clippy lint build_debug build_release build doc @install unit_test integration_test test banner uninstall clean_cargo clean"
+	@sh -c "cd example && VERBOSE=1 tinyrick test clippy lint build_debug build_release build doc install unit_test integration_test test banner uninstall clean_cargo clean"
 
 install_binaries:
 	@cargo install --force --path .
@@ -30,6 +31,9 @@ doc:
 clippy:
 	@cargo clippy
 
+rustfmt:
+	@cargo fmt
+
 yamllint:
 	@yamllint .
 
@@ -45,7 +49,7 @@ checkmake:
 		-print0 | \
 			xargs -0 -n 1 checkmake
 
-lint: doc clippy yamllint checkmake
+lint: doc clippy rustfmt yamllint checkmake
 
 build: lint test
 	@cargo build --release
@@ -53,9 +57,8 @@ build: lint test
 publish:
 	@cargo publish
 
-crosscompile:
-	@sh crosscompile-linux x86_64 gnu
-	@sh crosscompile-linux x86_64 musl
+cross:
+	@echo $(TARGETS)
 
 port: crosscompile
 	@zip $(ARCHIVE) \

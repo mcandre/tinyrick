@@ -4,13 +4,14 @@ tinyrick's own compilation process is compatible with standard `cargo`. We wrap 
 
 # BUILDTIME REQUIREMENTS
 
-* [Rust](https://www.rust-lang.org/en-US/) 1.63+ with `rustup component add clippy-preview` and `cargo install cargo-audit@0.17.5`
+* [Rust](https://www.rust-lang.org/en-US/) 1.68.2+ with `rustup component add clippy rustfmt` and `cargo install cargo-audit@0.17.5`
 * [Go](https://go.dev/) 1.20.2+ with `go install github.com/mcandre/accio/cmd/accio@v0.0.4` and `accio -install`
-* [GNU make](https://www.gnu.org/software/make/) 3+
-* a POSIX compatible [sh](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/sh.html) implementation
+* [make](https://pubs.opengroup.org/onlinepubs/009695299/utilities/make.html)
+* a UNIX environment with [coreutils](https://www.gnu.org/software/coreutils/) / [base](http://ftp.freebsd.org/pub/FreeBSD/releases/) / [macOS](https://www.apple.com/macos) / [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) / etc.
 * GNU compatible [findutils](https://www.gnu.org/software/findutils/)
-* [zip](https://linux.die.net/man/1/zip)
 * [Docker](https://www.docker.com/) 20.10.21+
+* [yq](https://mikefarah.gitbook.io/yq/)
+* [zip](https://linux.die.net/man/1/zip)
 
 ## Recommended
 

@@ -43,7 +43,7 @@ https://docs.rs/tinyrick/
 
 # RUNTIME REQUIREMENTS
 
-* [Rust](https://www.rust-lang.org/en-US/) 1.63+
+* [Rust](https://www.rust-lang.org/en-US/) 1.68.2+
 
 ## Recommended
 
@@ -153,9 +153,9 @@ For more details on developing tinyrick itself, see [DEVELOPMENT.md](DEVELOPMENT
 # SEE ALSO
 
 * Inspired by the excellent [mage](https://magefile.org/) build system for Go projects
-* [GNU make](https://www.gnu.org/software/make/), a classic task runner
 * [cmake](https://cmake.org/) for C/C++ projects
 * [dale](https://github.com/mcandre/dale) offers similar task runner features for D projects
+* [make](https://pubs.opengroup.org/onlinepubs/009695299/utilities/make.html), a classic task runner
 * [rez](https://github.com/mcandre/rez), a C/C++ task runner
 * [vast](https://github.com/mcandre/vast) for UNIX shell script projects
 
