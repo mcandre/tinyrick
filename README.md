@@ -158,6 +158,7 @@ For more details on developing tinyrick itself, see [DEVELOPMENT.md](DEVELOPMENT
 * [GNU autotools](https://www.gnu.org/software/automake/manual/html_node/Autotools-Introduction.html), a build system for Linux C/C++ projects
 * [Gradle](https://gradle.org/), a build system for JVM projects
 * [invoke](https://pypi.org/project/invoke/), a Python task runner
+* [lake](https://luarocks.org/modules/steved/lake), a Lua task runner
 * [POSIX make](https://pubs.opengroup.org/onlinepubs/009695299/utilities/make.html), a task runner standard for C/C++ and various other software projects
 * [Rake](https://ruby.github.io/rake/), a task runner for Ruby projects
 * [rez](https://github.com/mcandre/rez), a C/C++ task runner
