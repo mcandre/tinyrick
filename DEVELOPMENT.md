@@ -10,7 +10,6 @@ tinyrick's own compilation process is compatible with standard `cargo`. We wrap 
 * a UNIX environment with [coreutils](https://www.gnu.org/software/coreutils/) / [base](http://ftp.freebsd.org/pub/FreeBSD/releases/) / [macOS](https://www.apple.com/macos) / [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) / etc.
 * GNU compatible [findutils](https://www.gnu.org/software/findutils/)
 * [Docker](https://www.docker.com/) 20.10.21+
-* [yq](https://mikefarah.gitbook.io/yq/)
 * [zip](https://linux.die.net/man/1/zip)
 
 ## Recommended
