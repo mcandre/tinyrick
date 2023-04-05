@@ -1,6 +1,6 @@
 .PHONY: all lint build install test clean
 
-BANNER=tinyrick-0.0.10
+BANNER=tinyrick-0.0.11
 
 all: build
 
