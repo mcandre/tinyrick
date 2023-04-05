@@ -39,7 +39,7 @@ https://crates.io/crates/tinyrick
 
 # API DOCUMENTATION
 
-https://docs.rs/tinyrick/
+https://docs.rs/tinyrick/latest/tinyrick/
 
 # RUNTIME REQUIREMENTS
 
