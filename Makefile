@@ -58,7 +58,7 @@ crit:
 	@crit -b $(BANNER)
 
 port: crit
-	@sh -c "cd .crit/bin/$(BANNER) && zip -r $(BANNER).zip $(BANNER)"
+	@sh -c "cd .crit/bin && zip -r $(BANNER).zip $(BANNER)"
 
 clean_example:
 	-rm -rf example/target
