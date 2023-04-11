@@ -31,22 +31,10 @@ clippy:
 rustfmt:
 	@cargo fmt
 
-yamllint:
-	@yamllint .
+unmake:
+	@unmake makefile
 
-checkmake:
-	@find . \
-		-type f \
-		\( \
-			-iname Makefile -o \
-			-iname GNUmakefile -o \
-			-iname '*.mk' -o \
-			-iname '*.make' \
-		\) \
-		-print0 | \
-			xargs -0 -n 1 checkmake
-
-lint: doc clippy rustfmt yamllint checkmake
+lint: doc clippy rustfmt unmake
 
 build: lint test
 	@cargo build --release
