@@ -33,6 +33,7 @@ rustfmt:
 
 unmake:
 	@unmake makefile
+	@unmake install.mk
 
 lint: doc clippy rustfmt unmake
 

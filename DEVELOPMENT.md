@@ -10,8 +10,7 @@ tinyrick's own compilation process is compatible with standard `cargo`. We wrap 
 * [Docker](https://www.docker.com/) 20.10.21+
 * [zip](https://linux.die.net/man/1/zip)
 * a POSIX compliant [make](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html) implementation (e.g. GNU make, BSD make, etc.)
-* a POSIX compatible [sh](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/sh.html) implementation (e.g., bash, ksh, zsh)
-* Provision additional dev tools with `./install`
+* Provision additional dev tools with `make -f install.mk`
 
 ## Recommended
 
