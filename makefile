@@ -1,6 +1,6 @@
 .POSIX:
 .SILENT:
-.IGNORE: clean
+.IGNORE: uninstall clean
 .PHONY: all audit doc lint clippy rustfmt unmake build port crit install uninstall test publish clean
 
 BANNER=tinyrick-0.0.11
