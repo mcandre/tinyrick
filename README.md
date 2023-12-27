@@ -157,6 +157,7 @@ For more details on developing tinyrick itself, see [DEVELOPMENT.md](DEVELOPMENT
 # SEE ALSO
 
 * Inspired by the excellent [mage](https://magefile.org/) build system for Go projects
+* [bb](https://github.com/mcandre/bb), a build system for (g)awk projects
 * [cargo](https://doc.rust-lang.org/cargo/reference/build-scripts.html) custom build scripts, primarily for generating Rust source files from other languages
 * [cmake](https://cmake.org/) for C/C++ projects
 * [dale](https://github.com/mcandre/dale) builds D projects
