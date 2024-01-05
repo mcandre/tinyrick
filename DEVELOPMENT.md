@@ -14,6 +14,9 @@ tinyrick's own compilation process is compatible with standard `cargo`. We wrap 
 
 ## Recommended
 
+* a host capable of running musl/Linux containers (e.g. a GNU/Linux, musl/Linux, macOS, or Windows host)
+* [Docker First Aid Kit](https://github.com/mcandre/docker-first-aid-kit)
+* Apply `DOCKER_DEFAULT_PLATFORM` = `linux/amd64` environment variable
 * [ASDF](https://asdf-vm.com/) 0.10 (run `asdf reshim` after provisioning)
 * [direnv](https://direnv.net/) 2
 * [cargo-cache](https://crates.io/crates/cargo-cache)
