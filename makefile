@@ -48,6 +48,7 @@ rustfmt:
 
 unmake:
 	unmake .
+	unmake -n .
 
 lint: doc clippy rustfmt unmake
 
