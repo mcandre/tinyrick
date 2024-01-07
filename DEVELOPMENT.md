@@ -4,12 +4,11 @@ tinyrick's own compilation process is compatible with standard `cargo`. We wrap 
 
 # BUILDTIME REQUIREMENTS
 
-* [Rust](https://www.rust-lang.org/en-US/) 1.75.0+
-* a UNIX environment with [coreutils](https://www.gnu.org/software/coreutils/) / [base](http://ftp.freebsd.org/pub/FreeBSD/releases/) / [macOS](https://www.apple.com/macos) / [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) / etc.
-* [GNU findutils](https://www.gnu.org/software/findutils/)
 * [Docker](https://www.docker.com/) 20.10.21+
+* POSIX compatible [make](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html)
+* [Rust](https://www.rust-lang.org/en-US/) 1.75.0+
+* POSIX compatible [sh](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/sh.html)
 * [zip](https://linux.die.net/man/1/zip)
-* a POSIX compliant [make](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html) implementation (e.g. GNU make, BSD make, etc.)
 * Provision additional dev tools with `make -f install.mk`
 
 ## Recommended
