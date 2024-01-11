@@ -175,6 +175,7 @@ For more details on developing tinyrick itself, see [DEVELOPMENT.md](DEVELOPMENT
 * [rez](https://github.com/mcandre/rez) builds C/C++ projects
 * [sbt](https://www.scala-sbt.org/index.html), a build system for Scala projects
 * [Shake](https://shakebuild.com/), a task runner for Haskell projects
+* [yao](https://github.com/mcandre/yao), a task runner for Common LISP projects
 
 # EVEN MORE EXAMPLES
 
