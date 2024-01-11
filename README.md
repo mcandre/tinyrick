@@ -173,6 +173,7 @@ For more details on developing tinyrick itself, see [DEVELOPMENT.md](DEVELOPMENT
 * [Rake](https://ruby.github.io/rake/), a task runner for Ruby projects
 * [Rebar3](https://www.rebar3.org/), a build system for Erlang projects
 * [rez](https://github.com/mcandre/rez) builds C/C++ projects
+* [sbt](https://www.scala-sbt.org/index.html), a build system for Scala projects
 * [Shake](https://shakebuild.com/), a task runner for Haskell projects
 
 # EVEN MORE EXAMPLES
