@@ -62,7 +62,7 @@ crit:
 	crit -b $(BANNER)
 
 port: crit
-	sh -c "cd .crit/bin && zip -r $(BANNER).zip $(BANNER)"
+	sh -c "cd .crit/bin && tar czf $(BANNER).tgz $(BANNER)"
 
 clean:
 	crit -c
