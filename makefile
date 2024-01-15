@@ -17,7 +17,7 @@
 	publish \
 	clean
 
-BANNER=tinyrick-0.0.13
+BANNER=tinyrick-0.0.14
 
 all: build
 
