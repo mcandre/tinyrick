@@ -6,7 +6,7 @@ authors = ["Andrew Pennebaker <andrew.pennebaker@gmail.com>"]
 license = "BSD-2-Clause"
 
 [dependencies]
-getopts = "0.2.18"
+getopts = "=0.2.21"
 tinyrick = { version = "*", path = "..", optional = true }
 
 [features]
