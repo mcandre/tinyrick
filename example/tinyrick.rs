@@ -4,12 +4,12 @@ extern crate tinyrick;
 
 /// Run clippy
 fn clippy() {
-    tinyrick::exec!("cargo", &["clippy"]);
+    tinyrick::exec("cargo", &["clippy"]);
 }
 
 /// Generate documentation
 fn doc() {
-    tinyrick::exec!("cargo", &["doc"]);
+    tinyrick::exec("cargo", &["doc"]);
 }
 
 /// Static code validation
@@ -21,26 +21,26 @@ fn lint() {
 /// Lint, and then install artifacts
 fn install() {
     tinyrick::deps(lint);
-    tinyrick::exec!("cargo", &["install", "--force", "--path", "."]);
+    tinyrick::exec("cargo", &["install", "--force", "--path", "."]);
 }
 
 /// Uninstall artifacts
 fn uninstall() {
-    tinyrick::exec!("cargo", &["uninstall"]);
+    tinyrick::exec("cargo", &["uninstall"]);
 }
 
 /// Lint, and then run unit tests
 fn unit_test() {
     tinyrick::deps(lint);
-    tinyrick::exec!("cargo", &["test"]);
+    tinyrick::exec("cargo", &["test"]);
 }
 
 /// Lint, and then run integration tests
 fn integration_test() {
     tinyrick::deps(install);
 
-    assert!(tinyrick::exec_stdout_utf8!("add_two", &["-n", "2"]) == "4\n");
-    assert!(!tinyrick::exec_status!("add_two").success());
+    assert!(tinyrick::exec_stdout_utf8("add_two", &["-n", "2"]) == "4\n");
+    assert!(!tinyrick::exec_status("add_two").success());
 }
 
 /// Lint, and then run tests
@@ -52,13 +52,13 @@ fn test() {
 /// Lint, test, and build debug binaries
 fn build_debug() {
     tinyrick::deps(test);
-    tinyrick::exec!("cargo", &["build"]);
+    tinyrick::exec("cargo", &["build"]);
 }
 
 /// Lint, test, and build release binaries
 fn build_release() {
     tinyrick::deps(test);
-    tinyrick::exec!("cargo", &["build", "--release"]);
+    tinyrick::exec("cargo", &["build", "--release"]);
 }
 
 /// Lint, test, and then build binaries
@@ -74,12 +74,12 @@ fn banner() {
 
 /// Publish to crate repository
 fn publish() {
-    tinyrick::exec!("cargo", &["publish"]);
+    tinyrick::exec("cargo", &["publish"]);
 }
 
 /// Run cargo clean
 fn clean_cargo() {
-    tinyrick::exec!("cargo", &["clean"]);
+    tinyrick::exec("cargo", &["clean"]);
 }
 
 /// Clean workspaces

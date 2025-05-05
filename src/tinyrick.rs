@@ -37,7 +37,7 @@ fn main() {
     let list_tasks: bool = optmatches.opt_present("l");
     let tasks: Vec<String> = optmatches.free;
 
-    tinyrick::exec!(
+    tinyrick::exec(
         "cargo",
         &[
             "build",
@@ -59,9 +59,9 @@ fn main() {
     let rick_path: &str = rick_pathbuf.to_str().unwrap();
 
     if list_tasks {
-        tinyrick::exec!(rick_path, &["-l"]);
+        tinyrick::exec(rick_path, &["-l"]);
         die!(0);
     }
 
-    tinyrick::exec!(rick_path, tasks);
+    tinyrick::exec(rick_path, tasks);
 }

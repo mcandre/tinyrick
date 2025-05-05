@@ -3,6 +3,8 @@
 extern crate lazy_static;
 
 use std::collections::HashMap;
+use std::env::var;
+use std::process::Command;
 use std::sync::Mutex;
 
 /// Cargo toggle
@@ -64,18 +66,12 @@ macro_rules! phony {
 ///
 /// Executes the given program with the given arguments.
 /// Returns the command object.
-#[macro_export]
-macro_rules! exec_mut_with_arguments {
-    ($p : expr, $a : expr) => {{
-        use std::env::var;
-        use std::process::Command;
+pub fn exec_mut_with_arguments<'a>(name : &'astr, args : &'a[&str]) -> &'a mut Command {
+    if var(VERBOSE_ENVIRONMENT_NAME).is_ok() {
+        println!("{} {}", name, args.join(" "));
+    }
 
-        if var(tinyrick::VERBOSE_ENVIRONMENT_NAME).is_ok() {
-            println!("{} {}", $p, $a.join(" "));
-        }
-
-        Command::new($p).args($a)
-    }};
+    Command::new(name).args(args)
 }
 
 /// Hey genius, avoid executing commands whenever possible! Look for Rust libraries instead.
@@ -86,10 +82,10 @@ macro_rules! exec_mut_with_arguments {
 macro_rules! exec_mut {
     ($p : expr) => {{
         let args: &[&str] = &[];
-        tinyrick::exec_mut_with_arguments!($p, args)
+        tinyrick::exec_mut_with_arguments($p, args)
     }};
     ($p : expr, $a : expr) => {
-        tinyrick::exec_mut_with_arguments!($p, $a)
+        tinyrick::exec_mut_with_arguments($p, $a)
     };
 }
 

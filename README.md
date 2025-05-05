@@ -67,20 +67,20 @@ fn banner() {
 }
 
 fn test() {
-    tinyrick::exec!("cargo", &["test"]);
+    tinyrick::exec("cargo", &["test"]);
 }
 
 fn build() {
     tinyrick::deps(test);
-    tinyrick::exec!("cargo", &["build", "--release"]);
+    tinyrick::exec("cargo", &["build", "--release"]);
 }
 
 fn publish() {
-    tinyrick::exec!("cargo", &["publish"]);
+    tinyrick::exec("cargo", &["publish"]);
 }
 
 fn clean() {
-    tinyrick::exec!("cargo", &["clean"]);
+    tinyrick::exec("cargo", &["clean"]);
 }
 
 fn main() {
@@ -138,7 +138,7 @@ Where are my pants? Let's break down the code so far:
 
 * `fn name() { ... }` declares a task named `name`.
 * `deps(requirement)` caches a dependency on task `requirement`.
-* `exec!(...)` spawns raw shell command processes.
+* `exec(...)` spawns raw shell command processes.
 * `VERBOSE=1` enables command string emission during processing.
 * `phony!(...)` disables dependency caching for some tasks.
 * `wubba_lubba_dub_dub!(default; ...)` exposes a `default` task and some other tasks to the tinyrick command line.
