@@ -10,7 +10,9 @@ jobs:
     runs-on: "ubuntu-22.04"
     steps:
     - uses: "actions/checkout@v4"
-    - run: "sudo apt-get update"
-    - run: "sudo apt-get install -y cargo"
-    - run: "make -j 4 -f install.mk crates"
+    - uses: "dtolnay/rust-toolchain@stable"
+      with:
+        toolchain: "1.86.0"
+    - name: "provision audit tools"
+      run: "make -f install.mk crates"
     - run: "make audit"

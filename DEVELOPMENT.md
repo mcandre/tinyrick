@@ -6,7 +6,7 @@ tinyrick's own compilation process is compatible with standard `cargo`. We wrap 
 
 * [Docker](https://www.docker.com/) 20.10.21+
 * [POSIX](https://pubs.opengroup.org/onlinepubs/9799919799/) compatible [make](https://en.wikipedia.org/wiki/Make_(software))
-* [Rust](https://www.rust-lang.org/en-US/) 1.75.0+
+* [Rust](https://www.rust-lang.org/en-US/) 1.86.0+
 * [POSIX](https://pubs.opengroup.org/onlinepubs/9799919799/) compatible [tar](https://en.wikipedia.org/wiki/Tar_(computing))
 * Provision additional dev tools with `make -f install.mk [-j 4]`
 
