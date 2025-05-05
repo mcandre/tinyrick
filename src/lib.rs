@@ -66,7 +66,7 @@ macro_rules! phony {
 ///
 /// Executes the given program with the given arguments.
 /// Returns the command object.
-pub fn exec_mut_with_arguments<'a>(name : &'astr, args : &'a[&str]) -> &'a mut Command {
+pub fn exec_mut_with_arguments<'a>(name : &'a str, args : &'a[&str]) -> &'a mut Command {
     if var(VERBOSE_ENVIRONMENT_NAME).is_ok() {
         println!("{} {}", name, args.join(" "));
     }
