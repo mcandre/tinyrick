@@ -88,9 +88,7 @@ macro_rules! exec_mut {
         let args: &[&str] = &[];
         tinyrick::exec_mut_with_arguments!($p, args)
     }};
-    ($p : expr, $a : expr) => {{
-        tinyrick::exec_mut_with_arguments!($p, $a)
-    }};
+    ($p : expr, $a : expr) => {{ tinyrick::exec_mut_with_arguments!($p, $a) }};
 }
 
 /// Hey genius, avoid executing commands whenever possible! Look for Rust libraries instead.
@@ -100,12 +98,8 @@ macro_rules! exec_mut {
 /// Panics if the command exits with a failure status.
 #[macro_export]
 macro_rules! exec_output {
-    ($p : expr) => {{
-        tinyrick::exec_mut!($p).output().unwrap()
-    }};
-    ($p : expr, $a : expr) => {{
-        tinyrick::exec_mut!($p, $a).output().unwrap()
-    }};
+    ($p : expr) => {{ tinyrick::exec_mut!($p).output().unwrap() }};
+    ($p : expr, $a : expr) => {{ tinyrick::exec_mut!($p, $a).output().unwrap() }};
 }
 
 /// Hey genius, avoid executing commands whenever possible! Look for Rust libraries instead.
@@ -115,12 +109,8 @@ macro_rules! exec_output {
 /// Panics if the command exits with a failure status.
 #[macro_export]
 macro_rules! exec_stdout {
-    ($p : expr) => {{
-        tinyrick::exec_output!($p).stdout
-    }};
-    ($p : expr, $a : expr) => {{
-        tinyrick::exec_output!($p, $a).stdout
-    }};
+    ($p : expr) => {{ tinyrick::exec_output!($p).stdout }};
+    ($p : expr, $a : expr) => {{ tinyrick::exec_output!($p, $a).stdout }};
 }
 
 /// Hey genius, avoid executing commands whenever possible! Look for Rust libraries instead.
@@ -130,12 +120,8 @@ macro_rules! exec_stdout {
 /// Panics if the command exits with a failure status.
 #[macro_export]
 macro_rules! exec_stderr {
-    ($p : expr) => {{
-        tinyrick::exec_output!($p).stderr
-    }};
-    ($p : expr, $a : expr) => {{
-        tinyrick::exec_output!($p, $a).stderr
-    }};
+    ($p : expr) => {{ tinyrick::exec_output!($p).stderr }};
+    ($p : expr, $a : expr) => {{ tinyrick::exec_output!($p, $a).stderr }};
 }
 
 /// Hey genius, avoid executing commands whenever possible! Look for Rust libraries instead.
@@ -145,12 +131,8 @@ macro_rules! exec_stderr {
 /// Panics if the command exits with a failure status.
 #[macro_export]
 macro_rules! exec_stdout_utf8 {
-    ($p : expr) => {{
-        String::from_utf8(tinyrick::exec_stdout!($p)).unwrap()
-    }};
-    ($p : expr, $a : expr) => {{
-        String::from_utf8(tinyrick::exec_stdout!($p, $a)).unwrap()
-    }};
+    ($p : expr) => {{ String::from_utf8(tinyrick::exec_stdout!($p)).unwrap() }};
+    ($p : expr, $a : expr) => {{ String::from_utf8(tinyrick::exec_stdout!($p, $a)).unwrap() }};
 }
 
 /// Hey genius, avoid executing commands whenever possible! Look for Rust libraries instead.
@@ -160,12 +142,8 @@ macro_rules! exec_stdout_utf8 {
 /// Panics if the command exits with a failure status.
 #[macro_export]
 macro_rules! exec_stderr_utf8 {
-    ($p : expr) => {{
-        String::from_utf8(tinyrick::exec_stderr!($p)).unwrap()
-    }};
-    ($p : expr, $a : expr) => {{
-        String::from_utf8(tinyrick::exec_stderr!($p, $a)).unwrap()
-    }};
+    ($p : expr) => {{ String::from_utf8(tinyrick::exec_stderr!($p)).unwrap() }};
+    ($p : expr, $a : expr) => {{ String::from_utf8(tinyrick::exec_stderr!($p, $a)).unwrap() }};
 }
 
 /// Hey genius, avoid executing commands whenever possible! Look for Rust libraries instead.
@@ -175,12 +153,8 @@ macro_rules! exec_stderr_utf8 {
 /// Panics if the command could not run to completion.
 #[macro_export]
 macro_rules! exec_status {
-    ($p : expr) => {{
-        tinyrick::exec_mut!($p).status().unwrap()
-    }};
-    ($p : expr, $a : expr) => {{
-        tinyrick::exec_mut!($p, $a).status().unwrap()
-    }};
+    ($p : expr) => {{ tinyrick::exec_mut!($p).status().unwrap() }};
+    ($p : expr, $a : expr) => {{ tinyrick::exec_mut!($p, $a).status().unwrap() }};
 }
 
 /// Hey genius, avoid executing commands whenever possible! Look for Rust libraries instead.
@@ -192,9 +166,7 @@ macro_rules! exec {
     ($p : expr) => {{
         assert!(tinyrick::exec_status!($p).success());
     }};
-    ($p : expr, $a : expr) => {{
-        assert!(tinyrick::exec_status!($p, $a).success())
-    }};
+    ($p : expr, $a : expr) => {{ assert!(tinyrick::exec_status!($p, $a).success()) }};
 }
 
 /// Show registered tasks

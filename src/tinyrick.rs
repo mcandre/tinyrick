@@ -4,7 +4,7 @@ extern crate die;
 extern crate getopts;
 extern crate tinyrick;
 
-use die::{die, Die};
+use die::{Die, die};
 use std::env;
 use std::path;
 
