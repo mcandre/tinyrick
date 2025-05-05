@@ -19,4 +19,6 @@ jobs:
     - uses: "dtolnay/rust-toolchain@stable"
       with:
         toolchain: "1.86.0"
+    - name: "provision dev tools"
+      run: "make -f install.mk -j 4"
     - run: "make test"
