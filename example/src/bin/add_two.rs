@@ -19,7 +19,7 @@ fn main() {
     let program : &str = arguments[0]
     .as_ref();
 
-    let brief = format!("Usage: {} [options]", program);
+    let brief = format!("Usage: {program} [options]");
 
     let mut opts : getopts::Options = getopts::Options::new();
     opts.optopt("n", "integer", "increment an integer by two (required)", "VAL");
