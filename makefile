@@ -9,6 +9,9 @@
 	cargo-audit \
 	cargo-check \
 	clean \
+	clean_cargo \
+	clean_example \
+	clean_ports \
 	clippy \
 	crit \
 	install \
@@ -33,11 +36,20 @@ build: lint test
 cargo-check:
 	cargo check
 
-clean:
-	crit -c
+clean: \
+	clean_cargo \
+	clean_example \
+	clean_ports
+
+clean_cargo:
 	cargo clean
-	rm -rf example/target
+
+clean_ports:
+	crit -c
+
+clean_example:
 	rm -rf example/Cargo.lock
+	rm -rf example/target
 
 clippy:
 	cargo clippy
