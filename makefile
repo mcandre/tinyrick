@@ -48,7 +48,7 @@ clean_ports:
 	crit -c
 
 clean_example:
-	rm -rf example/Cargo.lock
+	rm -f example/Cargo.lock
 	rm -rf example/target
 
 clippy:
