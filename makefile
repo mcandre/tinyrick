@@ -1,21 +1,24 @@
 .POSIX:
 .SILENT:
 .IGNORE: uninstall clean
-.PHONY: all \
+.PHONY: \
+	all \
 	audit \
-	doc \
-	lint \
-	clippy \
-	rustfmt \
-	unmake \
 	build \
-	port \
+	doc \
+	cargo-audit \
+	cargo-check \
+	clean \
+	clippy \
 	crit \
-	test \
 	install \
-	uninstall \
+	lint \
+	port \
 	publish \
-	clean
+	rustfmt \
+	test \
+	uninstall \
+	unmake
 
 BANNER=tinyrick-0.0.14
 
@@ -37,11 +40,14 @@ uninstall:
 audit:
 	cargo audit
 
-doc:
-	cargo doc
+cargo-check:
+	cargo check
 
 clippy:
 	cargo clippy
+
+doc:
+	cargo doc
 
 rustfmt:
 	cargo fmt
@@ -50,7 +56,12 @@ unmake:
 	unmake .
 	unmake -n .
 
-lint: doc clippy rustfmt unmake
+lint: \
+	cargo-check \
+	clippy \
+	doc \
+	rustfmt \
+	unmake
 
 build: lint test
 	cargo build --release

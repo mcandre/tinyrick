@@ -2,6 +2,16 @@
 
 extern crate tinyrick;
 
+/// Security audit
+fn audit() {
+    tinyrick::exec!("cargo", &["audit"]);
+}
+
+/// Run cargo check
+fn cargo_check() {
+    tinyrick::exec!("cargo", &["check"]);
+}
+
 /// Run clippy
 fn clippy() {
     tinyrick::exec!("cargo", &["clippy"]);
@@ -97,6 +107,8 @@ fn main() {
 
     tinyrick::wubba_lubba_dub_dub!(
         build;
+        audit,
+        cargo_check,
         clippy,
         lint,
         doc,
@@ -110,7 +122,7 @@ fn main() {
         build,
         banner,
         publish,
-        clean_cargo,
-        clean
+        clean,
+        clean_cargo
     );
 }
