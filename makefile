@@ -1,27 +1,8 @@
 .POSIX:
 .SILENT:
-.IGNORE: uninstall clean
-.PHONY: \
-	all \
-	audit \
-	build \
-	doc \
-	cargo-audit \
-	cargo-check \
-	clean \
-	clean_cargo \
-	clean_example \
-	clean_ports \
-	clippy \
-	crit \
-	install \
-	lint \
-	port \
-	publish \
-	rustfmt \
-	test \
-	uninstall \
-	unmake
+.IGNORE: clean uninstall
+ALLTARGETS!=ls -a
+.PHONY: $(ALLTARGETS)
 
 BANNER=tinyrick-0.0.15
 
