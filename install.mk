@@ -10,7 +10,7 @@ crates:
 		cargo-audit \
 		crit@0.0.9 \
 		cross@0.2.5 \
-		unmake@0.0.20
+		unmake@0.0.21
 
 rustup-components:
 	rustup component add \
