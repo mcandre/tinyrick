@@ -184,3 +184,5 @@ For more details on developing tinyrick itself, see [DEVELOPMENT.md](DEVELOPMENT
 * The included [example](example) project provides a fully qualified demonstration of how to build projects with tinyrick.
 * For a more practical example, see [ios7crypt-rs](https://github.com/mcandre/ios7crypt-rs), a little *modulino* library + command line tool for *deliciously dumb* password encryption.
 * [tinyrick_extras](https://github.com/mcandre/tinyrick_extras) defines some common workflow tasks as plain old Rust functions, that you can sprinkle onto your tinyrick just like any other Rust crate.
+
+🛸
