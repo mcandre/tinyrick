@@ -1,8 +1,24 @@
 .POSIX:
 .SILENT:
-.IGNORE: clean uninstall
-ALLTARGETS!=ls -a
-.PHONY: $(ALLTARGETS)
+.PHONY: \
+	all \
+	audit \
+	build \
+	cargo-check \
+	clean \
+	clean-cargo \
+	clean-ports \
+	clippy \
+	crit \
+	doc \
+	install \
+	lint \
+	port \
+	publish \
+	rustfmt \
+	test \
+	uninstall \
+	unmake
 
 BANNER=tinyrick-0.0.15
 
@@ -18,19 +34,19 @@ cargo-check:
 	cargo check
 
 clean: \
-	clean_cargo \
-	clean_example \
-	clean_ports
+	clean-cargo \
+	clean-example \
+	clean-ports
 
-clean_cargo:
+clean-cargo:
 	cargo clean
 
-clean_ports:
-	crit -c
-
-clean_example:
+clean-example:
 	rm -f example/Cargo.lock
 	rm -rf example/target
+
+clean-ports:
+	crit -c
 
 clippy:
 	cargo clippy
