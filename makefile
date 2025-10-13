@@ -7,6 +7,7 @@
 	cargo-check \
 	clean \
 	clean-cargo \
+	clean-example \
 	clean-ports \
 	clippy \
 	crit \
