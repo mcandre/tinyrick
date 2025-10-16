@@ -13,7 +13,7 @@ crates:
 		cargo-cache \
 		cargo-edit \
 		crit@0.0.10 \
-		unmake@0.0.21
+		unmake@0.0.23
 
 	cargo install --force \
 		cross \
