@@ -12,7 +12,7 @@ crates:
 		cargo-audit \
 		cargo-cache \
 		cargo-edit \
-		crit@0.0.9 \
+		crit@0.0.10 \
 		cross@0.2.5 \
 		unmake@0.0.21
 
