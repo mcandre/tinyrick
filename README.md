@@ -100,7 +100,7 @@ description = "hyperadvanced derpmobiles"
 version = "3.1.4"
 
 [dependencies]
-tinyrick = { version = "0.0.15", optional = true }
+tinyrick = { version = "0.0.17", optional = true }
 
 [features]
 letmeout = ["tinyrick"]

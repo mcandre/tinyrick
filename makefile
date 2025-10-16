@@ -21,7 +21,7 @@
 	uninstall \
 	unmake
 
-BANNER=tinyrick-0.0.15
+BANNER=tinyrick-0.0.17
 
 all: build
 
