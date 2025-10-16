@@ -10,6 +10,7 @@ all: crates rustup-components
 crates:
 	cargo install --force \
 		cargo-audit \
+		cargo-edit \
 		crit@0.0.9 \
 		cross@0.2.5 \
 		unmake@0.0.21

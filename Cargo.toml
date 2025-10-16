@@ -9,8 +9,8 @@ repository = "https://github.com/mcandre/tinyrick"
 documentation = "https://docs.rs/tinyrick/"
 
 [dependencies]
-die = "=0.2.0"
-getopts = "=0.2.21"
+die = "0.2.0"
+getopts = "0.2.21"
 lazy_static = "1.4.0"
 
 [lib]

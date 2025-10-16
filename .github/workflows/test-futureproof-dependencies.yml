@@ -1,0 +1,27 @@
+---
+name: "Test-Futureproof-Dependencies"
+on: # yamllint disable-line rule:truthy
+  push:
+  pull_request:
+  # POSIX cron format
+  # https://pubs.opengroup.org/onlinepubs/9699919799/utilities/crontab.html
+  schedule:
+  # Once every 5 minutes
+  # - cron: "*/5 * * * *"
+  # Once a day
+  - cron: "0 0 * * *"
+  workflow_dispatch:
+jobs:
+  Test-Futureproof-Dependencies:
+    runs-on: "ubuntu-22.04"
+    steps:
+    - uses: "actions/checkout@v4"
+    - uses: "dtolnay/rust-toolchain@stable"
+      with:
+        toolchain: "1.87.0"
+    - name: "provision dev tools"
+      run: "make -f install.mk -j 4 --output-sync"
+    - run: |
+        cargo upgrade
+        cargo update
+    - run: "make test"
