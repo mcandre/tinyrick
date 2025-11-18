@@ -4,7 +4,7 @@ arithmancy's own compilation process is compatible with standard `cargo`. We wra
 
 # BUILDTIME REQUIREMENTS
 
-* [Rust](https://www.rust-lang.org/en-US/) 1.87.0+
+* [Rust](https://www.rust-lang.org/en-US/) 1.91.1+
 * [cargo-audit](https://crates.io/crates/cargo-audit)
 
 ## Recommended
