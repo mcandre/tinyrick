@@ -171,7 +171,7 @@ For more details on developing tinyrick itself, see [DEVELOPMENT.md](DEVELOPMENT
 * [lake](https://luarocks.org/modules/steved/lake), a Lua task runner
 * [Leiningen](https://leiningen.org/) + [lein-exec](https://github.com/kumarshantanu/lein-exec), a Clojure task runner
 * [lichen](https://github.com/mcandre/lichen), a sed task runner
-* [POSIX make](https://pubs.opengroup.org/onlinepubs/009695299/utilities/make.html), a task runner standard for C/C++ and various other software projects
+* POSIX compliant [make](https://pubs.opengroup.org/onlinepubs/9799919799/utilities/make.html), the classic, application language agnostic task runner
 * [mian](https://github.com/mcandre/mian), a task runner for (Chicken) Scheme Lisp
 * [Rake](https://ruby.github.io/rake/), a task runner for Ruby projects
 * [Rebar3](https://www.rebar3.org/), a build system for Erlang projects
