@@ -69,7 +69,7 @@ lint: \
 	unmake
 
 port: crit
-	sh -c "cd .crit/bin && tar czf $(BANNER).tgz $(BANNER)"
+	chandler -C ".crit/bin" -czf "$(BANNER).tgz" "$(BANNER)"
 
 publish:
 	cargo publish

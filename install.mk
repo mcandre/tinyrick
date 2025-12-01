@@ -7,6 +7,7 @@ all:
 		cargo-audit \
 		cargo-cache \
 		cargo-edit \
+		chandler@0.0.5 \
 		crit@0.0.10 \
 		unmake@0.0.23
 	cargo install --force \
