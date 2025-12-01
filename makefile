@@ -28,7 +28,7 @@
 	clean-example \
 	clean-ports
 
-BANNER=tinyrick-0.0.17
+BANNER=tinyrick-0.0.19
 
 all: build
 
