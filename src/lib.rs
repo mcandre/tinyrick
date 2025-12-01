@@ -1,9 +1,7 @@
 //! Common build patterns
 
-extern crate lazy_static;
-
 use std::collections::HashMap;
-use std::sync::Mutex;
+use std::sync;
 
 /// Cargo toggle
 pub static FEATURE: &str = "letmeout";
@@ -11,11 +9,20 @@ pub static FEATURE: &str = "letmeout";
 /// Environment name controlling verbosity
 pub static VERBOSE_ENVIRONMENT_NAME: &str = "VERBOSE";
 
-lazy_static::lazy_static! {
-    static ref DEPENDENCY_CACHE_MUTEX: Mutex<HashMap<fn(), bool>> = Mutex::new(HashMap::new());
+/// AtomicTaskList is a thread safe collection of tasks.
+pub type AtomicTaskList = sync::Mutex<Vec<fn()>>;
 
-    pub static ref PHONY_TASK_MUTEX: Mutex<Vec<fn()>> = Mutex::new(Vec::new());
-}
+/// PHONY_TASK_MUTEX registers tasks.
+pub static PHONY_TASK_MUTEX: sync::LazyLock<AtomicTaskList> =
+    sync::LazyLock::new(|| sync::Mutex::new(Vec::new()));
+
+/// AtomicDependencyCache is a thread safe table of
+/// which task prerequisites have already completed.
+pub type AtomicDependencyCache = sync::Mutex<HashMap<fn(), bool>>;
+
+/// DEPENDENCY_CACHE_MUTEX registers task prerequisites.
+static DEPENDENCY_CACHE_MUTEX: sync::LazyLock<AtomicDependencyCache> =
+    sync::LazyLock::new(|| sync::Mutex::new(HashMap::new()));
 
 /// Query common host binary suffix
 pub fn binary_suffix() -> String {
