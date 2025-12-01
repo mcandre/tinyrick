@@ -6,6 +6,7 @@
 	build \
 	cargo-check \
 	clean \
+	clean-archive \
 	clean-cargo \
 	clean-example \
 	clean-ports \
@@ -20,6 +21,12 @@
 	test \
 	uninstall \
 	unmake
+.IGNORE: \
+	clean \
+	clean-archive \
+	clean-cargo \
+	clean-example \
+	clean-ports
 
 BANNER=tinyrick-0.0.17
 
@@ -35,9 +42,13 @@ cargo-check:
 	cargo check
 
 clean: \
+	clean-archive \
 	clean-cargo \
 	clean-example \
 	clean-ports
+
+clean-archive:
+	rm ".crit/bin/$(BANNER).tgz"
 
 clean-cargo:
 	cargo clean
@@ -69,7 +80,7 @@ lint: \
 	unmake
 
 port: crit
-	chandler -C ".crit/bin" -czf "$(BANNER).tgz" "$(BANNER)"
+	chandler -C .crit/bin -czf "$(BANNER).tgz" "$(BANNER)"
 
 publish:
 	cargo publish
