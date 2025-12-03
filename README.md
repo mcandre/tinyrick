@@ -51,9 +51,10 @@ BSD-2-Clause
 
 ## Recommended
 
-* [ASDF](https://asdf-vm.com/) 0.10 (run `asdf reshim` after each Rust application binary installation)
+* [ASDF](https://asdf-vm.com/) 0.18 (run `asdf reshim` after each Rust application binary installation)
 * [direnv](https://direnv.net/) 2
 * [cargo-cache](https://crates.io/crates/cargo-cache)
+* [tinyrick_extras](https://github.com/mcandre/tinyrick_extras)
 
 # SETUP
 
@@ -62,30 +63,28 @@ BSD-2-Clause
 Write some tasks in a `tinyrick.rs` build configuration script at the top-level directory of your Rust project:
 
 ```rust
-fn banner() {
-    println!("{} {}", env!("CARGO_PKG_NAME"), env!("CARGO_PKG_VERSION"));
-}
+use tinyrick::*;
 
-fn test() {
-    tinyrick::exec!("cargo", &["test"]);
-}
-
+#[default_task]
 fn build() {
-    tinyrick::deps(test);
-    tinyrick::exec!("cargo", &["build", "--release"]);
+    deps!(build_release);
 }
 
-fn publish() {
-    tinyrick::exec!("cargo", &["publish"]);
+#[task]
+fn build_release() {
+    deps!(test);
+    exec!("cargo", "build", "--release");
 }
 
-fn clean() {
-    tinyrick::exec!("cargo", &["clean"]);
+#[task]
+fn clippy() {
+    exec!("cargo", "clippy");
 }
+
+// ...
 
 fn main() {
-    tinyrick::phony!(clean);
-    tinyrick::wubba_lubba_dub_dub!(build; banner, test, publish, clean);
+    run()
 }
 ```
 
@@ -95,15 +94,24 @@ Now, wire up the tinyrick command line interface by configuring your top-level `
 
 ```toml
 [package]
-name = "derpmobile"
-description = "hyperadvanced derpmobiles"
-version = "3.1.4"
+name = "arithmancy"
 
 [dependencies]
+ctor = { version = "0.6.2", optional = true }
+die = "0.2.0"
 tinyrick = { version = "0.0.19", optional = true }
+tinyrick_macros = { version = "0.0.2", optional = true }
+tinyrick_models = { version = "0.0.2", optional = true }
+
+# ...
 
 [features]
-letmeout = ["tinyrick"]
+letmeout = [
+    "ctor",
+    "tinyrick",
+    "tinyrick_macros",
+    "tinyrick_models",
+]
 
 [[bin]]
 name = "tinyrick"
@@ -122,7 +130,6 @@ Watch how he behaves... I hope tinyrick is practicing good manners :P
 
 What happens when you run:
 
-* `tinyrick banner`?
 * `tinyrick test`?
 * `tinyrick clean`?
 * `tinyrick build`?
@@ -136,19 +143,18 @@ I bet the freakin' moon explodes if you run `VERBOSE=1 tinyrick build build buil
 
 Where are my pants? Let's break down the code so far:
 
-* `fn name() { ... }` declares a task named `name`.
-* `deps(requirement)` caches a dependency on task `requirement`.
-* `exec!(...)` spawns raw shell command processes.
+* `#[task] fn name() { ... }` declares a task named `name`.
+* `#[default_task] fn name() { ... }` declares a task named `name` and marks it as the default, when no CLI arguments are passed to `tinyrick`.
+* `deps!(requirement)` caches a dependency on task `requirement`.
+* `exec(command, args sequence)` and `exec!(command[, arg[, arg[, arg ...]]])` run CLI commands.
 * `VERBOSE=1` enables command string emission during processing.
-* `phony!(...)` disables dependency caching for some tasks.
-* `wubba_lubba_dub_dub!(default; ...)` exposes a `default` task and some other tasks to the tinyrick command line.
 * `letmeout` is a feature gate, so that neither the tinyrick package, nor your tinyrick binary escape with your Rust package when you `tinyrick publish`.
 
 # DoN't UsE sHelL cOmMaNdS!1
 
 Just because the tinyrick library offers several *supremely convenient* macros for executing shell commands doesn't mean that you should always shell out. No way, man!
 
-Whenever possible, use regular Rust code, as in the `banner()` example. There's like a ba-jillion [crates](https://crates.io) of prewritten Rust code, so you might as well use it!
+Whenever possible, use regular Rust code. There's like a ba-jillion [crates](https://crates.io) of prewritten Rust code, so you might as well use it!
 
 # CONTRIBUTING
 
@@ -179,11 +185,5 @@ For more details on developing tinyrick itself, see [DEVELOPMENT.md](DEVELOPMENT
 * [sbt](https://www.scala-sbt.org/index.html), a build system for Scala projects
 * [Shake](https://shakebuild.com/), a task runner for Haskell projects
 * [yao](https://github.com/mcandre/yao), a task runner for Common LISP projects
-
-# EVEN MORE EXAMPLES
-
-* The included [example](example) project provides a fully qualified demonstration of how to build projects with tinyrick.
-* For a more practical example, see [ios7crypt-rs](https://github.com/mcandre/ios7crypt-rs), a little *modulino* library + command line tool for *deliciously dumb* password encryption.
-* [tinyrick_extras](https://github.com/mcandre/tinyrick_extras) defines some common workflow tasks as plain old Rust functions, that you can sprinkle onto your tinyrick just like any other Rust crate.
 
 🛸

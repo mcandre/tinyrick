@@ -1,128 +1,112 @@
 //! Build configuration
 
-extern crate tinyrick;
+use tinyrick::*;
+
+/// Build: Lint, test, and then build binaries
+#[default_task]
+fn build() {
+    deps!(build_debug);
+    deps!(build_release);
+}
 
 /// Security audit
+#[task]
 fn audit() {
-    tinyrick::exec!("cargo", &["audit"]);
-}
-
-/// Show banner
-fn banner() {
-    println!("{} {}", env!("CARGO_PKG_NAME"), env!("CARGO_PKG_VERSION"));
-}
-
-/// Lint, test, and then build binaries
-fn build() {
-    tinyrick::deps(build_debug);
-    tinyrick::deps(build_release);
+    exec!("cargo", "audit");
 }
 
 /// Lint, test, and build debug binaries
+#[task]
 fn build_debug() {
-    tinyrick::deps(test);
-    tinyrick::exec!("cargo", &["build"]);
+    deps!(test);
+    exec!("cargo", "build");
 }
 
 /// Lint, test, and build release binaries
+#[task]
 fn build_release() {
-    tinyrick::deps(test);
-    tinyrick::exec!("cargo", &["build", "--release"]);
+    deps!(test);
+    exec!("cargo", "build", "--release");
 }
 
 /// Run cargo check
+#[task]
 fn cargo_check() {
-    tinyrick::exec!("cargo", &["check"]);
+    exec!("cargo", "check");
 }
 
 /// Clean workspaces
+#[task]
 fn clean() {
-    tinyrick::deps(clean_cargo);
+    deps!(clean_cargo);
 }
 
 /// Run cargo clean
+#[task]
 fn clean_cargo() {
-    tinyrick::exec!("cargo", &["clean"]);
+    exec!("cargo", "clean");
 }
 
 /// Run clippy
+#[task]
 fn clippy() {
-    tinyrick::exec!("cargo", &["clippy"]);
+    exec!("cargo", "clippy");
 }
 
 /// Generate documentation
+#[task]
 fn doc() {
-    tinyrick::exec!("cargo", &["doc"]);
+    exec!("cargo", "doc");
 }
 
 /// Static code validation
+#[task]
 fn lint() {
-    tinyrick::deps(doc);
-    tinyrick::deps(clippy);
+    deps!(doc);
+    deps!(clippy);
 }
 
 /// Lint, and then run integration tests
+#[task]
 fn integration_test() {
-    tinyrick::deps(install);
-
-    assert!(tinyrick::exec_stdout_utf8!("add_two", &["-n", "2"]) == "4\n");
-    assert!(!tinyrick::exec_status!("add_two").success());
+    deps!(install);
+    exec!("add_two", "-n", "2");
 }
 
 /// Lint, and then install artifacts
+#[task]
 fn install() {
-    tinyrick::deps(lint);
-    tinyrick::exec!("cargo", &["install", "--force", "--path", "."]);
+    deps!(lint);
+    exec!("cargo", "install", "--force", "--path", ".");
 }
 
 /// Publish to crate repository
+#[task]
 fn publish() {
-    tinyrick::exec!("cargo", &["publish"]);
+    exec!("cargo", "publish");
 }
 
 /// Run test suites
+#[task]
 fn test() {
-    tinyrick::deps(unit_test);
-    tinyrick::deps(integration_test);
+    deps!(unit_test);
+    deps!(integration_test);
 }
 
 /// Uninstall artifacts
+#[task]
 fn uninstall() {
-    tinyrick::exec!("cargo", &["uninstall"]);
+    exec!("cargo", "uninstall");
 }
 
 /// Lint, then run unit tests
+#[task]
 fn unit_test() {
-    tinyrick::deps(lint);
-    tinyrick::exec!("cargo", &["test"]);
+    deps!(lint);
+    exec!("cargo", "test");
 }
 
 /// CLI entrypoint
 fn main() {
-    tinyrick::phony!(
-        uninstall,
-        clean_cargo,
-        clean
-    );
-
-    tinyrick::wubba_lubba_dub_dub!(
-        build;
-        audit,
-        banner,
-        build,
-        build_debug,
-        build_release,
-        cargo_check,
-        clean,
-        clean_cargo,
-        clippy,
-        doc,
-        install,
-        integration_test,
-        lint,
-        publish,
-        test,
-        uninstall,
-        unit_test
-    );
+    run()
 }

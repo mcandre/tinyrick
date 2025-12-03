@@ -3,15 +3,24 @@ name = "arithmancy"
 description = "an *advanced* mathematical compilation"
 version = "0.0.1"
 edition = "2024"
-authors = ["Andrew Pennebaker <andrew.pennebaker@gmail.com>"]
+authors = ["Andrew Pennebaker <n4jm4@pm.me>"]
 license = "BSD-2-Clause"
 
 [dependencies]
+ctor = { version = "0.6.2", optional = true }
+die = "0.2.0"
 getopts = "0.2.21"
 tinyrick = { version = "*", path = "..", optional = true }
+tinyrick_macros = { version = "0.0.3", optional = true }
+tinyrick_models = { version = "0.0.2", optional = true }
 
 [features]
-letmeout = ["tinyrick"]
+letmeout = [
+    "ctor",
+    "tinyrick",
+    "tinyrick_macros",
+    "tinyrick_models",
+]
 
 [lib]
 path = "src/lib/arithmancy.rs"

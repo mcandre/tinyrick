@@ -2,15 +2,21 @@
 name = "tinyrick"
 description = "a freeform Rust build system"
 version = "0.0.19"
-edition = "2021"
-authors = ["Andrew Pennebaker <andrew.pennebaker@gmail.com>"]
+edition = "2024"
+authors = ["Andrew Pennebaker <n4jm4@pm.me>"]
 license = "BSD-2-Clause"
 repository = "https://github.com/mcandre/tinyrick"
 documentation = "https://docs.rs/tinyrick/"
 
 [dependencies]
+ctor = "0.6.2"
 die = "0.2.0"
 getopts = "0.2.24"
+proc-macro2 = "1.0.103"
+quote = "1.0.42"
+syn = { version = "2.0.111", features = ["full"] }
+tinyrick_macros = "0.0.3"
+tinyrick_models = "0.0.2"
 
 [lib]
 name = "tinyrick"

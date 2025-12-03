@@ -1,7 +1,18 @@
 //! Common build patterns
 
-use std::collections::HashMap;
-use std::sync;
+extern crate proc_macro;
+extern crate quote;
+extern crate syn;
+extern crate tinyrick_macros;
+extern crate tinyrick_models;
+
+pub use ctor::ctor;
+pub use die::die;
+pub use tinyrick_macros::{default_task, task};
+pub use tinyrick_models::{DEFAULT_TASK, DEPENDENCY_CACHE, TASKS};
+
+use std::env;
+use std::process;
 
 /// Cargo toggle
 pub static FEATURE: &str = "letmeout";
@@ -9,20 +20,106 @@ pub static FEATURE: &str = "letmeout";
 /// Environment name controlling verbosity
 pub static VERBOSE_ENVIRONMENT_NAME: &str = "VERBOSE";
 
-/// AtomicTaskList is a thread safe collection of tasks.
-pub type AtomicTaskList = sync::Mutex<Vec<fn()>>;
+/// deps registers a task prerequisite.
+#[macro_export]
+macro_rules! deps {
+    ($t : expr) => {
+        {
+            let mut has_run = false;
 
-/// PHONY_TASK_MUTEX registers tasks.
-pub static PHONY_TASK_MUTEX: sync::LazyLock<AtomicTaskList> =
-    sync::LazyLock::new(|| sync::Mutex::new(Vec::new()));
+            {
+                let cache_lock = ::tinyrick::DEPENDENCY_CACHE.lock();
+                has_run = match cache_lock {
+                    Err(e) => ::die::die!(1; e.to_string()),
+                    Ok(cache) => cache.contains_key("$t"),
+                };
+            }
 
-/// AtomicDependencyCache is a thread safe table of
-/// which task prerequisites have already completed.
-pub type AtomicDependencyCache = sync::Mutex<HashMap<fn(), bool>>;
+            if !has_run {
+                $t();
 
-/// DEPENDENCY_CACHE_MUTEX registers task prerequisites.
-static DEPENDENCY_CACHE_MUTEX: sync::LazyLock<AtomicDependencyCache> =
-    sync::LazyLock::new(|| sync::Mutex::new(HashMap::new()));
+                let mut cache_lock = ::tinyrick::DEPENDENCY_CACHE.lock();
+
+                match cache_lock {
+                    Err(e) => ::die::die!(1; e.to_string()),
+                    Ok(mut cache) => cache.insert("$t", true),
+                };
+            }
+        }
+    };
+}
+
+/// Show registered tasks
+pub fn list_tasks() {
+    let d = &match DEFAULT_TASK.lock() {
+        Err(e) => die!(1; e.to_string()),
+        Ok(d_guard) => d_guard.unwrap_or(""),
+    };
+
+    if d != &"" {
+        println!("Default Task: {}\n", d);
+    }
+
+    let t_guard = match TASKS.lock() {
+        Err(e) => die!(1; e.to_string()),
+        Ok(guard) => guard,
+    };
+    let mut ts = t_guard.keys().collect::<Vec<&&str>>();
+    ts.sort();
+
+    println!("Tasks:");
+
+    if ts.is_empty() {
+        println!("(none)")
+    }
+
+    for t in ts {
+        println!(" * {}", t);
+    }
+}
+
+/// Run processes task name(s) from CLI arguments.
+pub fn run() {
+    let task_string_names = env::args().collect::<Vec<String>>();
+
+    let mut task_names: Vec<&str> = task_string_names
+        .iter()
+        .skip(1)
+        .map(String::as_str)
+        .collect();
+
+    if task_names.is_empty() {
+        let t_lock = DEFAULT_TASK.lock();
+
+        match t_lock {
+            Err(e) => die!(1; e.to_string()),
+            Ok(t_guard) => match t_guard.as_ref() {
+                Some(t) => task_names.push(t),
+                _ => {
+                    die!(1; "error: missing default task");
+                }
+            },
+        }
+    }
+
+    if task_names.contains(&"-l") || task_names.contains(&"--list") {
+        list_tasks();
+        die!(0);
+    }
+
+    let ts_lock = TASKS.lock();
+    let ts = match ts_lock {
+        Err(e) => die!(1; e.to_string()),
+        Ok(ts_guard) => ts_guard,
+    };
+
+    for task_name in task_names {
+        match ts.get(task_name) {
+            Some(t) => t(),
+            _ => die!(1; format!("error: unknown task: {}", task_name)),
+        }
+    }
+}
 
 /// Query common host binary suffix
 pub fn binary_suffix() -> String {
@@ -33,233 +130,44 @@ pub fn binary_suffix() -> String {
     String::new()
 }
 
-/// Declare a dependency on a task that may panic
-pub fn deps(task: fn()) {
-    let phony: bool = PHONY_TASK_MUTEX.lock().unwrap().contains(&task);
-    let has_run: bool = DEPENDENCY_CACHE_MUTEX.lock().unwrap().contains_key(&task);
+/// exec runs the given command.
+///
+/// On error, terminates the current process nonzero.
+pub fn exec(command: &str, args: &[&str]) {
+    if command.is_empty() {
+        die!("error: blank command");
+    }
 
-    if phony || !has_run {
-        task();
-        DEPENDENCY_CACHE_MUTEX.lock().unwrap().insert(task, true);
+    let command_str = if args.is_empty() {
+        command
+    } else {
+        &format!("{} {}", command, args.join(" "))
+    };
+
+    if env::var(VERBOSE_ENVIRONMENT_NAME).is_ok() {
+        println!("info: running command: {}", command_str);
+    }
+
+    let success = match process::Command::new(command).args(args).status() {
+        Err(e) => die!(format!(
+            "error: unprocessable command: {}: {}",
+            command_str,
+            e.to_string()
+        )),
+        Ok(status) => status.success(),
+    };
+
+    if !success {
+        die!(1; format!("error: command failed: {}", command_str));
     }
 }
 
-/// Declare tasks with no obviously cacheable artifacts.
-#[macro_export]
-macro_rules! phony {
-    ($t : expr) => {
-        {
-            tinyrick::PHONY_TASK_MUTEX
-            .lock()
-            .unwrap()
-            .push($t);
-        }
-    };
-    ($t : expr, $($u : expr),*) => {
-        {
-            let ref mut phony_tasks = tinyrick::PHONY_TASK_MUTEX
-            .lock()
-            .unwrap();
-
-            phony_tasks.push($t);
-            $( phony_tasks.push($u); )*
-        }
-    };
-}
-
-/// Hey genius, avoid executing commands whenever possible! Look for Rust libraries instead.
+/// exec! runs the given command.
 ///
-/// Executes the given program with the given arguments.
-/// Returns the command object.
-#[macro_export]
-macro_rules! exec_mut_with_arguments {
-    ($p : expr, $a : expr) => {{
-        use std::env::var;
-        use std::process::Command;
-
-        if var(tinyrick::VERBOSE_ENVIRONMENT_NAME).is_ok() {
-            println!("{} {}", $p, $a.join(" "));
-        }
-
-        Command::new($p).args($a)
-    }};
-}
-
-/// Hey genius, avoid executing commands whenever possible! Look for Rust libraries instead.
-///
-/// Executes the given program. Can also accept CLI arguments collection.
-/// Returns the command object.
-#[macro_export]
-macro_rules! exec_mut {
-    ($p : expr) => {{
-        let args: &[&str] = &[];
-        tinyrick::exec_mut_with_arguments!($p, args)
-    }};
-    ($p : expr, $a : expr) => {
-        tinyrick::exec_mut_with_arguments!($p, $a)
-    };
-}
-
-/// Hey genius, avoid executing commands whenever possible! Look for Rust libraries instead.
-///
-/// Executes the given program with the given arguments.
-/// Returns the output object.
-/// Panics if the command exits with a failure status.
-#[macro_export]
-macro_rules! exec_output {
-    ($p : expr) => {
-        tinyrick::exec_mut!($p).output().unwrap()
-    };
-    ($p : expr, $a : expr) => {
-        tinyrick::exec_mut!($p, $a).output().unwrap()
-    };
-}
-
-/// Hey genius, avoid executing commands whenever possible! Look for Rust libraries instead.
-///
-/// Executes the given program with the given arguments.
-/// Returns the stdout stream.
-/// Panics if the command exits with a failure status.
-#[macro_export]
-macro_rules! exec_stdout {
-    ($p : expr) => {
-        tinyrick::exec_output!($p).stdout
-    };
-    ($p : expr, $a : expr) => {
-        tinyrick::exec_output!($p, $a).stdout
-    };
-}
-
-/// Hey genius, avoid executing commands whenever possible! Look for Rust libraries instead.
-///
-/// Executes the given program with the given arguments.
-/// Returns the stdout stream.
-/// Panics if the command exits with a failure status.
-#[macro_export]
-macro_rules! exec_stderr {
-    ($p : expr) => {
-        tinyrick::exec_output!($p).stderr
-    };
-    ($p : expr, $a : expr) => {
-        tinyrick::exec_output!($p, $a).stderr
-    };
-}
-
-/// Hey genius, avoid executing commands whenever possible! Look for Rust libraries instead.
-///
-/// Executes the given program with the given arguments.
-/// Returns the complete stdout string.
-/// Panics if the command exits with a failure status.
-#[macro_export]
-macro_rules! exec_stdout_utf8 {
-    ($p : expr) => {
-        String::from_utf8(tinyrick::exec_stdout!($p)).unwrap()
-    };
-    ($p : expr, $a : expr) => {
-        String::from_utf8(tinyrick::exec_stdout!($p, $a)).unwrap()
-    };
-}
-
-/// Hey genius, avoid executing commands whenever possible! Look for Rust libraries instead.
-///
-/// Executes the given program with the given arguments.
-/// Returns the complete stderr string.
-/// Panics if the command exits with a failure status.
-#[macro_export]
-macro_rules! exec_stderr_utf8 {
-    ($p : expr) => {
-        String::from_utf8(tinyrick::exec_stderr!($p)).unwrap()
-    };
-    ($p : expr, $a : expr) => {
-        String::from_utf8(tinyrick::exec_stderr!($p, $a)).unwrap()
-    };
-}
-
-/// Hey genius, avoid executing commands whenever possible! Look for Rust libraries instead.
-///
-/// Executes the given program with the given arguments.
-/// Returns the status.
-/// Panics if the command could not run to completion.
-#[macro_export]
-macro_rules! exec_status {
-    ($p : expr) => {
-        tinyrick::exec_mut!($p).status().unwrap()
-    };
-    ($p : expr, $a : expr) => {
-        tinyrick::exec_mut!($p, $a).status().unwrap()
-    };
-}
-
-/// Hey genius, avoid executing commands whenever possible! Look for Rust libraries instead.
-///
-/// Executes the given program with the given arguments.
-/// Panics if the command exits with a failure status.
+/// On error, terminates the current process nonzero.
 #[macro_export]
 macro_rules! exec {
-    ($p : expr) => {
-        assert!(tinyrick::exec_status!($p).success());
-    };
-    ($p : expr, $a : expr) => {
-        assert!(tinyrick::exec_status!($p, $a).success())
-    };
-}
-
-/// Show registered tasks
-#[macro_export]
-macro_rules! list_tasks {
-    ($t : expr) => {
-        {
-            use std::process;
-
-            println!("Registered tasks:\n");
-            println!("* {}", stringify!($t));
-            process::exit(0);
-        }
-    };
-    ($t : expr, $($u : expr),*) => {
-        {
-            use std::process;
-
-            println!("Registered tasks:\n");
-            println!("* {}", stringify!($t));
-            $(println!("* {}", stringify!($u));)*
-            process::exit(0);
-        }
-    };
-}
-
-/// Register tasks with CLI entrypoint.
-/// The first entry is the default task,
-/// When no tasks are named in CLI arguments.
-#[macro_export]
-macro_rules! wubba_lubba_dub_dub {
-    ($d : expr ; $($t : expr),*) => {
-        {
-            use std::env;
-            use std::process;
-
-            let arguments: Vec<String> = env::args().collect();
-
-            let task_names: Vec<&str> = arguments
-                .iter()
-                .skip(1)
-                .map(String::as_str)
-                .collect();
-
-            if task_names.is_empty() {
-                $d();
-                process::exit(0);
-            }
-
-            for task_name in task_names {
-                match task_name {
-                    "-l" => tinyrick::list_tasks!($d $(, $t)*),
-                    "--list" => tinyrick::list_tasks!($d $(, $t)*),
-                    stringify!($d) => $d(),
-                    $(stringify!($t) => $t(),)*
-                    _ => panic!("Unknown task {}", task_name)
-                }
-            }
-        }
+    ($p : expr $(, $a:expr)* $(,)?) => {
+        ::tinyrick::exec($p, &[ $( $a, )* ])
     };
 }

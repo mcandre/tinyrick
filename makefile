@@ -93,7 +93,7 @@ test: install
 	sh -c "cd example && tinyrick -v"
 	sh -c "cd example && tinyrick -h"
 	sh -c "cd example && tinyrick"
-	sh -c "cd example && VERBOSE=1 tinyrick test clippy lint build_debug build_release build doc install unit_test integration_test test banner uninstall clean_cargo clean"
+	sh -c "cd example && VERBOSE=1 tinyrick test clippy lint build_debug build_release build doc install unit_test integration_test test uninstall clean_cargo clean"
 
 uninstall:
 	cargo uninstall tinyrick

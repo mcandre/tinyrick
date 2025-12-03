@@ -4,7 +4,7 @@ extern crate die;
 extern crate getopts;
 extern crate tinyrick;
 
-use die::{die, Die};
+use die::{Die, die};
 use std::env;
 use std::path;
 
@@ -35,17 +35,16 @@ fn main() {
     }
 
     let list_tasks: bool = optmatches.opt_present("l");
-    let tasks: Vec<String> = optmatches.free;
+    let tasks: Vec<&str> = optmatches.free.iter().map(AsRef::as_ref).collect();
 
     tinyrick::exec!(
         "cargo",
-        &[
-            "build",
-            "--bin",
-            env!("CARGO_PKG_NAME"),
-            "--features",
-            tinyrick::FEATURE
-        ]
+        "build",
+        "--quiet",
+        "--bin",
+        env!("CARGO_PKG_NAME"),
+        "--features",
+        tinyrick::FEATURE
     );
 
     let target_path: &path::Path = path::Path::new("target");
@@ -56,12 +55,15 @@ fn main() {
         tinyrick::binary_suffix()
     ));
 
-    let rick_path: &str = rick_pathbuf.to_str().unwrap();
+    let rick_path: &str = match rick_pathbuf.to_str() {
+        Some(r_p) => r_p,
+        _ => die!(format!("error: unable to process path: {:?}", rick_pathbuf)),
+    };
 
     if list_tasks {
-        tinyrick::exec!(rick_path, &["-l"]);
+        tinyrick::exec!(rick_path, "-l");
         die!(0);
     }
 
-    tinyrick::exec!(rick_path, tasks);
+    tinyrick::exec(rick_path, &tasks);
 }
