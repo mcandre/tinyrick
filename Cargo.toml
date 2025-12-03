@@ -1,7 +1,7 @@
 [package]
 name = "tinyrick"
 description = "a freeform Rust build system"
-version = "0.0.19"
+version = "0.0.20"
 edition = "2024"
 authors = ["Andrew Pennebaker <n4jm4@pm.me>"]
 license = "BSD-2-Clause"
