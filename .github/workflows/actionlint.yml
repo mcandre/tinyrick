@@ -3,6 +3,7 @@ name: "Actionlint"
 on: # yamllint disable-line rule:truthy
   push:
   pull_request:
+  workflow_dispatch:
 jobs:
   Actionlint:
     runs-on: "ubuntu-24.04"
