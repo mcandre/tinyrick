@@ -1,5 +1,7 @@
 # tinyrick: a freeform Rust build system
 
+[![Donate](https://img.shields.io/badge/GUMROAD-36a9ae?style=flat&logo=gumroad&logoColor=white)](https://mcandre.gumroad.com/)
+
 ```
        .---.              ^
      o{__ω__ o{          ^0^  -Let me out!
