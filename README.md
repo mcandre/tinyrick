@@ -41,6 +41,14 @@ https://crates.io/crates/tinyrick
 
 https://docs.rs/tinyrick/latest/tinyrick/
 
+# DOCKER HUB
+
+https://hub.docker.com/repository/docker/mcandre/tinyrick/general
+
+# DOWNLOAD
+
+https://github.com/mcandre/tinyrick/releases
+
 # LICENSE
 
 BSD-2-Clause

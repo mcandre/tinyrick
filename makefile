@@ -13,6 +13,12 @@
 	clippy \
 	crit \
 	doc \
+	docker-build \
+	docker-build-alpine \
+	docker-build-debian \
+	docker-push \
+	docker-push-alpine \
+	docker-push-debian \
 	install \
 	lint \
 	port \
@@ -27,7 +33,8 @@
 	clean-example \
 	clean-ports
 
-BANNER=tinyrick-0.0.20
+VERSION=0.0.20
+BANNER=tinyrick-$(VERSION)
 
 all: build
 
@@ -67,6 +74,30 @@ crit:
 
 doc:
 	cargo doc
+
+docker-build: docker-build-alpine docker-build-debian
+
+docker-build-alpine:
+	tuggy -c tuggy.alpine.toml -t mcandre/tinyrick:$(VERSION)-alpine3.23 --load
+	tuggy -c tuggy.alpine.toml -t mcandre/tinyrick:alpine3.23 --load
+
+docker-build-debian:
+	tuggy -c tuggy.debian.toml -t mcandre/tinyrick:$(VERSION)-trixie --load
+	tuggy -c tuggy.debian.toml -t mcandre/tinyrick:trixie --load
+	tuggy -c tuggy.debian.toml -t mcandre/tinyrick:$(VERSION) --load
+	tuggy -c tuggy.debian.toml -t mcandre/tinyrick --load
+
+docker-push: docker-push-alpine docker-push-debian
+
+docker-push-alpine:
+	tuggy -c tuggy.alpine.toml -t mcandre/tinyrick:$(VERSION)-alpine3.23 --push
+	tuggy -c tuggy.alpine.toml -t mcandre/tinyrick:alpine3.23 --push
+
+docker-push-debian:
+	tuggy -c tuggy.debian.toml -t mcandre/tinyrick:$(VERSION)-trixie --push
+	tuggy -c tuggy.debian.toml -t mcandre/tinyrick:trixie --push
+	tuggy -c tuggy.debian.toml -t mcandre/tinyrick:$(VERSION) --push
+	tuggy -c tuggy.debian.toml -t mcandre/tinyrick --push
 
 install:
 	cargo install --force --path .

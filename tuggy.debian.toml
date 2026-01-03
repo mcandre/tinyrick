@@ -1,0 +1,10 @@
+# debug = true
+
+# Some targets missing from official Docker Hub rust image
+# https://hub.docker.com/_/rust
+skip_platforms = [
+    "linux/arm/v6",
+    "linux/mips64",
+]
+
+dockerfile = "debian.Dockerfile"
