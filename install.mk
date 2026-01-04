@@ -9,7 +9,7 @@ all:
 		cargo-edit \
 		chandler@0.0.5 \
 		crit@0.0.12 \
-		tuggy@0.0.23
+		tuggy@0.0.26
 	cargo install --force \
 		cross \
 			--git https://github.com/cross-rs/cross \

@@ -80,26 +80,32 @@ doc:
 docker-build: docker-build-alpine docker-build-debian
 
 docker-build-alpine:
-	tuggy -c tuggy.alpine.toml -t mcandre/tinyrick:$(VERSION)-alpine3.23 --load
-	tuggy -c tuggy.alpine.toml -t mcandre/tinyrick:alpine3.23 --load
+	tuggy \
+		-c tuggy.alpine.toml \
+		-t "n4jm4/tinyrick:$(VERSION)-alpine3.23" \
+		--load
 
 docker-build-debian:
-	tuggy -c tuggy.debian.toml -t mcandre/tinyrick:$(VERSION)-trixie --load
-	tuggy -c tuggy.debian.toml -t mcandre/tinyrick:trixie --load
-	tuggy -c tuggy.debian.toml -t mcandre/tinyrick:$(VERSION) --load
-	tuggy -c tuggy.debian.toml -t mcandre/tinyrick --load
+	tuggy \
+		-c tuggy.debian.toml \
+		-t "n4jm4/tinyrick:$(VERSION)-trixie" \
+		--load
 
 docker-push: docker-push-alpine docker-push-debian
 
 docker-push-alpine:
-	tuggy -c tuggy.alpine.toml -t mcandre/tinyrick:$(VERSION)-alpine3.23 --push
-	tuggy -c tuggy.alpine.toml -t mcandre/tinyrick:alpine3.23 --push
+	tuggy \
+		-c tuggy.alpine.toml \
+		-t "n4jm4/tinyrick:$(VERSION)-alpine3.23" \
+		-a "n4jm4/tinyrick:$(VERSION)-alpine,n4jm4/tinyrick:alpine3.23,n4jm4/tinyrick:alpine" \
+		--push
 
 docker-push-debian:
-	tuggy -c tuggy.debian.toml -t mcandre/tinyrick:$(VERSION)-trixie --push
-	tuggy -c tuggy.debian.toml -t mcandre/tinyrick:trixie --push
-	tuggy -c tuggy.debian.toml -t mcandre/tinyrick:$(VERSION) --push
-	tuggy -c tuggy.debian.toml -t mcandre/tinyrick --push
+	tuggy \
+		-c tuggy.debian.toml \
+		-t "n4jm4/tinyrick:$(VERSION)-trixie" \
+		-a "n4jm4/tinyrick:trixie,n4jm4/tinyrick:$(VERSION),n4jm4/tinyrick" \
+		--push
 
 install:
 	cargo install --force --path .

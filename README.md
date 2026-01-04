@@ -45,7 +45,7 @@ https://docs.rs/tinyrick/latest/tinyrick/
 
 # DOCKER HUB
 
-https://hub.docker.com/repository/docker/mcandre/tinyrick/general
+https://hub.docker.com/r/n4jm4/tinyrick
 
 # DOWNLOAD
 
