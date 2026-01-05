@@ -14,11 +14,8 @@
 	crit \
 	doc \
 	docker-build \
-	docker-build-alpine \
-	docker-build-debian \
 	docker-push \
-	docker-push-alpine \
-	docker-push-debian \
+	docker-test \
 	install \
 	lint \
 	port \
@@ -77,35 +74,14 @@ crit:
 doc:
 	cargo doc
 
-docker-build: docker-build-alpine docker-build-debian
+docker-build:
+	tuggy -t n4jm4/tinyrick:$(VERSION) --load
 
-docker-build-alpine:
-	tuggy \
-		-c tuggy.alpine.toml \
-		-t "n4jm4/tinyrick:$(VERSION)-alpine3.23" \
-		--load
+docker-push:
+	tuggy -t n4jm4/tinyrick:$(VERSION) -a n4jm4/tinyrick --push
 
-docker-build-debian:
-	tuggy \
-		-c tuggy.debian.toml \
-		-t "n4jm4/tinyrick:$(VERSION)-trixie" \
-		--load
-
-docker-push: docker-push-alpine docker-push-debian
-
-docker-push-alpine:
-	tuggy \
-		-c tuggy.alpine.toml \
-		-t "n4jm4/tinyrick:$(VERSION)-alpine3.23" \
-		-a "n4jm4/tinyrick:$(VERSION)-alpine,n4jm4/tinyrick:alpine3.23,n4jm4/tinyrick:alpine" \
-		--push
-
-docker-push-debian:
-	tuggy \
-		-c tuggy.debian.toml \
-		-t "n4jm4/tinyrick:$(VERSION)-trixie" \
-		-a "n4jm4/tinyrick:trixie,n4jm4/tinyrick:$(VERSION),n4jm4/tinyrick" \
-		--push
+docker-test:
+	tuggy -t n4jm4/tinyrick:test --load --push
 
 install:
 	cargo install --force --path .
