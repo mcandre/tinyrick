@@ -30,7 +30,7 @@
 	clean-example \
 	clean-ports
 
-VERSION=0.0.23
+VERSION=0.0.24
 BANNER=tinyrick-$(VERSION)
 
 all: build
