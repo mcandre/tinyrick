@@ -1,7 +1,7 @@
 FROM rust:1.92-trixie AS build
 COPY . /src
 WORKDIR /src
-RUN make install
+RUN cargo install --path .
 
 FROM debian:trixie
 COPY --from=build /src/target/release/tinyrick /usr/bin
