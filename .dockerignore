@@ -1,4 +1,4 @@
-tuggy.*.toml
+tuggy.toml
 *.md
 .editorconfig
 .rubberstamp
