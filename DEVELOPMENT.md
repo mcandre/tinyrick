@@ -54,6 +54,18 @@ $ make publish
 $ make port
 ```
 
+# TEST DOCKER IMAGES
+
+```console
+$ make docker-test
+```
+
+# PUSH DOCKER IMAGES
+
+```console
+$ make docker-push
+```
+
 # CLEAN
 
 ```console
