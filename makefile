@@ -79,7 +79,8 @@ docker-push:
 	tuggy -t n4jm4/tinyrick:$(VERSION) -a n4jm4/tinyrick --push
 
 docker-test:
-	tuggy -t n4jm4/tinyrick:test --load --push
+	tuggy -t n4jm4/tinyrick:test --load
+	tuggy -t n4jm4/tinyrick:test --push
 
 install:
 	cargo install --force --path .
