@@ -43,21 +43,9 @@ https://crates.io/crates/tinyrick
 
 https://docs.rs/tinyrick/latest/tinyrick/
 
-# DOCKER HUB
+# INSTALLATION
 
-https://hub.docker.com/r/n4jm4/tinyrick
-
-# DOWNLOAD
-
-https://github.com/mcandre/tinyrick/releases
-
-# LICENSE
-
-BSD-2-Clause
-
-# RUNTIME REQUIREMENTS
-
-* [Rust](https://www.rust-lang.org/en-US/)
+See [INSTALL.md](INSTALL.md).
 
 ## Recommended
 
@@ -65,6 +53,10 @@ BSD-2-Clause
 * [direnv](https://direnv.net/) 2
 * [cargo-cache](https://crates.io/crates/cargo-cache)
 * [tinyrick_extras](https://github.com/mcandre/tinyrick_extras)
+
+# LICENSE
+
+BSD-2-Clause
 
 # SETUP
 
