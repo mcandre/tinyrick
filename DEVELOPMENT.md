@@ -20,54 +20,54 @@ tinyrick's own compilation process is compatible with standard `cargo`. We wrap 
 
 # INSTALL BINARY ARTIFACTS FROM LOCAL SOURCE
 
-```console
-$ make install
+```sh
+make install
 ```
 
 # UNINSTALL BINARY ARTIFACTS
 
-```console
-$ make uninstall
+```sh
+make uninstall
 ```
 
 # SECURITY AUDIT
 
-```console
-$ make audit
+```sh
+make audit
 ```
 
 # BUILD: LINT, DOC, COMPILE, and TEST
 
-```console
-$ make build
+```sh
+make build
 ```
 
 # PUBLISH
 
-```console
-$ make publish
+```sh
+make publish
 ```
 
 # PORT
 
-```console
-$ make port
+```sh
+make port
 ```
 
 # TEST DOCKER IMAGES
 
-```console
-$ make docker-test
+```sh
+make docker-test
 ```
 
 # PUSH DOCKER IMAGES
 
-```console
-$ make docker-push
+```sh
+make docker-push
 ```
 
 # CLEAN
 
-```console
-$ make clean
+```sh
+make clean
 ```
