@@ -158,10 +158,6 @@ Just because the tinyrick library offers several *supremely convenient* macros f
 
 Whenever possible, use regular Rust code. There's like a ba-jillion [crates](https://crates.io) of prewritten Rust code, so you might as well use it!
 
-# CONTRIBUTING
-
-For more details on developing tinyrick itself, see [DEVELOPMENT.md](DEVELOPMENT.md).
-
 # SEE ALSO
 
 * Inspired by the excellent [mage](https://magefile.org/) build system for Go projects
