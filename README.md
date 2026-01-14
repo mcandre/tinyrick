@@ -1,6 +1,6 @@
 # tinyrick: a freeform Rust build system
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/n4jm4/tinyrick)](https://hub.docker.com/r/n4jm4/tinyrick) [![Donate](https://img.shields.io/badge/GUMROAD-36a9ae?style=flat&logo=gumroad&logoColor=white)](https://mcandre.gumroad.com/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/n4jm4/tinyrick)](https://hub.docker.com/r/n4jm4/tinyrick) [![Crates.io Downloads (latest version)](https://img.shields.io/crates/dv/tinyrick?label=crate%20downloads)](https://crates.io/crates/tinyrick) [![docs.rs](https://img.shields.io/docsrs/tinyrick)](https://docs.rs/tinyrick/latest/tinyrick/) [![license](https://img.shields.io/badge/license-BSD-3)](LICENSE.md) [![Donate](https://img.shields.io/badge/GUMROAD-36a9ae?style=flat&logo=gumroad&logoColor=white)](https://mcandre.gumroad.com/)
 
 ```
        .---.              ^
@@ -35,14 +35,6 @@ Look at my pants! tinyrick! You think my pants are one size fits all? No, of cou
 
 Don't shell out, lib out. Your build is more portable that way. tinyricktinyricktinyrick. If you look closely, that last period is actually a *micro* rick rendered in ASCII; even tinier tinyrick!
 
-# CRATE
-
-https://crates.io/crates/tinyrick
-
-# API DOCUMENTATION
-
-https://docs.rs/tinyrick/latest/tinyrick/
-
 # INSTALLATION
 
 See [INSTALL.md](INSTALL.md).
@@ -53,10 +45,6 @@ See [INSTALL.md](INSTALL.md).
 * [direnv](https://direnv.net/) 2
 * [cargo-cache](https://crates.io/crates/cargo-cache)
 * [tinyrick_extras](https://github.com/mcandre/tinyrick_extras)
-
-# LICENSE
-
-BSD-2-Clause
 
 # SETUP
 
