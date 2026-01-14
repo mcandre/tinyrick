@@ -1,6 +1,6 @@
 # tinyrick: a freeform Rust build system
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/n4jm4/tinyrick)](https://hub.docker.com/r/n4jm4/tinyrick) [![Crates.io Downloads (latest version)](https://img.shields.io/crates/dv/tinyrick?label=crate%20downloads)](https://crates.io/crates/tinyrick) [![docs.rs](https://img.shields.io/docsrs/tinyrick)](https://docs.rs/tinyrick/latest/tinyrick/) [![license](https://img.shields.io/badge/license-BSD-3)](LICENSE.md) [![Donate](https://img.shields.io/badge/GUMROAD-36a9ae?style=flat&logo=gumroad&logoColor=white)](https://mcandre.gumroad.com/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/n4jm4/tinyrick)](https://hub.docker.com/r/n4jm4/tinyrick) [![Crates.io Downloads (latest version)](https://img.shields.io/crates/dv/tinyrick?label=crate%20downloads)](https://crates.io/crates/tinyrick) [![docs.rs](https://img.shields.io/docsrs/tinyrick)](https://docs.rs/tinyrick/latest/tinyrick/) [![Test](https://github.com/mcandre/tinyrick/actions/workflows/test.yml/badge.svg)](https://github.com/mcandre/tinyrick/actions/workflows/test.yml) [![license](https://img.shields.io/badge/license-BSD-3)](LICENSE.md) [![Donate](https://img.shields.io/badge/GUMROAD-36a9ae?style=flat&logo=gumroad&logoColor=white)](https://mcandre.gumroad.com/)
 
 ```
        .---.              ^
