@@ -1,8 +1,8 @@
 # tinyrick: a freeform Rust build system
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/n4jm4/tinyrick)](https://hub.docker.com/r/n4jm4/tinyrick) [![Crates.io Downloads (recent)](https://img.shields.io/crates/dr/tinyrick?label=crate%20downloads)](https://crates.io/crates/tinyrick) [![GitHub Downloads](https://img.shields.io/github/downloads/mcandre/tinyrick/total?logo=github)](https://github.com/mcandre/buttery/releases) [![docs.rs](https://img.shields.io/docsrs/tinyrick)](https://docs.rs/tinyrick/latest/tinyrick/) [![Test](https://github.com/mcandre/tinyrick/actions/workflows/test.yml/badge.svg)](https://github.com/mcandre/tinyrick/actions/workflows/test.yml) [![license](https://img.shields.io/badge/license-BSD-3)](LICENSE.md) [![Donate](https://img.shields.io/badge/-any?logo=gumroad&label=Donate&color=grey)](https://mcandre.gumroad.com/)
+[![Crates.io Downloads (recent)](https://img.shields.io/crates/dr/tinyrick?label=crate%20downloads)](https://crates.io/crates/tinyrick) [![docs.rs](https://img.shields.io/docsrs/tinyrick)](https://docs.rs/tinyrick/latest/tinyrick/) [![Test](https://github.com/mcandre/tinyrick/actions/workflows/test.yml/badge.svg)](https://github.com/mcandre/tinyrick/actions/workflows/test.yml) [![license](https://img.shields.io/badge/license-BSD-3)](LICENSE.md)
 
-```
+```txt
        .---.              ^
      o{__ω__ o{          ^0^  -Let me out!
 ~~ ( // *|* \xx\)      xx`|'
@@ -35,14 +35,25 @@ Look at my pants! tinyrick! You think my pants are one size fits all? No, of cou
 
 Don't shell out, lib out. Your build is more portable that way. tinyricktinyricktinyrick. If you look closely, that last period is actually a *micro* rick rendered in ASCII; even tinier tinyrick!
 
-# INSTALLATION
+# DOWNLOAD
 
-See [INSTALL.md](INSTALL.md).
+```sh
+cargo install tinyrick
+```
+
+## Prerequisites
+
+* [cargo](https://doc.rust-lang.org/cargo/)
+
+For informatin on developing tinyrick, see our [development guide](DEVELOPMENT.md).
+
+# RUNTIME REQUIREMENTS
+
+* [Rust](https://rust-lang.org/)
 
 ## Recommended
 
 * [ASDF](https://asdf-vm.com/) 0.18 (run `asdf reshim` after each Rust application binary installation)
-* [direnv](https://direnv.net/) 2
 * [cargo-cache](https://crates.io/crates/cargo-cache)
 * [tinyrick_extras](https://github.com/mcandre/tinyrick_extras)
 

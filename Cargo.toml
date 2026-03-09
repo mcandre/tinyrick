@@ -7,6 +7,9 @@ authors = ["Andrew Pennebaker <n4jm4@pm.me>"]
 license = "BSD-2-Clause"
 repository = "https://github.com/mcandre/tinyrick"
 documentation = "https://docs.rs/tinyrick/"
+exclude = [
+    "example",
+]
 
 [dependencies]
 ctor = "0.6.2"
@@ -24,3 +27,6 @@ name = "tinyrick"
 [[bin]]
 name = "tinyrick"
 path = "src/tinyrick.rs"
+
+[profile.release]
+strip = "symbols"

@@ -6,32 +6,21 @@
 	build \
 	cargo-check \
 	clean \
-	clean-archive \
 	clean-cargo \
 	clean-example \
-	clean-ports \
 	clippy \
 	crit \
 	doc \
-	docker-build \
-	docker-push \
-	docker-test \
 	install \
 	lint \
-	port \
 	publish \
 	rustfmt \
 	test \
 	uninstall
 .IGNORE: \
 	clean \
-	clean-archive \
 	clean-cargo \
-	clean-example \
-	clean-ports
-
-VERSION=0.0.24
-BANNER=tinyrick-$(VERSION)
+	clean-example
 
 all: build
 
@@ -45,13 +34,8 @@ cargo-check:
 	cargo check
 
 clean: \
-	clean-archive \
 	clean-cargo \
-	clean-example \
-	clean-ports
-
-clean-archive:
-	rm .crit/bin/$(BANNER).tgz
+	clean-example
 
 clean-cargo:
 	cargo clean
@@ -59,28 +43,13 @@ clean-cargo:
 clean-example:
 	rm -f example/Cargo.lock
 	rm -rf example/target
-
-clean-ports:
-	crit -c
+	rm -rf example/.crit
 
 clippy:
 	cargo clippy
 
-crit:
-	crit -b $(BANNER)
-
 doc:
 	cargo doc
-
-docker-build:
-	tuggy -t n4jm4/tinyrick:$(VERSION) --load
-
-docker-push:
-	tuggy -t n4jm4/tinyrick:$(VERSION) -a n4jm4/tinyrick --push
-
-docker-test:
-	tuggy -t n4jm4/tinyrick:test --load
-	tuggy -t n4jm4/tinyrick:test --push
 
 install:
 	cargo install --force --path .
@@ -90,9 +59,6 @@ lint: \
 	clippy \
 	doc \
 	rustfmt
-
-port: crit
-	chandler -C .crit/bin -czf $(BANNER).tgz $(BANNER)
 
 publish:
 	cargo publish
