@@ -41,21 +41,16 @@ Don't shell out, lib out. Your build is more portable that way. tinyricktinyrick
 cargo install tinyrick
 ```
 
-## Prerequisites
+# PREREQUISITES
 
 * [cargo](https://doc.rust-lang.org/cargo/)
-
-For informatin on developing tinyrick, see our [development guide](DEVELOPMENT.md).
-
-# RUNTIME REQUIREMENTS
-
-* [Rust](https://rust-lang.org/)
 
 ## Recommended
 
 * [ASDF](https://asdf-vm.com/) 0.18 (run `asdf reshim` after each Rust application binary installation)
-* [cargo-cache](https://crates.io/crates/cargo-cache)
 * [tinyrick_extras](https://github.com/mcandre/tinyrick_extras)
+
+For information on developing tinyrick, see our [development guide](DEVELOPMENT.md).
 
 # SETUP
 
