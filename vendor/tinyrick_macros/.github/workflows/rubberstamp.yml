@@ -1,0 +1,39 @@
+---
+#
+# Rubberstamp v0.0.2
+# https://github.com/mcandre/rubberstamp
+#
+name: "Rubberstamp"
+on: # yamllint disable-line rule:truthy
+  # POSIX cron format
+  # https://pubs.opengroup.org/onlinepubs/9699919799/utilities/crontab.html
+  schedule:
+  # Once every 5 minutes
+  # - cron: "*/5 * * * *"
+  # Once a month
+  - cron: "0 0 1 * *"
+  workflow_dispatch:
+jobs:
+  Audit:
+    runs-on: "ubuntu-24.04"
+    env:
+      RUBBERSTAMP_GH_REPO: "${{ github.repository }}"
+      SSH_KEY: "${{ secrets.SSH_KEY }}"
+    steps:
+    - uses: "actions/checkout@v4"
+    - name: "provision git"
+      run: |
+        sudo apt update
+        sudo apt install -y git
+        git config --global user.email 'rubberstamp@rubberstamp.test'
+        git config --global user.name 'Rubberstamp'
+        git config --global core.sshCommand 'ssh -i /tmp/key'
+        echo "$SSH_KEY" >/tmp/key
+        chmod 0600 /tmp/key
+        git remote set-url origin "git@github.com:${RUBBERSTAMP_GH_REPO}.git"
+    - name: "stamp"
+      run: |
+        date -u >.rubberstamp
+        git add .rubberstamp
+        git commit -m 'rubberstamp'
+        git push
