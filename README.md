@@ -152,30 +152,24 @@ Just because the tinyrick library offers several *supremely convenient* macros f
 
 Whenever possible, use regular Rust code. There's like a ba-jillion [crates](https://crates.io) of prewritten Rust code, so you might as well use it!
 
-# SEE ALSO
+# RESOURCES
+
+Prior art, personal plugs, and tools for developing portable applications (including non-Rust projects)!
 
 * Inspired by the excellent [mage](https://magefile.org/) build system for Go projects
-* [bb](https://github.com/mcandre/bb), a build system for (g)awk projects
-* [beltaloada](https://github.com/mcandre/beltaloada), a guide to writing build systems for (POSIX) sh
-* [booty](https://github.com/mcandre/booty?tab=readme-ov-file) for JS/Node.js/altJS
-* [cargo](https://doc.rust-lang.org/cargo/reference/build-scripts.html) custom build scripts, primarily for generating Rust source files from other languages
-* [cmake](https://cmake.org/) for C/C++ projects
-* [dale](https://github.com/mcandre/dale) builds D projects
+* POSIX compliant [make](https://pubs.opengroup.org/onlinepubs/9799919799/utilities/make.html), the classic, application language agnostic task runner
 * [GNU autotools](https://www.gnu.org/software/automake/manual/html_node/Autotools-Introduction.html), a build system for Linux C/C++ projects
 * [Gradle](https://gradle.org/), a build system for JVM projects
-* [invoke](https://pypi.org/project/invoke/), a Python task runner
-* [jelly](https://github.com/mcandre/jelly), a JSON task runner
-* [lair](https://github.com/mcandre/lair), a lightweight task runner
-* [lake](https://luarocks.org/modules/steved/lake), a Lua task runner
 * [Leiningen](https://leiningen.org/) + [lein-exec](https://github.com/kumarshantanu/lein-exec), a Clojure task runner
-* [lichen](https://github.com/mcandre/lichen), a sed task runner
-* POSIX compliant [make](https://pubs.opengroup.org/onlinepubs/9799919799/utilities/make.html), the classic, application language agnostic task runner
-* [mian](https://github.com/mcandre/mian), a task runner for (Chicken) Scheme Lisp
 * [Rake](https://ruby.github.io/rake/), a task runner for Ruby projects
 * [Rebar3](https://www.rebar3.org/), a build system for Erlang projects
-* [rez](https://github.com/mcandre/rez) builds C/C++ projects
-* [sbt](https://www.scala-sbt.org/index.html), a build system for Scala projects
 * [Shake](https://shakebuild.com/), a task runner for Haskell projects
+* [cargo](https://doc.rust-lang.org/cargo/reference/build-scripts.html) custom build scripts, primarily for generating Rust source files from other languages
+* [cmake](https://cmake.org/) for C/C++ projects
+* [invoke](https://pypi.org/project/invoke/), a Python task runner
+* [lake](https://luarocks.org/modules/steved/lake), a Lua task runner
+* [mcandre/booty](https://github.com/mcandre/booty) for JS/Node.js/altJS
+* [sbt](https://www.scala-sbt.org/index.html), a build system for Scala projects
 * [yao](https://github.com/mcandre/yao), a task runner for Common LISP projects
 
 🛸
