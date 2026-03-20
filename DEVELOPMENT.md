@@ -1,51 +1,72 @@
-# DEVELOPMENT GUIDE
+# DEVELOPMENT
 
 tinyrick follows standard, cargo based operations for compiling and unit testing Rust code.
 
 For advanced operations, such as linting, we further supplement with some software industry tools.
 
-# BUILDTIME REQUIREMENTS
+# DEV ENVIRONMENT
 
-* POSIX compliant [make](https://pubs.opengroup.org/onlinepubs/9799919799/utilities/make.html)
+## Prerequisites
+
+* [make](https://pubs.opengroup.org/onlinepubs/9799919799/utilities/make.html)
 * [Rust](https://www.rust-lang.org/en-US/)
 * Provision additional dev tools with `make -f install.mk`
 
 ## Recommended
 
-* a UNIX-like environment (e.g. [WSL](https://learn.microsoft.com/en-us/windows/wsl/))
-* [ASDF](https://asdf-vm.com/) 0.18 (run `asdf reshim` after provisioning)
+* [asdf](https://asdf-vm.com/)
 
-# COMPILE AND INSTALL
+## Postinstall
+
+Register `~/.cargo/bin` to `PATH` environment variable.
+
+# TASKS
+
+We automate engineering tasks.
+
+## Build
+
+```sh
+make
+```
+
+## Install
 
 ```sh
 make install
 ```
 
-# UNINSTALL
+## Uninstall
 
 ```sh
 make uninstall
 ```
 
-# SECURITY AUDIT
+## Security Audit
 
 ```sh
 make audit
 ```
 
-# BUILD: LINT, DOC, COMPILE, and TEST
+## Lint
 
 ```sh
-make build
+make lint
 ```
 
-# PUBLISH
+## Test
+
+```sh
+make test
+```
+
+## Publish Crate
 
 ```sh
 make publish
 ```
 
-# CLEAN
+## Clean Workspace
 
 ```sh
 make clean

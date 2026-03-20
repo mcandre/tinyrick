@@ -5,6 +5,9 @@ version = "0.0.1"
 edition = "2024"
 authors = ["Andrew Pennebaker <n4jm4@pm.me>"]
 license = "BSD-2-Clause"
+exclude = [
+    "tinyrick.rs",
+]
 
 [dependencies]
 ctor = { version = "0.6.2", optional = true }

@@ -27,7 +27,7 @@ all: build
 audit:
 	cargo audit
 
-build: lint test
+build:
 	cargo build --release
 
 cargo-check:

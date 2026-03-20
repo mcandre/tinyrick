@@ -3,14 +3,8 @@
 Mathematical powers beyond your imagination!
 
 ```console
-$ add_two -v
+% add_two -v
 arithmancy 0.0.1
 ```
 
-# RUNTIME REQUIREMENTS
-
-(None)
-
-# CONTRIBUTING
-
-For more details on developing arithmancy itself, see [DEVELOPMENT.md](DEVELOPMENT.md).
+For details on building from source, see [DEVELOPMENT](DEVELOPMENT.md).

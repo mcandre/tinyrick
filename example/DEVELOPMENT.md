@@ -1,49 +1,62 @@
-# OVERVIEW
+# DEVELOPMENT
 
-arithmancy's own compilation process is compatible with standard `cargo`. We wrap some common workflows with `tinyrick` tasks for convenience.
+tinyrick follows standard, cargo based operations for compiling and unit testing Rust code.
 
-# BUILDTIME REQUIREMENTS
+For advanced operations, such as linting, we further supplement with some software industry tools.
 
-* [Rust](https://www.rust-lang.org/en-US/) 1.92.0+
-* [cargo-audit](https://crates.io/crates/cargo-audit)
+# DEV ENVIRONMENT
 
-## Recommended
+## Prerequisites
 
-* [clippy](https://github.com/rust-lang-nursery/rust-clippy)
-* [tinyrick](https://github.com/mcandre/tinyrick) (e.g., `cargo install tinyrick`)
+* [Rust](https://www.rust-lang.org/en-US/)
+* [tinyrick](https://github.com/mcandre/tinyrick)
 
-# INSTALL BINARY ARTIFACTS FROM LOCAL SOURCE
+# TASKS
 
-```console
-$ tinyrick install
+## Build
+
+```sh
+tinyrick
 ```
 
-# UNINSTALL BINARY ARTIFACTS
+## Install
 
-```console
-$ tinyrick uninstall
+```sh
+tinyrick install
 ```
 
-# BUILD: LINT, DOC, COMPILE, and TEST
+## Uninstall
 
-```console
-$ tinyrick [build]
+```sh
+tinyrick uninstall
 ```
 
-# SECURITY AUDIT
+## Security Audit
 
-```console
-$ tinyrick audit
+```sh
+tinyrick audit
 ```
 
-# PUBLISH
+## Lint
 
-```console
-$ tinyrick publish
+```sh
+tinyrick lint
 ```
 
-# CLEAN
+## Test
 
-```console
-$ tinyrick clean
+```sh
+tinyrick test
+```
+
+## Publish Crate
+
+```sh
+tinyrick publish
+```
+
+## Clean Workspace
+
+```sh
+tinyrick clean
 ```
