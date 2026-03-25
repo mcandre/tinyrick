@@ -101,7 +101,7 @@ exclude = [
 [dependencies]
 ctor = { version = "0.6.2", optional = true }
 die = "0.2.0"
-tinyrick = { version = "0.0.25", optional = true }
+tinyrick = { version = "0.0.26", optional = true }
 tinyrick_macros = { version = "0.0.2", optional = true }
 tinyrick_models = { version = "0.0.2", optional = true }
 
