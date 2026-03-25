@@ -12,9 +12,17 @@
 [package]
 edition = "2024"
 name = "tinyrick_models"
-version = "0.0.2"
+version = "0.0.3"
 authors = ["Andrew Pennebaker <n4jm4@pm.me>"]
 build = false
+exclude = [
+    "*.mk",
+    ".editorconfig",
+    ".github",
+    ".rubberstamp",
+    ".tool-versions",
+    "makefile",
+]
 autolib = false
 autobins = false
 autoexamples = false
@@ -23,7 +31,7 @@ autobenches = false
 description = "data models for development tasks"
 documentation = "https://docs.rs/tinyrick_models/"
 readme = "README.md"
-license = "BSD-2-Clause"
+license = "0BSD"
 repository = "https://github.com/mcandre/tinyrick_models"
 
 [lib]

@@ -1,19 +1,27 @@
 [package]
 name = "tinyrick_macros"
 description = "procedural macros for scheduling development tasks"
-version = "0.0.3"
+version = "0.0.4"
 edition = "2024"
 authors = ["Andrew Pennebaker <n4jm4@pm.me>"]
-license = "BSD-2-Clause"
+license = "0BSD"
 repository = "https://github.com/mcandre/tinyrick_macros"
 documentation = "https://docs.rs/tinyrick_macros/"
+exclude = [
+    "*.mk",
+    ".editorconfig",
+    ".github",
+    ".rubberstamp",
+    ".tool-versions",
+    "makefile",
+]
 
 [dependencies]
 ctor = "0.6.2"
 proc-macro2 = "1.0.103"
 quote = "1.0.42"
 syn = { version = "2.0.111", features = ["full"] }
-tinyrick_models = "0.0.2"
+tinyrick_models = "0.0.3"
 
 [lib]
 name = "tinyrick_macros"

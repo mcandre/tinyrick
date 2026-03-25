@@ -1,12 +1,20 @@
 [package]
 name = "tinyrick_models"
 description = "data models for development tasks"
-version = "0.0.2"
+version = "0.0.3"
 edition = "2024"
 authors = ["Andrew Pennebaker <n4jm4@pm.me>"]
-license = "BSD-2-Clause"
+license = "0BSD"
 repository = "https://github.com/mcandre/tinyrick_models"
 documentation = "https://docs.rs/tinyrick_models/"
+exclude = [
+    "*.mk",
+    ".editorconfig",
+    ".github",
+    ".rubberstamp",
+    ".tool-versions",
+    "makefile",
+]
 
 [lib]
 name = "tinyrick_models"

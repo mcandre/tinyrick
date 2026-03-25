@@ -1,6 +1,6 @@
 # DEVELOPMENT
 
-tinyrick_models follows standard, cargo based operations for compiling and unit testing Rust code.
+tinyrick_macros follows standard, cargo based operations for compiling and unit testing Rust code.
 
 For advanced operations, such as linting, we further supplement with some software industry tools.
 
