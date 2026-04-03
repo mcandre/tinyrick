@@ -24,4 +24,5 @@ jobs:
     - run: |
         cargo upgrade --verbose --incompatible
         cargo update
+        cargo vendor
     - run: "make test"
