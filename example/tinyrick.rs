@@ -2,17 +2,17 @@
 
 use tinyrick::*;
 
+/// Security audit
+#[task]
+fn audit() {
+    exec!("cargo", "audit");
+}
+
 /// Build: Lint, test, and then build binaries
 #[default_task]
 fn build() {
     deps!(build_debug);
     deps!(build_release);
-}
-
-/// Security audit
-#[task]
-fn audit() {
-    exec!("cargo", "audit");
 }
 
 /// Lint, test, and build debug binaries
@@ -66,18 +66,18 @@ fn lint() {
     deps!(clippy);
 }
 
-/// Lint, and then run integration tests
-#[task]
-fn integration_test() {
-    deps!(install);
-    exec!("add_two", "-n", "2");
-}
-
 /// Lint, and then install artifacts
 #[task]
 fn install() {
     deps!(lint);
     exec!("cargo", "install", "--force", "--path", ".");
+}
+
+/// Lint, and then run integration tests
+#[task]
+fn integration_test() {
+    deps!(install);
+    exec!("add_two", "-n", "2");
 }
 
 /// Publish to crate repository
