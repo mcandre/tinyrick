@@ -14,8 +14,8 @@ ctor = { version = "0.6.2", optional = true }
 die = "0.2.0"
 getopts = "0.2.21"
 tinyrick = { version = "0.0.26", optional = true }
-tinyrick_macros = { version = "0.0.3", optional = true }
-tinyrick_models = { version = "0.0.2", optional = true }
+tinyrick_macros = { version = "0.0.4", optional = true }
+tinyrick_models = { version = "0.0.3", optional = true }
 
 [features]
 letmeout = [

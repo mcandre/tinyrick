@@ -11,7 +11,13 @@ For advanced operations, such as linting, we further supplement with some softwa
 * [Rust](https://www.rust-lang.org/en-US/)
 * [tinyrick](https://github.com/mcandre/tinyrick)
 
+## Postinstall
+
+Register `~/.cargo/bin` to `PATH` environment variable.
+
 # TASKS
+
+We automate engineering tasks.
 
 ## Build
 
