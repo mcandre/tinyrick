@@ -12,6 +12,7 @@
 	crit \
 	doc \
 	install \
+	itest \
 	lint \
 	publish \
 	rustfmt \
@@ -54,6 +55,13 @@ doc:
 install:
 	cargo install --force --path .
 
+itest: install
+	sh -c "cd example && tinyrick -l"
+	sh -c "cd example && tinyrick -v"
+	sh -c "cd example && tinyrick -h"
+	sh -c "cd example && tinyrick"
+	sh -c "cd example && VERBOSE=1 tinyrick test clippy lint build_debug build_release build doc install unit_test integration_test test uninstall clean_cargo clean"
+
 lint: \
 	cargo-check \
 	clippy \
@@ -66,12 +74,8 @@ publish:
 rustfmt:
 	cargo fmt
 
-test: install
-	sh -c "cd example && tinyrick -l"
-	sh -c "cd example && tinyrick -v"
-	sh -c "cd example && tinyrick -h"
-	sh -c "cd example && tinyrick"
-	sh -c "cd example && VERBOSE=1 tinyrick test clippy lint build_debug build_release build doc install unit_test integration_test test uninstall clean_cargo clean"
+test:
+	cargo test
 
 uninstall:
 	cargo uninstall tinyrick

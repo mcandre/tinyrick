@@ -17,6 +17,11 @@ use std::process;
 /// Cargo toggle
 pub static FEATURE: &str = "letmeout";
 
+#[test]
+fn test_feature_nonblank() {
+    assert!(!FEATURE.is_empty());
+}
+
 /// Environment name controlling verbosity
 pub static VERBOSE_ENVIRONMENT_NAME: &str = "VERBOSE";
 

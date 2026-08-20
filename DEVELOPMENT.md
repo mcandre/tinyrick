@@ -52,10 +52,16 @@ make audit
 make lint
 ```
 
-## Test
+## Unit Test
 
 ```sh
 make test
+```
+
+## Integration Test
+
+```sh
+make itest
 ```
 
 ## Publish Crate
