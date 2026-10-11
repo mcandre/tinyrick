@@ -2,7 +2,7 @@
 
 [![Crates.io Downloads (recent)](https://img.shields.io/crates/dr/tinyrick?label=crate%20downloads)](https://crates.io/crates/tinyrick) [![docs.rs](https://img.shields.io/docsrs/tinyrick)](https://docs.rs/tinyrick/latest/tinyrick/) [![Test](https://github.com/mcandre/tinyrick/actions/workflows/test.yml/badge.svg)](https://github.com/mcandre/tinyrick/actions/workflows/test.yml) [![license](https://img.shields.io/badge/license-BSD-0)](LICENSE.md)
 
-```txt
+```text
        .---.              ^
      o{__ω__ o{          ^0^  -Let me out!
 ~~ ( // *|* \xx\)      xx`|'
