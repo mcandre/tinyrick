@@ -1,6 +1,6 @@
 # tinyrick: a freeform Rust build system
 
-[![Crate Downloads](https://badgen.net/crates/d/tinyrick?label=crate+downloads&icon=rust)](https://crates.io/crates/tinyrick) [![API Docs](https://badgen.net/static/docs/API/3eca2a?icon=docs.rs)](https://docs.rs/tinyrick/latest/tinyrick/) [![CI/CD](https://badgen.net/github/checks/mcandre/tinyrick?icon=github)](https://github.com/mcandre/tinyrick/actions) [![License](https://badgen.net/static/license/BSD/ab2b29?icon=freebsd)](LICENSE.md)
+[![Crate Downloads](https://badgen.net/crates/d/tinyrick?label=crate+downloads&icon=rust)](https://crates.io/crates/tinyrick) [![API Docs](https://badgen.net/static/docs/API/3eca2a?icon=docs.rs)](https://docs.rs/tinyrick/latest/tinyrick/) [![CI/CD](https://badgen.net/github/checks/mcandre/tinyrick?icon=github)](https://github.com/mcandre/tinyrick/actions) [![License](https://badgen.net/static/license/BSD/ab2b29?icon=freebsd)](LICENSE.md) [![AI](https://badgen.net/static/ai/Gemini|hint?color=886fbf&icon=google-gemini)](AI-DECLARATION.md)
 
 ```text
        .---.              ^
